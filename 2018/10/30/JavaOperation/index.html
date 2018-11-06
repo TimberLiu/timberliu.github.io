@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="面向对象,">
 
 
 
@@ -96,16 +96,23 @@
 
 
 
-<meta name="description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TimberLiu">
-<meta property="og:url" content="https://blog.timberliu.com/index.html">
+<meta name="description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
+<meta name="keywords" content="面向对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 中的运算">
+<meta property="og:url" content="https://blog.timberliu.com/2018/10/30/JavaOperation/index.html">
 <meta property="og:site_name" content="TimberLiu">
-<meta property="og:description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
+<meta property="og:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/305BDDEB97B046DD88F2C3283C96FE91/60321">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8E934CE0A24A476E985EAD7024401CF4/60351">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/d37aed06bb772eed95e710393c7e2c47/xmlnote/FA7A94432A3F4C59B89C8913BE219AEE/60858">
+<meta property="og:updated_time" content="2018-10-29T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TimberLiu">
-<meta name="twitter:description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
+<meta name="twitter:title" content="Java 中的运算">
+<meta name="twitter:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295">
 
 
 
@@ -134,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/">
+  <link rel="canonical" href="https://blog.timberliu.com/2018/10/30/JavaOperation/">
 
 
 
 
 
-  <title>TimberLiu</title>
+  <title>Java 中的运算 | TimberLiu</title>
   
 
 
@@ -165,9 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -302,505 +307,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/03/BasicDateType/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/03/BasicDateType/" itemprop="url">基本数据类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>Java 中有 8 中基本数据类型，分为三类：字符型、布尔型、数值型。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/03/BasicDateType/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/01/Object-orientedConcept/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/01/Object-orientedConcept/" itemprop="url">面向对象中的一些概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T00:00:00+08:00">
-                2018-11-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-01T00:00:00+08:00">
-                2018-11-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="this、super"><a href="#this、super" class="headerlink" title="this、super"></a>this、super</h2><p>this 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。</p>
-<p>还可以用 this 调用构造器。但必须将构造器置于最起始处。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/01/Object-orientedConcept/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/10/30/TheJavaPlatform/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/TheJavaPlatform/" itemprop="url">Java 平台</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T00:00:00+08:00">
-                2018-10-30
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T00:00:00+08:00">
-                2018-10-30
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Java 是一种面向对象的语言，最显著的特性有两个方面：   </p>
-<ol>
-<li>跨平台特性。也就是“编译一次，到处运行”（Compile once, run anywhere)，能够非常容易地获得跨平台能力；</li>
-<li>垃圾回收机制。Java 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。</li></ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/30/TheJavaPlatform/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -830,9 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/JavaOperation/" itemprop="url">Java 中的运算</a></h1>
+          <h1 class="post-title" itemprop="name headline">Java 中的运算</h1>
         
 
         <div class="post-meta">
@@ -898,175 +405,13 @@
           
 
           
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="值传递与引用传递"><a href="#值传递与引用传递" class="headerlink" title="值传递与引用传递"></a>值传递与引用传递</h2><p>先来看一下值传递与引用传递的概念：</p>
-<ul>
-<li>值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。</li>
-<li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/30/JavaOperation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/10/28/Object-orientedThought/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/28/Object-orientedThought/" itemprop="url">理解面向对象思想</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T00:00:00+08:00">
-                2018-10-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-28T00:00:00+08:00">
-                2018-10-28
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
             </span>
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
@@ -1083,19 +428,46 @@
       
 
       
-        
-          <blockquote>
-<p>学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。</p>
-</blockquote>
-<p>Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/28/Object-orientedThought/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h2 id="值传递与引用传递"><a href="#值传递与引用传递" class="headerlink" title="值传递与引用传递"></a>值传递与引用传递</h2><p>先来看一下值传递与引用传递的概念：</p>
+<ul>
+<li>值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。</li>
+<li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。<a id="more"></a>
+那么 Java 中到底是值传递还是引用传递？先来看下面的例子：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    j = <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"change: j = "</span> + j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    change(i);</span><br><span class="line">    System.out.println(<span class="string">"main: i = "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: j = 2</span></span><br><span class="line"><span class="comment">// main: i = 1</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，change 方法内部并没有改变实际参数的值，那么 Java 就是值传递吗？再来看下面的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    user.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='Timber', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=21&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，实际参数的值被改变了，那么 Java 在传递基本类型时是值传递，在传递对象类型是引用类型。其实，这种表述也不对，看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static void change(String name2) &#123;</span><br><span class="line">    name2 = &quot;TimberLiu&quot;;</span><br><span class="line">    System.out.println(&quot;change: &quot; + name2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    String name1 = &quot;Timber&quot;;</span><br><span class="line">    change(name1);</span><br><span class="line">    System.out.println(&quot;main: &quot; + name1);</span><br><span class="line">&#125;</span><br><span class="line">// change: TimberLiu</span><br><span class="line">// main: Timber</span><br></pre></td></tr></table></figure>
+<p>可以看到，实际参数的值又被改变了，这又作何解释呢？</p>
+<h2 id="Java-的值传递"><a href="#Java-的值传递" class="headerlink" title="Java 的值传递"></a>Java 的值传递</h2><p>其实，上面的例子，关注的重点不对。对于值传递与引用传递，区别的重点在于 <strong>传递参数时是否会进行拷贝，创建一个副本</strong>。</p>
+<p>再来看一下上面的第二个例子，是如何传递的呢？</p>
+<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295" width="60%"></p>
+<p>可以看到，当把 user 传递给 change 方法时，实际参数的地址被拷贝给了形参，而在修改内容时，并没有修改形参本身，而是修改了形参指向的地址中存储的内容。那么真正的修改形参是怎样的呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void change(User user2) &#123;</span><br><span class="line">    user2 = new User();</span><br><span class="line">    user2.setName(&quot;TimberLiu&quot;);</span><br><span class="line">    user2.setAge(21);</span><br><span class="line">    System.out.println(&quot;change:&quot; + user2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    User user1 = new User();</span><br><span class="line">    user1.setName(&quot;Timber&quot;);</span><br><span class="line">    user1.setAge(20);</span><br><span class="line">    change(user1);</span><br><span class="line">    System.out.println(&quot;main: &quot; + user1);</span><br><span class="line">&#125;</span><br><span class="line">// change: User&#123;name=&apos;TimberLiu&apos;, age=21&#125;</span><br><span class="line">// main: User&#123;name=&apos;Timber&apos;, age=20&#125;</span><br></pre></td></tr></table></figure>
+<p>这个过程发生了什么呢？看下图：</p>
+<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/305BDDEB97B046DD88F2C3283C96FE91/60321" width="60%"></p>
+<p>可以看到，这里把 user1 传递给 change 方法时，实际上是把实际参数的地址复制了一份，传递给了形式参数。在 change 方法中修改参数时，重新了开辟一块内存，此时形参已经指向了新的数据区域，后面对 user2 的修改并不会影响到 user1 中的内容。</p>
+<p>所以，上面的参数其实是值传递，只是把实际参数引用的地址复制了一份当做值传递给了形式参数。</p>
+<p>那么，为什么上面在传递 String 对象和 User 对象结果不一样呢？这是因为 String 类型是不可变的，在赋值 <code>name2 = &quot;TimberLiu&quot;</code> 时，会重新创建一个 String，而并没有修改实际参数的值。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8E934CE0A24A476E985EAD7024401CF4/60351" width="60%"></p>
+<p>所以，<strong>Java 中参数传递方式是值传递，只不过对于对象参数，值的内容是对象的引用</strong>。</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>Java 中除了布尔类型之外，允许把任何基本类型转换成别的基本数据类型。类型转换图如下：</p>
+<p><img src="https://note.youdao.com/yws/public/resource/d37aed06bb772eed95e710393c7e2c47/xmlnote/FA7A94432A3F4C59B89C8913BE219AEE/60858" width="50%"></p>
+<p>在将较小的数据类型赋值给较大的数据类型时，会进行自动类型转换，但如上图中虚线的转换，可能会损失精度；而在将较大的数据类型赋值给较小的数据类型时，必须进行强制类型转换，这种转换通常都会损失精度。</p>
+<p>另外，在对基本数据进行运算时，所有 byte、short、char 类型的值都会自动被提升为 int。而且表达式中最终结果的数据类型是由出现的最大的数据类型决定。</p>
+<p>在计算中还有可能会超出表示范围，即溢出。对于溢出，不会抛出异常，也没有提示，所以一定要注意数据溢出问题。例如下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Overflow &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int big = Integer.MAX_VALUE;</span><br><span class="line">        System.out.println(&quot;big = &quot; + big);</span><br><span class="line">        System.out.println(&quot;bigger = &quot; + (big + 1));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// big = 2147483647</span><br><span class="line">// bigger = -2147483648</span><br></pre></td></tr></table></figure>
+<h2 id="switch-对-String-的支持"><a href="#switch-对-String-的支持" class="headerlink" title="switch 对 String 的支持"></a>switch 对 String 的支持</h2><p>switch 原本只支持整型，而 byte、short、char 可以转换为 int 型，所以也可以使用。但从 Java7 开始，在 switch 条件判断语句中也可以使用 String 类型了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void decompile(String str) &#123;</span><br><span class="line">    switch(str) &#123;</span><br><span class="line">        case &quot;aaa&quot;:</span><br><span class="line">            System.out.println(&quot;aaa&quot;);</span><br><span class="line">            break;</span><br><span class="line">        case &quot;bbb&quot;:</span><br><span class="line">            System.out.println(&quot;bbb&quot;);</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            System.out.println(&quot;other&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在反编译后，可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public void decompile(String str) &#123;</span><br><span class="line">        byte var3 = -1;</span><br><span class="line">        switch(str.hashCode()) &#123;</span><br><span class="line">        case 96321:</span><br><span class="line">            if (str.equals(&quot;aaa&quot;)) &#123;</span><br><span class="line">                var3 = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 97314:</span><br><span class="line">            if (str.equals(&quot;bbb&quot;)) &#123;</span><br><span class="line">                var3 = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        switch(var3) &#123;</span><br><span class="line">        case 0:</span><br><span class="line">            System.out.println(&quot;aaa&quot;);</span><br><span class="line">            break;</span><br><span class="line">        case 1:</span><br><span class="line">            System.out.println(&quot;bbb&quot;);</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            System.out.println(&quot;other&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，String 的 switch 还是比较的 byte 类型。先声明了一个 byte 类型，然后通过 hashCode 和 equals 两个方法先后进行比较来赋予 byte 变量不同的值，最后 switch 来执行不同的代码。这里在 hash 之后再进行 equals 判断是有必要的，因为 hash 可能发生碰撞。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>Hollis：<a href="https://mp.weixin.qq.com/s/F7Niaa7nD1tLApCEGKAj4A" target="_blank" rel="noopener">为什么说Java中只有值传递</a></li>
+<li>SEU_Calvin：<a href="https://blog.csdn.net/seu_calvin/article/details/70089977" target="_blank" rel="noopener">Java技术——Java中的参数传值方式</a></li>
+</ul>
+
       
     </div>
     
@@ -1109,21 +481,71 @@
     
     <div>
       
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------- 本文结束 --------</div>
+    
+</div>
+      
     </div>
 
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    TimberLiu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.timberliu.com/2018/10/30/JavaOperation/" title="Java 中的运算">https://blog.timberliu.com/2018/10/30/JavaOperation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/28/Object-orientedThought/" rel="next" title="理解面向对象思想">
+                <i class="fa fa-chevron-left"></i> 理解面向对象思想
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/30/TheJavaPlatform/" rel="prev" title="Java 平台">
+                Java 平台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -1133,10 +555,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1144,6 +567,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1164,8 +591,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="TimberLiu">
           <p class="site-author-name" itemprop="name">TimberLiu</p>
@@ -1256,6 +692,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#值传递与引用传递"><span class="nav-number">1.</span> <span class="nav-text">值传递与引用传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-的值传递"><span class="nav-number">2.</span> <span class="nav-text">Java 的值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">3.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch-对-String-的支持"><span class="nav-number">4.</span> <span class="nav-text">switch 对 String 的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1389,10 +841,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 

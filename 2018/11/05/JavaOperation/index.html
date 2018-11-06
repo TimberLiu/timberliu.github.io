@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,7 +84,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="TimberLiu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="TimberLiu's Blog" type="application/atom+xml">
 
 
 
@@ -100,19 +100,19 @@
 <meta name="keywords" content="面向对象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 中的运算">
-<meta property="og:url" content="https://blog.timberliu.com/2018/10/30/JavaOperation/index.html">
-<meta property="og:site_name" content="TimberLiu">
+<meta property="og:url" content="https://blog.timberliu.com/2018/11/05/JavaOperation/index.html">
+<meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/305BDDEB97B046DD88F2C3283C96FE91/60321">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8E934CE0A24A476E985EAD7024401CF4/60351">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/d37aed06bb772eed95e710393c7e2c47/xmlnote/FA7A94432A3F4C59B89C8913BE219AEE/60858">
-<meta property="og:updated_time" content="2018-10-29T16:00:00.000Z">
+<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png">
+<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png">
+<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png">
+<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:updated_time" content="2018-11-04T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 中的运算">
 <meta name="twitter:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295">
+<meta name="twitter:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png">
 
 
 
@@ -120,8 +120,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -141,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/10/30/JavaOperation/">
+  <link rel="canonical" href="https://blog.timberliu.com/2018/11/05/JavaOperation/">
 
 
 
 
 
-  <title>Java 中的运算 | TimberLiu</title>
+  <title>Java 中的运算 | TimberLiu's Blog</title>
   
 
 
@@ -183,12 +183,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">TimberLiu</span>
+        <span class="site-title">TimberLiu's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Easy coding, easy life</p>
       
   </div>
 
@@ -322,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/10/30/JavaOperation/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/05/JavaOperation/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -331,7 +331,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="name" content="TimberLiu's Blog">
     </span>
 
     
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T00:00:00+08:00">
-                2018-10-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-05T00:00:00+08:00">
+                2018-11-05
               </time>
             
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T00:00:00+08:00">
-                2018-10-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-05T00:00:00+08:00">
+                2018-11-05
               </time>
             
           </span>
@@ -432,37 +432,37 @@
 <ul>
 <li>值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。</li>
 <li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。<a id="more"></a>
-那么 Java 中到底是值传递还是引用传递？先来看下面的例子：</li>
+那么 <code>Java</code> 中到底是值传递还是引用传递？先来看下面的例子：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    j = <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"change: j = "</span> + j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    change(i);</span><br><span class="line">    System.out.println(<span class="string">"main: i = "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: j = 2</span></span><br><span class="line"><span class="comment">// main: i = 1</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，change 方法内部并没有改变实际参数的值，那么 Java 就是值传递吗？再来看下面的例子：</p>
+<p>可以看到，<code>change</code> 方法内部并没有改变实际参数的值，那么 <code>Java</code> 就是值传递吗？再来看下面的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    user.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='Timber', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=21&#125;</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，实际参数的值被改变了，那么 Java 在传递基本类型时是值传递，在传递对象类型是引用类型。其实，这种表述也不对，看下面的例子：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> change(<span class="keyword">String</span> name2) &#123;</span><br><span class="line">    name2 = <span class="string">"TimberLiu"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">"change: "</span> + name2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    <span class="keyword">String</span> name1 = <span class="string">"Timber"</span>;</span><br><span class="line">    change(name1);</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">"main: "</span> + name1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: TimberLiu</span></span><br><span class="line"><span class="comment">// main: Timber</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，实际参数的值被改变了，那么 <code>Java</code> 在传递基本类型时是值传递，在传递对象类型是引用类型。其实，这种表述也不对，看下面的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String name2)</span> </span>&#123;</span><br><span class="line">    name2 = <span class="string">"TimberLiu"</span>;</span><br><span class="line">    System.out.println(<span class="string">"change: "</span> + name2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String name1 = <span class="string">"Timber"</span>;</span><br><span class="line">    change(name1);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + name1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: TimberLiu</span></span><br><span class="line"><span class="comment">// main: Timber</span></span><br></pre></td></tr></table></figure>
 <p>可以看到，实际参数的值又被改变了，这又作何解释呢？</p>
 <h2 id="Java-的值传递"><a href="#Java-的值传递" class="headerlink" title="Java 的值传递"></a>Java 的值传递</h2><p>其实，上面的例子，关注的重点不对。对于值传递与引用传递，区别的重点在于 <strong>传递参数时是否会进行拷贝，创建一个副本</strong>。</p>
 <p>再来看一下上面的第二个例子，是如何传递的呢？</p>
-<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8979C3986C8D4454A85080D0939946D3/60295" width="60%"></p>
-<p>可以看到，当把 user 传递给 change 方法时，实际参数的地址被拷贝给了形参，而在修改内容时，并没有修改形参本身，而是修改了形参指向的地址中存储的内容。那么真正的修改形参是怎样的呢？</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span>(<span class="params">User user2</span>)</span> &#123;</span><br><span class="line">    user2 = <span class="keyword">new</span> User();</span><br><span class="line">    user2.setName(<span class="string">"TimberLiu"</span>);</span><br><span class="line">    user2.setAge(<span class="number">21</span>);</span><br><span class="line">    System.<span class="keyword">out</span>.println(<span class="string">"change:"</span> + user2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span> &#123;</span><br><span class="line">    User user1 = <span class="keyword">new</span> User();</span><br><span class="line">    user1.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user1.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user1);</span><br><span class="line">    System.<span class="keyword">out</span>.println(<span class="string">"main: "</span> + user1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='TimberLiu', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=20&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png" width="80%"></p>
+<p>可以看到，当把 <code>user</code> 传递给 change 方法时，实际参数的地址被拷贝给了形参，而在修改内容时，并没有修改形参本身，而是修改了形参指向的地址中存储的内容。那么真正的修改形参是怎样的呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user2)</span> </span>&#123;</span><br><span class="line">    user2 = <span class="keyword">new</span> User();</span><br><span class="line">    user2.setName(<span class="string">"TimberLiu"</span>);</span><br><span class="line">    user2.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change:"</span> + user2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user1 = <span class="keyword">new</span> User();</span><br><span class="line">    user1.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user1.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user1);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='TimberLiu', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=20&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这个过程发生了什么呢？看下图：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/305BDDEB97B046DD88F2C3283C96FE91/60321" width="60%"></p>
-<p>可以看到，这里把 user1 传递给 change 方法时，实际上是把实际参数的地址复制了一份，传递给了形式参数。在 change 方法中修改参数时，重新了开辟一块内存，此时形参已经指向了新的数据区域，后面对 user2 的修改并不会影响到 user1 中的内容。</p>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png" width="80%"></p>
+<p>可以看到，这里把 <code>user1</code> 传递给 <code>change</code> 方法时，实际上是把实际参数的地址复制了一份，传递给了形式参数。在 <code>change</code> 方法中修改参数时，重新了开辟一块内存，此时形参已经指向了新的数据区域，后面对 <code>user2</code> 的修改并不会影响到 <code>user1</code> 中的内容。</p>
 <p>所以，上面的参数其实是值传递，只是把实际参数引用的地址复制了一份当做值传递给了形式参数。</p>
-<p>那么，为什么上面在传递 String 对象和 User 对象结果不一样呢？这是因为 String 类型是不可变的，在赋值 <code>name2 = &quot;TimberLiu&quot;</code> 时，会重新创建一个 String，而并没有修改实际参数的值。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/8E934CE0A24A476E985EAD7024401CF4/60351" width="60%"></p>
+<p>那么，为什么上面在传递 <code>String</code> 对象和 <code>User</code> 对象结果不一样呢？这是因为 <code>String</code> 类型是不可变的，在赋值 <code>name2 = &quot;TimberLiu&quot;</code> 时，会重新创建一个 <code>String</code>，而并没有修改实际参数的值。</p>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png" width="80%"></p>
 <p>所以，<strong>Java 中参数传递方式是值传递，只不过对于对象参数，值的内容是对象的引用</strong>。</p>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>Java 中除了布尔类型之外，允许把任何基本类型转换成别的基本数据类型。类型转换图如下：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/d37aed06bb772eed95e710393c7e2c47/xmlnote/FA7A94432A3F4C59B89C8913BE219AEE/60858" width="50%"></p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p><code>Java</code> 中除了布尔类型之外，允许把任何基本类型转换成别的基本数据类型。类型转换图如下：</p>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" width="80%"></p>
 <p>在将较小的数据类型赋值给较大的数据类型时，会进行自动类型转换，但如上图中虚线的转换，可能会损失精度；而在将较大的数据类型赋值给较小的数据类型时，必须进行强制类型转换，这种转换通常都会损失精度。</p>
-<p>另外，在对基本数据进行运算时，所有 byte、short、char 类型的值都会自动被提升为 int。而且表达式中最终结果的数据类型是由出现的最大的数据类型决定。</p>
+<p>另外，在对基本数据进行运算时，所有 <code>byte</code>、<code>short</code>、<code>char</code> 类型的值都会自动被提升为 <code>int</code>。而且表达式中最终结果的数据类型是由出现的最大的数据类型决定。</p>
 <p>在计算中还有可能会超出表示范围，即溢出。对于溢出，不会抛出异常，也没有提示，所以一定要注意数据溢出问题。例如下面的例子：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Overflow</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> big = Integer.MAX_VALUE;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"big = "</span> + big);</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"bigger = "</span> + (big + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// big = 2147483647</span></span><br><span class="line"><span class="comment">// bigger = -2147483648</span></span><br></pre></td></tr></table></figure>
-<h2 id="switch-对-String-的支持"><a href="#switch-对-String-的支持" class="headerlink" title="switch 对 String 的支持"></a>switch 对 String 的支持</h2><p>switch 原本只支持整型，而 byte、short、char 可以转换为 int 型，所以也可以使用。但从 Java7 开始，在 switch 条件判断语句中也可以使用 String 类型了。</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> decompile(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span>(<span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"aaa"</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"aaa"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"bbb"</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"bbb"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"other"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Overflow</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> big = Integer.MAX_VALUE;</span><br><span class="line">        System.out.println(<span class="string">"big = "</span> + big);</span><br><span class="line">        System.out.println(<span class="string">"bigger = "</span> + (big + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// big = 2147483647</span></span><br><span class="line"><span class="comment">// bigger = -2147483648</span></span><br></pre></td></tr></table></figure>
+<h2 id="switch-对-String-的支持"><a href="#switch-对-String-的支持" class="headerlink" title="switch 对 String 的支持"></a>switch 对 String 的支持</h2><p><code>switch</code> 原本只支持整型，而 <code>byte</code>、<code>short</code>、<code>char</code> 可以转换为 <code>int</code> 型，所以也可以使用。但从 <code>Java7</code> 开始，在 <code>switch</code> 条件判断语句中也可以使用 <code>String</code> 类型了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decompile</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(str) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"aaa"</span>:</span><br><span class="line">            System.out.println(<span class="string">"aaa"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"bbb"</span>:</span><br><span class="line">            System.out.println(<span class="string">"bbb"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            System.out.println(<span class="string">"other"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在反编译后，可以看到：</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> decompile(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="built_in">byte</span> var3 = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">switch</span>(<span class="built_in">str</span>.hashCode()) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">96321</span>:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">str</span>.equals(<span class="string">"aaa"</span>)) &#123;</span><br><span class="line">                var3 = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">97314</span>:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">str</span>.equals(<span class="string">"bbb"</span>)) &#123;</span><br><span class="line">                var3 = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">switch</span>(var3) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"aaa"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"bbb"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"other"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，String 的 switch 还是比较的 byte 类型。先声明了一个 byte 类型，然后通过 hashCode 和 equals 两个方法先后进行比较来赋予 byte 变量不同的值，最后 switch 来执行不同的代码。这里在 hash 之后再进行 equals 判断是有必要的，因为 hash 可能发生碰撞。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decompile</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">byte</span> var3 = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">switch</span>(str.hashCode()) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">96321</span>:</span><br><span class="line">        <span class="keyword">if</span> (str.equals(<span class="string">"aaa"</span>)) &#123;</span><br><span class="line">            var3 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">97314</span>:</span><br><span class="line">        <span class="keyword">if</span> (str.equals(<span class="string">"bbb"</span>)) &#123;</span><br><span class="line">            var3 = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span>(var3) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        System.out.println(<span class="string">"aaa"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        System.out.println(<span class="string">"bbb"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        System.out.println(<span class="string">"other"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>String</code> 的 <code>switch</code> 还是比较的 <code>byte</code> 类型。先声明了一个 <code>byte</code> 类型，然后通过 <code>hashCode</code> 和 <code>equals</code> 两个方法先后进行比较来赋予 <code>byte</code> 变量不同的值，最后 <code>switch</code> 来执行不同的代码。这里在 <code>hash</code> 之后再进行 <code>equals</code> 判断是有必要的，因为 <code>hash</code> 可能发生碰撞。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>Hollis：<a href="https://mp.weixin.qq.com/s/F7Niaa7nD1tLApCEGKAj4A" target="_blank" rel="noopener">为什么说Java中只有值传递</a></li>
 <li>SEU_Calvin：<a href="https://blog.csdn.net/seu_calvin/article/details/70089977" target="_blank" rel="noopener">Java技术——Java中的参数传值方式</a></li>
@@ -499,7 +499,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/10/30/JavaOperation/" title="Java 中的运算">https://blog.timberliu.com/2018/10/30/JavaOperation/</a>
+    <a href="https://blog.timberliu.com/2018/11/05/JavaOperation/" title="Java 中的运算">https://blog.timberliu.com/2018/11/05/JavaOperation/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -527,8 +527,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/TheJavaPlatform/" rel="next" title="Java 平台">
-                <i class="fa fa-chevron-left"></i> Java 平台
+              <a href="/2018/11/03/BasicDateType/" rel="next" title="基本数据类型">
+                <i class="fa fa-chevron-left"></i> 基本数据类型
               </a>
             
           </div>
@@ -537,8 +537,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/01/Object-orientedConcept/" rel="prev" title="面向对象中的一些概念">
-                面向对象中的一些概念 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/06/AbstractClassAndInterface/" rel="prev" title="抽象类和接口">
+                抽象类和接口 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -614,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -674,6 +674,17 @@
                   
                     
                       掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="timberliu1210@gmail.com" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
                     
                 </a>
               </span>
@@ -740,7 +751,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.timberliu.com/2018/11/06/AbstractClassAndInterface/</loc>
+    
+    <lastmod>2018-11-05T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.timberliu.com/2018/11/05/JavaOperation/</loc>
+    
+    <lastmod>2018-11-04T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.timberliu.com/2018/11/03/BasicDateType/</loc>
     
     <lastmod>2018-11-02T16:00:00.000Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://blog.timberliu.com/2018/11/01/Object-orientedConcept/</loc>
     
     <lastmod>2018-10-31T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.timberliu.com/2018/10/30/JavaOperation/</loc>
-    
-    <lastmod>2018-10-29T16:00:00.000Z</lastmod>
     
   </url>
   

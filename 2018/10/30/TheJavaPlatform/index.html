@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,7 +84,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="TimberLiu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="TimberLiu's Blog" type="application/atom+xml">
 
 
 
@@ -99,16 +99,16 @@
 <meta name="description" content="Java 是一种面向对象的语言，最显著的特性有两个方面：     跨平台特性。也就是“编译一次，到处运行”（Compile once, run anywhere)，能够非常容易地获得跨平台能力； 垃圾回收机制。Java 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。">
 <meta name="keywords" content="面向对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 平台">
+<meta property="og:title" content="对 Java 平台的理解">
 <meta property="og:url" content="https://blog.timberliu.com/2018/10/30/TheJavaPlatform/index.html">
-<meta property="og:site_name" content="TimberLiu">
+<meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="Java 是一种面向对象的语言，最显著的特性有两个方面：     跨平台特性。也就是“编译一次，到处运行”（Compile once, run anywhere)，能够非常容易地获得跨平台能力； 垃圾回收机制。Java 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/blog/2018/11/jdk_jre_jvm.png">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/573E2FDBC25344E2A4520352232D8605/60541">
+<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/Java%E5%B9%B3%E5%8F%B0.png">
 <meta property="og:updated_time" content="2018-10-29T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 平台">
+<meta name="twitter:title" content="对 Java 平台的理解">
 <meta name="twitter:description" content="Java 是一种面向对象的语言，最显著的特性有两个方面：     跨平台特性。也就是“编译一次，到处运行”（Compile once, run anywhere)，能够非常容易地获得跨平台能力； 垃圾回收机制。Java 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。">
 <meta name="twitter:image" content="http://phra9vo17.bkt.clouddn.com/image/blog/2018/11/jdk_jre_jvm.png">
 
@@ -118,8 +118,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -145,7 +145,7 @@
 
 
 
-  <title>Java 平台 | TimberLiu</title>
+  <title>对 Java 平台的理解 | TimberLiu's Blog</title>
   
 
 
@@ -181,12 +181,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">TimberLiu</span>
+        <span class="site-title">TimberLiu's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Easy coding, easy life</p>
       
   </div>
 
@@ -329,7 +329,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="name" content="TimberLiu's Blog">
     </span>
 
     
@@ -337,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 平台</h1>
+          <h1 class="post-title" itemprop="name headline">对 Java 平台的理解</h1>
         
 
         <div class="post-meta">
@@ -426,24 +426,23 @@
       
 
       
-        <p>Java 是一种面向对象的语言，最显著的特性有两个方面：   </p>
+        <p><code>Java</code> 是一种面向对象的语言，最显著的特性有两个方面：   </p>
 <ol>
-<li>跨平台特性。也就是“编译一次，到处运行”（Compile once, run anywhere)，能够非常容易地获得跨平台能力；</li>
-<li>垃圾回收机制。Java 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。<a id="more"></a>  
-<h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2></li>
+<li>跨平台特性。也就是“编译一次，到处运行”（<code>Compile once, run anywhere</code>)，能够非常容易地获得跨平台能力；</li>
+<li>垃圾回收机制。<code>Java</code> 通过垃圾收集器回收垃圾，一般来说不需要操心内存的分配和回收。<a id="more"></a>  </li>
 </ol>
-<p>先来说一下编译型语言，这种语言直接将源代码编译为机器语言，然后机器就可以直接运行机器码。在以后运行程序，不需要再进行编译，执行速度快、效率高；依赖于编译器，跨平台性差。例如：C/C++ 等。</p>
-<p>解释型语言是将源代码先编译为中间代码，再由解释器对中间代码进行解释生成机器代码，然后运行程序。相对来说，这种语言在运行时才将中间代码解释为机器代码，执行速度慢、效率低；依赖于解释器，跨平台性好。例如：Java、python 等。</p>
-<p>严格来说，传统的 Java 是解释型语言，但加入了 JIT、AOT 编译器后，让 Java 也拥有了编译型语言的特性。它总共有三种执行的方式：</p>
+<h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>先来说一下编译型语言，这种语言直接将源代码编译为机器语言，然后机器就可以直接运行机器码。在以后运行程序，不需要再进行编译，执行速度快、效率高；依赖于编译器，跨平台性差。例如：<code>C/C++</code> 等。</p>
+<p>解释型语言是将源代码先编译为中间代码，再由解释器对中间代码进行解释生成机器代码，然后运行程序。相对来说，这种语言在运行时才将中间代码解释为机器代码，执行速度慢、效率低；依赖于解释器，跨平台性好。例如：<code>Java</code>、<code>python</code> 等。</p>
+<p>严格来说，传统的 <code>Java</code> 是解释型语言，但加入了 <code>JIT</code>、<code>AOT</code> 编译器后，让 <code>Java</code> 也拥有了编译型语言的特性。它总共有三种执行的方式：</p>
 <ul>
-<li>Java 源代码首先经过 Javac 编译成 .class 文件，然后：<ul>
-<li>解释执行：.class文件经过 JVM 内嵌的解释器解释执行。  </li>
-<li>编译执行：即时编译器（Just In Time 编译器）把热点代码编译成与本地平台相关的机器码执行，并进行各种层次的优化。（在运行期生成，需要预热）</li>
+<li><code>Java</code> 源代码首先经过 <code>Javac</code> 编译成 <code>.class</code> 文件，然后：<ul>
+<li>解释执行：<code>.class</code> 文件经过 JVM 内嵌的解释器解释执行。  </li>
+<li>编译执行：即时编译器（<code>Just In Time</code> 编译器）把热点代码编译成与本地平台相关的机器码执行，并进行各种层次的优化。（在运行期生成，需要预热）</li>
 </ul>
 </li>
-<li>编译执行: Java 9 提供的 AOT 编译器直接将代码编译成机器码执行。（在编译期，静态生成）</li>
+<li>编译执行: <code>Java</code> 9 提供的 AOT 编译器直接将代码编译成机器码执行。（在编译期，静态生成）</li>
 </ul>
-<h2 id="Java-与-C-的区别"><a href="#Java-与-C-的区别" class="headerlink" title="Java 与 C++ 的区别"></a>Java 与 C++ 的区别</h2><p>Java 和 C++ 同为面向对象语言，它们主要区别是它们分别代表了两种类型的语言：C++ 是编译型语言，Java 是解释型语言。</p>
+<h2 id="Java-与-C-的区别"><a href="#Java-与-C-的区别" class="headerlink" title="Java 与 C++ 的区别"></a>Java 与 C++ 的区别</h2><p><code>Java</code> 和 <code>C++</code> 同为面向对象语言，它们主要区别是它们分别代表了两种类型的语言：<code>C++</code> 是编译型语言，<code>Java</code> 是解释型语言。</p>
 <p>二者主要区别如下：</p>
 <table>
 <thead>
@@ -496,25 +495,25 @@
 </tr>
 </tbody>
 </table>
-<h2 id="JDK、JRE、JVM"><a href="#JDK、JRE、JVM" class="headerlink" title="JDK、JRE、JVM"></a>JDK、JRE、JVM</h2><p>下图是 Oracle 官方文档中的 JDK、JRE、JVM 三者间的关系：</p>
-<p><img src="http://phra9vo17.bkt.clouddn.com/image/blog/2018/11/jdk_jre_jvm.png" width="70%"></p>
+<h2 id="JDK、JRE、JVM"><a href="#JDK、JRE、JVM" class="headerlink" title="JDK、JRE、JVM"></a>JDK、JRE、JVM</h2><p>下图是 <code>Oracle</code> 官方文档中的 <code>JDK</code>、<code>JRE</code>、<code>JVM</code> 三者间的关系：</p>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/blog/2018/11/jdk_jre_jvm.png" width="80%"></p>
 <p>三者详细：</p>
 <ul>
 <li>JDK：<code>Java Development Kit</code>（Java 开发包）。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Enviroment），Java 工具（java、javac、jdb等）和 Java 的基础类库（即 Java API，包括 rt.jar）。</li>
 <li>JRE: <code>Java Runtime Enviroment</code>（Java 运行环境）。JRE 是 Java 的运行环境，所有的 Java 程序都要在 JRE 下才能运行。包括 JVM（Java Virtual Machine）、Java 核心类库和其他组件。</li>
 <li>JVM：<code>Java Virtual Machine</code>（Java 虚拟机）。JVM 是一个虚构的计算机，通过在实际的计算机上模拟各种计算机功能来实现的，它有自己完善的硬件架构，如处理器、堆栈、寄存器等，还具有相应的指令集。JVM 的主要工作就是解释字节码，并将其映射到本地的 CPU 的指令集或 OS 的系统调用。</li>
 </ul>
-<h2 id="跨平台特性"><a href="#跨平台特性" class="headerlink" title="跨平台特性"></a>跨平台特性</h2><p>Java 的跨平台特性与 Java 虚拟机的存在密不可分。其实 Java 语言本身与其他编程语言没有特别大的差异，并不是说 Java 语言可以跨平台，而是在不同的平台都有可以让 Java 语言运行的环境，例如，Windows 平台和 Linux 平台都有相应的 JDK，安装 JDK 也就有了 Java 的运行环境。</p>
-<p>简单来说，Java 首先通过 javac 编译器将源码编译为字节码 .class 文件，然后通过解释器将字节码解释为机器码执行。它的跨平台性主要与解释中间代码时有关，不同操作系统的 JVM 会可以根据不同的平台，使用不同的 JVM 映射规则，生成对应的机器码，让其与操作系统无关。所以 Java 才有了“编译一次，到处运行”的效果。</p>
-<h2 id="Java-平台"><a href="#Java-平台" class="headerlink" title="Java 平台"></a>Java 平台</h2><p>对于 Java 平台，有很多个方面可以谈：</p>
+<h2 id="跨平台特性"><a href="#跨平台特性" class="headerlink" title="跨平台特性"></a>跨平台特性</h2><p><code>Java</code> 的跨平台特性与 <code>Java</code> 虚拟机的存在密不可分。其实 <code>Java</code> 语言本身与其他编程语言没有特别大的差异，并不是说 <code>Java</code> 语言可以跨平台，而是在不同的平台都有可以让 <code>Java</code> 语言运行的环境，例如，Windows 平台和 Linux 平台都有相应的 <code>JDK</code>，安装 <code>JDK</code> 也就有了 <code>Java</code> 的运行环境。</p>
+<p>简单来说，<code>Java</code> 首先通过 <code>javac</code> 编译器将源码编译为字节码 <code>.class</code> 文件，然后通过解释器将字节码解释为机器码执行。它的跨平台性主要与解释中间代码时有关，不同操作系统的 <code>JVM</code> 会可以根据不同的平台，使用不同的 <code>JVM</code> 映射规则，生成对应的机器码，让其与操作系统无关。所以 <code>Java</code> 才有了“编译一次，到处运行”的效果。</p>
+<h2 id="Java-平台"><a href="#Java-平台" class="headerlink" title="Java 平台"></a>Java 平台</h2><p>对于 <code>Java</code> 平台，有很多个方面可以谈：</p>
 <ul>
-<li>Java 语言特性：面向对象特性、泛型、Lamdba 等</li>
-<li>基础类库：集合、IO/NIO、网络、并发等基础类库</li>
-<li>JVM：类加载机制、垃圾回收、常用工具</li>
-<li>Java 生态：JavaEE、Spring、Maven、Hadoop 等</li>
+<li><code>Java</code> 语言特性：面向对象特性、泛型、<code>Lamdba</code> 等</li>
+<li>基础类库：集合、<code>IO/NIO</code>、网络、并发等基础类库</li>
+<li><code>JVM</code>：类加载机制、垃圾回收、常用工具</li>
+<li><code>Java</code> 生态：<code>JavaEE</code>、<code>Spring</code>、<code>Maven</code>、<code>Hadoop</code> 等</li>
 </ul>
 <p>下图是总结的一个蓝图：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/47241ab9766dd7a8734d88c21d78bd20/xmlnote/573E2FDBC25344E2A4520352232D8605/60541" width="80%"></p>
+<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/Java%E5%B9%B3%E5%8F%B0.png" width="90%"></p>
 
       
     </div>
@@ -547,7 +546,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/10/30/TheJavaPlatform/" title="Java 平台">https://blog.timberliu.com/2018/10/30/TheJavaPlatform/</a>
+    <a href="https://blog.timberliu.com/2018/10/30/TheJavaPlatform/" title="对 Java 平台的理解">https://blog.timberliu.com/2018/10/30/TheJavaPlatform/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -585,8 +584,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/30/JavaOperation/" rel="prev" title="Java 中的运算">
-                Java 中的运算 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/01/Object-orientedConcept/" rel="prev" title="面向对象中的一些概念">
+                面向对象中的一些概念 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -662,7 +661,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -722,6 +721,17 @@
                   
                     
                       掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="timberliu1210@gmail.com" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
                     
                 </a>
               </span>
@@ -788,7 +798,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 

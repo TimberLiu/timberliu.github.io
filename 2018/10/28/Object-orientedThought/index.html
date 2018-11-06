@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,7 +84,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="TimberLiu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="TimberLiu's Blog" type="application/atom+xml">
 
 
 
@@ -101,7 +101,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解面向对象思想">
 <meta property="og:url" content="https://blog.timberliu.com/2018/10/28/Object-orientedThought/index.html">
-<meta property="og:site_name" content="TimberLiu">
+<meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。  Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-27T16:00:00.000Z">
@@ -115,8 +115,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -142,7 +142,7 @@
 
 
 
-  <title>理解面向对象思想 | TimberLiu</title>
+  <title>理解面向对象思想 | TimberLiu's Blog</title>
   
 
 
@@ -178,12 +178,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">TimberLiu</span>
+        <span class="site-title">TimberLiu's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Easy coding, easy life</p>
       
   </div>
 
@@ -326,7 +326,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="name" content="TimberLiu's Blog">
     </span>
 
     
@@ -424,30 +424,33 @@
 
       
         <blockquote>
-<p>学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。</p>
+<p>学习 <code>Java</code> 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。</p>
 </blockquote>
-<p>Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。<br><a id="more"></a></p>
+<p><code>Java</code> 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 <code>Java</code> 平台又该如何理解？今天就来学习一下。<a id="more"></a></p>
 <h2 id="面向对象思想"><a href="#面向对象思想" class="headerlink" title="面向对象思想"></a>面向对象思想</h2><p>所有编程语言都提供抽象机制。汇编语言是对底层机器的轻微抽象。之后的命令式语言都是对汇编语言的抽象，它们都是面向过程语言，就是把问题分解成一个一个的步骤，然后每个步骤用函数进行实现，在使用时依次调用即可。一般都是自顶向下，逐步求精。</p>
 <p>而面向对象语言抽象化程度更高，把问题分解为一个一个的步骤，然后对每个步骤进行抽象形成对象，通过对象之间的组合和调用来解决问题。对象具有状态和行为，也就是说，每一个对象都可以拥有内部数据（给出了对象的状态）和操作数据的方法（产生了行为）。</p>
-<p>在面向对象程序设计中会创建抽象数据类型，也就是类（class），它描述了具有相同特性（数据）和行为（方法）的对象集合。一旦类被建立，就可以创建类的任意个对象，然后去操作它们。面向对象的挑战之一就是如何在实际要解决的问题和对象之间建立映射关系。</p>
-<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><p><strong style="color:#000000;font-size:16px">封装</strong><br>封装就是隐藏对象内部的属性和实现细节，仅对外公开接口，控制程序中属性读写的访问级别。也就是将属性和方法封装起来形成类，通过访问修饰符来控制访问权限。这样做有两个好处：一是可以让客户端程序员无法触及他们不该触及的部分；二是允许库设计者可以改变类内部的工作方式而不用担心影响到客户端程序员。</p>
-<p>Java 用三个关键字在类内设定边界：public、protected、private，还有一个默认的包访问权限，来决定紧跟其后被定义的东西可以被谁使用。</p>
-<p><strong style="color:#000000;font-size:16px">继承</strong><br>代码复用有两种方式，一种是直接在现有类中使用新的类，这称为组合。组合带来了很大的灵活性，通常新类成员对象被声明为 private，使得使用新类的客户端不能访问它们；也可以在不干扰现有客户端代码情况下，修改这些成员。</p>
-<p>另一种方式就是以现有类为基础，然后通过添加和修改代码来创建新类，这称为继承。当继承现有类型时，新的类型不仅包括现有类型的所有成员，而且复制了基类的接口，也就是说，所有可以发送给基类对象的消息同时也可以发送给导出类消息，也就意味着导出类与基类具有相同的类型，这也是多态实现的基础之一。有两种方法可以使基类与导出类产生差异：1、直接在导出类添加新方法；2、改变现有基类的方法，即重写（overriding）。</p>
+<p>在面向对象程序设计中会创建抽象数据类型，也就是类 <code>class</code>，它描述了具有相同特性（数据）和行为（方法）的对象集合。一旦类被建立，就可以创建类的任意个对象，然后去操作它们。面向对象的挑战之一就是如何在实际要解决的问题和对象之间建立映射关系。</p>
+<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><p><span id="inline-toc">1.</span><strong>封装</strong></p>
+<p>封装就是隐藏对象内部的属性和实现细节，仅对外公开接口，控制程序中属性读写的访问级别。也就是将属性和方法封装起来形成类，通过访问修饰符来控制访问权限。这样做有两个好处：一是可以让客户端程序员无法触及他们不该触及的部分；二是允许库设计者可以改变类内部的工作方式而不用担心影响到客户端程序员。</p>
+<p>Java 用三个关键字在类内设定边界：<code>public</code>、<code>protected</code>、<code>private</code>，还有一个默认的包访问权限，来决定紧跟其后被定义的东西可以被谁使用。</p>
+<p><span id="inline-toc">2.</span><strong>继承</strong></p>
+<p>代码复用有两种方式，一种是直接在现有类中使用新的类，这称为组合。组合带来了很大的灵活性，通常新类成员对象被声明为 <code>private</code>，使得使用新类的客户端不能访问它们；也可以在不干扰现有客户端代码情况下，修改这些成员。</p>
+<p>另一种方式就是以现有类为基础，然后通过添加和修改代码来创建新类，这称为继承。当继承现有类型时，新的类型不仅包括现有类型的所有成员，而且复制了基类的接口，也就是说，所有可以发送给基类对象的消息同时也可以发送给导出类消息，也就意味着导出类与基类具有相同的类型，这也是多态实现的基础之一。有两种方法可以使基类与导出类产生差异：1、直接在导出类添加新方法；2、改变现有基类的方法，即重写 <code>overriding</code>。</p>
 <p>那在建立新类时这两种方法该如何抉择呢？如果继承使用过多，会导致难以使用并过分复杂的设计，所以应该首先考虑组合，因为它更加简单灵活。</p>
-<p><strong style="color:#000000;font-size:16px">多态</strong><br>在处理类型的层次结构时，经常将一个导出类型的对象当作其基类的对象来对待，这个过程称为向上转型，如此可以编写出不依赖于特定类型的代码。当添加新的子类型时，不需要更改调用方法，就能够执行不同代码，这称为多态。</p>
+<p><span id="inline-toc">3.</span><strong>多态</strong></p>
+<p>在处理类型的层次结构时，经常将一个导出类型的对象当作其基类的对象来对待，这个过程称为向上转型，如此可以编写出不依赖于特定类型的代码。当添加新的子类型时，不需要更改调用方法，就能够执行不同代码，这称为多态。</p>
 <p>在面向对象语言中，使用了后期绑定的概念，也就是当向对象发送消息时，编译器只确保被调用方法的存在，并对调用参数和返回值进行类型检查，被执行的确切代码直到运行时才能确定。为执行后期绑定，只需要在对象中存储某种类型信息来替代绝对地址的调用，在运行时决定具体的方法体，如此每一个对象就可以有不同的行为表现。</p>
 <h2 id="五大设计原则"><a href="#五大设计原则" class="headerlink" title="五大设计原则"></a>五大设计原则</h2><p>面向对象编程，需要掌握基本的设计原则，主要有以下五个，也就是 S.O.L.I.D 原则。</p>
 <ul>
-<li><p>单一职责（Single Responsibility）：一个类最好只做一件事，这可以看作低耦合、高内聚的引申。在程序设计中如果发现某个类担任多种任务，可以考虑进行拆分。  </p>
+<li><p>单一职责（<code>Single Responsibility</code>）：一个类最好只做一件事，这可以看作低耦合、高内聚的引申。在程序设计中如果发现某个类担任多种任务，可以考虑进行拆分。  </p>
 </li>
-<li><p>开关封闭（Open-Closed）：设计时要对扩展开放，对修改关闭。主要体现在两个方面：1. 对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。2. 对修改关闭，意味着类一旦设计完成，就可以独立完成工作，而不要对其再进行修改。</p>
+<li><p>开关封闭（<code>Open-Closed</code>）：设计时要对扩展开放，对修改关闭。主要体现在两个方面：1. 对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。2. 对修改关闭，意味着类一旦设计完成，就可以独立完成工作，而不要对其再进行修改。</p>
 </li>
-<li><p>里氏替换（Liskov Substitution）：面向对象的基本要素之一，进行继承关系抽象时，凡是可以用基类的地方，都可以用子类替换。</p>
+<li><p>里氏替换（<code>Liskov Substitution</code>）：面向对象的基本要素之一，进行继承关系抽象时，凡是可以用基类的地方，都可以用子类替换。</p>
 </li>
-<li><p>接口隔离（Interface-Segregation）：使用多个小的接口，而不要使用一个大的总接口。如果在接口内定义太多方法，其子类可能只有部分方法有意义，这就破坏了程序的内聚性。可以将其拆分为多个功能单一的接口，进行解耦。</p>
+<li><p>接口隔离（<code>Interface-Segregation</code>）：使用多个小的接口，而不要使用一个大的总接口。如果在接口内定义太多方法，其子类可能只有部分方法有意义，这就破坏了程序的内聚性。可以将其拆分为多个功能单一的接口，进行解耦。</p>
 </li>
-<li><p>依赖倒置（Dependency Inversion）：实体应该依赖于抽象而不是实现。也就是说，高层模块不应该依赖于底层模块，二者都应该依赖于抽象，也就是当两个模块存在紧耦合时，在依赖之间定义一个抽象的接口，高层模块调用接口，而底层模块实现接口的定义，以此来保证代码之间适当的耦合度。</p>
+<li><p>依赖倒置（<code>Dependency Inversion</code>）：实体应该依赖于抽象而不是实现。也就是说，高层模块不应该依赖于底层模块，二者都应该依赖于抽象，也就是当两个模块存在紧耦合时，在依赖之间定义一个抽象的接口，高层模块调用接口，而底层模块实现接口的定义，以此来保证代码之间适当的耦合度。</p>
 </li>
 </ul>
 <p>对于以上设计原则，遵守它们可以增强代码的重用性，扩展性等。但在实践中还是应该根据具体情况进行利弊分析，而不是一味地遵守原则。</p>
@@ -522,8 +525,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/30/TheJavaPlatform/" rel="prev" title="Java 平台">
-                Java 平台 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/30/TheJavaPlatform/" rel="prev" title="对 Java 平台的理解">
+                对 Java 平台的理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -599,7 +602,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -659,6 +662,17 @@
                   
                     
                       掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="timberliu1210@gmail.com" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
                     
                 </a>
               </span>
@@ -725,7 +739,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 

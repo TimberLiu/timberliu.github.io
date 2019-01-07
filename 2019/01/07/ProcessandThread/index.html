@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="面向对象,">
+  <meta name="keywords" content="操作系统,">
 
 
 
@@ -96,18 +96,22 @@
 
 
 
-<meta name="description" content="this、superthis 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 this 调用构造器，但必须将构造器置于最起始处。">
-<meta name="keywords" content="面向对象">
+<meta name="description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面向对象中的一些概念">
-<meta property="og:url" content="https://blog.timberliu.com/2018/11/01/Object-orientedConcept/index.html">
+<meta property="og:title" content="操作系统知识回顾(2)--进程和线程">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/07/ProcessandThread/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="this、superthis 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 this 调用构造器，但必须将构造器置于最起始处。">
+<meta property="og:description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-31T16:00:00.000Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/2CD68ECA7B1C401FABAE9CD82860590C/70250">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/C9CBECFDE0E84441B4714E85049A20A7/70252">
+<meta property="og:updated_time" content="2019-01-06T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面向对象中的一些概念">
-<meta name="twitter:description" content="this、superthis 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 this 调用构造器，但必须将构造器置于最起始处。">
+<meta name="twitter:title" content="操作系统知识回顾(2)--进程和线程">
+<meta name="twitter:description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804">
 
 
 
@@ -136,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/11/01/Object-orientedConcept/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/07/ProcessandThread/">
 
 
 
 
 
-  <title>面向对象中的一些概念 | TimberLiu's Blog</title>
+  <title>操作系统知识回顾(2)--进程和线程 | TimberLiu's Blog</title>
   
 
 
@@ -317,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/01/Object-orientedConcept/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/07/ProcessandThread/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -334,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">面向对象中的一些概念</h1>
+          <h1 class="post-title" itemprop="name headline">操作系统知识回顾(2)--进程和线程</h1>
         
 
         <div class="post-meta">
@@ -346,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T00:00:00+08:00">
-                2018-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T00:00:00+08:00">
+                2019-01-07
               </time>
             
 
@@ -362,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-01T00:00:00+08:00">
-                2018-11-01
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-07T00:00:00+08:00">
+                2019-01-07
               </time>
             
           </span>
@@ -381,8 +385,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
 
@@ -423,69 +427,76 @@
       
 
       
-        <h2 id="this、super"><a href="#this、super" class="headerlink" title="this、super"></a>this、super</h2><p><code>this</code> 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 <code>this</code> 调用构造器，但必须将构造器置于最起始处。<a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>super</code> 关键字表示如果子类重写了父类的某个方法，可以通过 <code>super</code> 关键字来调用父类的方法实现，也可以用来调用父类的构造器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, age);</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.say();</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + age + <span class="string">","</span> + score);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"Timber"</span>, <span class="number">20</span>, <span class="number">80</span>);</span><br><span class="line">        student.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Timber:20</span></span><br><span class="line"><span class="comment">// Timber:20,80</span></span><br></pre></td></tr></table></figure>
-<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p><code>final</code> 关键字可用于三种情况：变量、方法和类。</p>
-<p><span id="inline-toc">1.</span><strong>变量</strong></p>
-<p>对于基本类型时，<code>final</code> 使数值恒定不变；对于引用类型时，<code>final</code> 使引用恒定不变，也就是说无法指向其他对象，但是对象其本身却可以修改。</p>
-<p>另外，在参数列表中还可以将参数声明为 <code>final</code>，所以在方法中无法修改参数引用指向的对象。这一特性在向匿名内部类传递数据时特别常用。</p>
-<p><span id="inline-toc">2.</span><strong>方法</strong></p>
-<p>final 方法不可以被重写。</p>
-<p>类中所有的 <code>private</code> 方法都隐式地指定为 <code>final</code>，所以 <code>private</code> 方法也就无法覆盖。如果在子类中定义一个和基类中方法签名相同的方法，此时子类并不是重写了基类的方法，而是在子类中添加了一个新的方法。</p>
-<p><span id="inline-toc">3.</span><strong>类</strong></p>
-<p><code>final</code> 类不能被继承，而且 <code>final</code> 类中的所有方法都隐式地被指定为 <code>final</code>，无法覆盖它们。</p>
-<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>当声明一个事物时，意味着这个域或方法不会与包含它的那个类的任何对象实例关联在一起。所以，即时从未创建某个类的任何对象，也可以调用其 <code>static</code> 方法或访问其 <code>static</code> 域。</p>
-<p><span id="inline-toc">1.</span><strong>变量</strong></p>
-<p>当 <code>static</code> 作用于某个字段时，会改变数据的创建方式，因为 <code>static</code> 字段对每个类只有一份存储空间，存放在方法区中；而非 <code>static</code> 字段则对每个对象都有一个存储空间，存放在堆中。</p>
-<p><span id="inline-toc">2.</span><strong>方法</strong></p>
-<p>对于普通方法，编译器会暗自把所操作对象的引用作为第一个参数，也就是 <code>this</code> 关键字。而 <code>static</code> 方法就是没有 <code>this</code> 的方法，在方法内部不能调用非静态方法。而且仅能通过类本身来调用 <code>static</code> 方法，实际上这正是 <code>static</code> 方法的主要用途。</p>
-<p><span id="inline-toc">3.</span><strong>静态块</strong></p>
-<p><code>Java</code> 允许将多个静态初始化动作组成一个特殊的静态子句，即静态块。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class User &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        name = <span class="string">"Timber"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这段代码仅当首次生成这个对象或首次访问这个类的静态成员时执行一次。</p>
-<h2 id="重写与重载"><a href="#重写与重载" class="headerlink" title="重写与重载"></a>重写与重载</h2><p><span id="inline-toc">1.</span><strong>重写</strong></p>
-<p>重写指的是在父类和继承它的子类中有两个方法名和参数列表都相同的情况。由于方法签名相同，子类中的方法会覆盖父类中原有的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"do something"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"studying"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line">        person.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// studying</span></span><br></pre></td></tr></table></figure>
-<p>上面就是一个重写的例子。重写一般需要注意以下几点：</p>
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2><p>进程（<code>process</code>）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 <code>OS</code> 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。</p>
+<p>在某一瞬间，一个 <code>CPU</code> 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。<br><a id="more"></a><br>进程和程序间的联系和区别如下：</p>
 <ul>
-<li>子类方法的方法签名必须和父类方法相同；</li>
-<li>子类方法的返回类型必须小于等于父类的方法；</li>
-<li>子类中的访问权限必须大于等于父类的方法；</li>
-<li>子类方法不能抛出新的检查异常，声明的检查异常也不能比父类方法声明的检查异常更广泛；但是可以抛出更少或更有限的异常</li>
-<li>不能重写被标识为 final 的方法</li>
+<li>程序是一段静态的代码；进程是一个动态运行的过程；</li>
+<li>程序是产生进程的基础；进程是程序功能的体现；</li>
+<li>程序的每次执行都构成了不同的进程，通过多次运行，一个程序可对应多个进程；通过调用关系，一个进程可包括多个程序；</li>
 </ul>
-<p>重写指的仅是方法，对于成员变量，它则会被隐藏，也就是说，父类中的成员变量不能用子类的引用来访问，而必须用父类的引用来获得子类被隐藏的成员变量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String s = <span class="string">"person"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String s = <span class="string">"student"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person a1 = <span class="keyword">new</span> Student();</span><br><span class="line">        System.out.println(<span class="string">"a1.s: "</span> + a1.s);</span><br><span class="line">        Student a2 = <span class="keyword">new</span> Student();</span><br><span class="line">        System.out.println(<span class="string">"a2.s: "</span> + a2.s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a1.s: person</span></span><br><span class="line"><span class="comment">// a2.s: student</span></span><br></pre></td></tr></table></figure>
-<p><span id="inline-toc">2.</span><strong>重载</strong></p>
-<p>重载就是方法有同样的名称，但是参数列表不同的情况。参数的个数和顺序都可以区分两个方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"studying"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(String thing)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"studying "</span> + thing);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面就是一个重载的例子。重载一般需要注意几点：</p>
+<h2 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h2><p>为了实现进程，操作系统维护了一张进程表（结构数组），每个进程占用一个进程表项（进程控制块 <code>PCB</code>），它是进程存在的唯一标志。该表项包含了进程状态的重要信息，包括进程标识符、状态、优先级、程序计数器、堆栈指针、寄存器等；</p>
+<p>对进程的管理就是对通过 <code>PCB</code> 的组织管理来实现的。由于保存了在进程的状态变化时的必要信息，在中断一个正在执行的进程，并在后来恢复时，就好像进程从未中断过。它是支持多进程和提供多处理的关键。</p>
+<h2 id="进程的状态及转换"><a href="#进程的状态及转换" class="headerlink" title="进程的状态及转换"></a>进程的状态及转换</h2><p>如下图是进程的三种状态的状态图。一个进程的三种状态是：</p>
 <ul>
-<li>被重载方法的参数列表不同。可以是参数类型不同，甚至参数顺序的不同也可以区分。</li>
-<li>根据方法的返回值不能区分重载</li>
-<li>重载涉及到基本类型的自动提升时可能会造成混淆。</li>
+<li>运行态：进程正在占用 <code>CPU</code> 执行；</li>
+<li>就绪态：进程处于准备运行状态，已经获得除 <code>CPU</code> 外的所有资源；</li>
+<li>阻塞态：进程由于等待某种外部事件而暂停运行，即使获得 <code>CPU</code>，也不能运行。</li>
 </ul>
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>构造器是一种特殊的方法，构造器名必须与类名相同，但是它没有返回类型，不会被继承，且可以有范围修饰符。它总是与 <code>new</code> 运算符一起在创建对象的语句中使用，主要用来在创建对象时初始化对象。</p>
-<p>一个类可以有多个构造器，可根据其参数个数或顺序的不同来区分它们，即构造器的重载。将没有参数的构造器称为默认构造器，如果类中没有构造器，编译器会自动创建一个默认构造器。但如果定义了构造器，编译器就不会帮你创建默认构造器，而你这样 <code>new Person()</code> 创建对象时就会报错。</p>
-<p>对于方法的局部变量，必须进行初始化。而对于类的成员变量，如果没有进行初始化，就会把成员变量初始化为默认值，如 <code>int</code> 初始化为 <code>0</code>，引用类型初始化为 <code>null</code>等。并且成员变量会在任何方法（包括构造器）被调用之前得到初始化，按照变量定义的先后顺序所决定。</p>
-<p>对象的创建过程如下：</p>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804" width="60%"></p>
+<p>进程之间主要有四种转换关系：</p>
 <ul>
-<li>当首次创建类对象，或者类的静态方法/静态域被首次访问时，<code>Java</code> 解释器查找类文件；</li>
-<li>然后将类载入，此时会进行有关静态初始化的所有动作，包括静态块、静态变量等。</li>
-<li>如果创建对象，会在堆上分配存储空间，将存储空间清零，然后将对象默认初始化，即基本类型数据设置为默认值，引用类型设置为 <code>null</code>；</li>
-<li>然后执行出现于成员变量定义处的初始化动作；</li>
-<li>然后再执行构造器。</li>
+<li>由运行态转换为就绪态：在时间片用完后，不得不让出 <code>CPU</code>；</li>
+<li>由就绪态转换为运行态：进程被调度，获得处理机资源；</li>
+<li>由阻塞态转换为就绪态：进程的 <code>I/O</code> 请求完成；</li>
+<li>由运行态转换为阻塞态：进程发出 <code>I/O</code> 请求；</li>
 </ul>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态，简单来说就是同一段代码作用于不同的对象，可以有不同的解释，以产生不同的执行结果。一般需要满足三个条件：</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>线程（<code>thread</code>）是进程中的一条执行流程。在引入线程的操作系统中，进程是拥有资源的基本单位；而线程是 <code>CPU</code> 调度和分派的基本单位。</p>
+<p>一个进程中可以有多个线程，多个线程可以并发执行，它们之间共享相同的地址空间。但如果一个线程崩溃，可能会导致其所属进程的所有线程崩溃。</p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul>
+<li>调度性：传统 OS 中，进程是调度和分派的基本单位，但在引入线程后，线程是调度和分派的基本单位；</li>
+<li>并发性：在引入线程后，多个进程可以并发执行，一个进程中的多个线程也可以并发执行；</li>
+<li>拥有资源：进程是拥有资源的基本单位，而线程本身并不拥有资源；</li>
+<li>系统开销：进程切换付出的系统开销明显大于线程；</li>
+</ul>
+<h2 id="线程实现的三种方式"><a href="#线程实现的三种方式" class="headerlink" title="线程实现的三种方式"></a>线程实现的三种方式</h2><p>有三种线程的实现方式：</p>
 <ul>
-<li>有类继承或接口实现</li>
-<li>子类要重写父类的方法</li>
-<li>父类的引用指向子类的对象</li>
+<li>用户线程：用户空间实现，由用户线程库管理；</li>
+<li>内核线程：内核中实现，由操作系统管理；</li>
+<li>轻量级进程：内核中实现，支持用户线程；</li>
 </ul>
-<p>根据上面的定义，认为重写属于多态，而重载只认为它是一种语法特性。但另外一种说法，重写是动态多态，只有在运行期才能确定真正调用的是哪个对象的方法，而重载是静态多态，在编译器就已经确定具体调用哪个方法。这个问题引起很多人讨论，但并没有定论。</p>
+<p><strong>用户线程</strong></p>
+<p>用户线程是把整个线程包放在用户空间中，不依赖于操作系统的内核，所以它可以在不支持线程的操作系统上实现。可以用一组用户级的线程函数库来实现线程。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/2CD68ECA7B1C401FABAE9CD82860590C/70250" width="60%"></p>
+<p>每个进程都需要私有的线程表，用来跟踪记录该进程中线程的状态信息，不过仅记录每个线程的程序计数器、堆栈指针、寄存器和状态等，该线程表由运行时系统管理。而且用户线程的切换由线程库函数来完成，不需要用户态、核心态切换，所以线程调度速度特别快。另外，也允许每个进程都拥有自定义的线程调度算法。</p>
+<p>但如果一个线程发起系统调用而阻塞，尽管其他线程可以运行，但整个进程都会阻塞。当一个线程开始运行后，除非它主动较交出 <code>CPU</code>，否则它所在的进程中的其他线程将无法运行。</p>
+<p><strong>内核线程</strong></p>
+<p>内核线程在操作系统的内核中实现，由内核来完成对线程的创建、终止和管理。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/C9CBECFDE0E84441B4714E85049A20A7/70252" width="60%"></p>
+<p>由于线程的创建、终止和切换通过系统调用执行，由内核完成的，其系统开销比较大；</p>
+<p>但在一个进程中，如果某个内核线程发起系统调用而被阻塞，并不会影响其他使用内核线程的运行；</p>
+<p><strong>轻量级进程</strong></p>
+<p>轻量级进程是内核支持的用户线程。一个进程可以有一个或多个轻量级进程，每个轻量级进程由一个单独的内核线程来支持。而轻量级进程内部可以对应多个用户线程。</p>
+<h1 id="CPU-调度"><a href="#CPU-调度" class="headerlink" title="CPU 调度"></a>CPU 调度</h1><h2 id="调度概念"><a href="#调度概念" class="headerlink" title="调度概念"></a>调度概念</h2><p>处理机调度是当有多个进程（线程）竞争 <code>CPU</code> 时，调度程序需要从从就绪队列中挑选下一个占用 <code>CPU</code> 运行的进程。</p>
+<p>调度算法是为了解决通过什么样的准则来挑选就绪对列中的哪一个进程来执行。在每次调度时需要决定在下一个 <code>CPU</code> 计算时将哪个进程交给 <code>CPU</code>。</p>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><p><strong>先来先服务算法FCFS</strong></p>
+<p>根据进程进入就绪态的先后顺序排列。当进程进入阻塞态或结束时，就绪队列中的下一个进程占用 <code>CPU</code>。</p>
+<p>实现简单，但可能短进程排在长进程后面，导致平均等待时间波动较大。</p>
+<p><strong>短进程优先算法SJF</strong></p>
+<p>选择就绪队列中执行时间最短的进程占用 <code>CPU</code> 运行。</p>
+<ul>
+<li>可抢占系统改进：短剩余时间优先算法，即选择剩余运行时间最短的进程运行。</li>
+</ul>
+<p>短进程优先算法有最优的平均周转时间，但连续的短进程可能会使长进程无法获得 <code>CPU</code> 资源，导致饥饿；运行时间不可预估，并不可靠。</p>
+<p><strong>最高响应比优先算法HRN</strong></p>
+<p>选择就绪队列中响应比最高的进程。它是基于短进程优先算法的改进，它不允许抢占，另外等待时间越长，响应比越高，可以避免长时间地等待。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R = (w+s)/s     // 其中 w 为等待时间，s 为执行时间。</span><br></pre></td></tr></table></figure>
+<p><strong>时间片轮转算法RR</strong></p>
+<p>按时间片分配给进程运行。在轮转中，每个进程分到执行 <code>1/n</code> 的时间，时间片结束时，按先来先服务算法切换到下一个就绪进程，每隔 <code>n-1</code> 个时间片进程会再次执行。</p>
+<p>如果时间片过大，进程等待时间过长，极限情况下会退化为先来先服务算法；如果时间片过小，虽然反应迅速，但上下文切换开销较大，会影响系统吞吐量。</p>
+<p><strong>多级反馈队列算法</strong></p>
+<p>就绪队列被划分为多个独立的子队列，而且每个队列可以有自己的调度策略，在队列之间可以设置优先级，第一个队列优先级最高，其余依次递减。优先级越高的队列分配的时间片越短。</p>
+<p>在执行时，进程在不同队列间移动，如果进程在当前优先级的时间片下没有完成，则下降到低一优先级的队列，以此类推。只有当一个队列为空时才会去执行下一个队列中的进程。</p>
+<p>这种算法对于 <code>CPU</code> 密集型进程的优先级下降很快，而 <code>I/O</code> 密集型进程停留在高优先级。</p>
 
       
     </div>
@@ -518,7 +529,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/11/01/Object-orientedConcept/" title="面向对象中的一些概念">https://blog.timberliu.com/2018/11/01/Object-orientedConcept/</a>
+    <a href="https://blog.timberliu.com/2019/01/07/ProcessandThread/" title="操作系统知识回顾(2)--进程和线程">https://blog.timberliu.com/2019/01/07/ProcessandThread/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -533,7 +544,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
           
         </div>
       
@@ -546,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/TheJavaPlatform/" rel="next" title="对 Java 平台的理解">
-                <i class="fa fa-chevron-left"></i> 对 Java 平台的理解
+              <a href="/2019/01/06/OperatingSystem1/" rel="next" title="操作系统知识回顾(1)--操作系统概述">
+                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(1)--操作系统概述
               </a>
             
           </div>
@@ -555,10 +566,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/03/BasicDateType/" rel="prev" title="基本数据类型">
-                基本数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -732,7 +739,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this、super"><span class="nav-number">1.</span> <span class="nav-text">this、super</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">2.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">3.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写与重载"><span class="nav-number">4.</span> <span class="nav-text">重写与重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造器"><span class="nav-number">5.</span> <span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是进程"><span class="nav-number">1.1.</span> <span class="nav-text">什么是进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的实现"><span class="nav-number">1.2.</span> <span class="nav-text">进程的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的状态及转换"><span class="nav-number">1.3.</span> <span class="nav-text">进程的状态及转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是线程"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别"><span class="nav-number">2.2.</span> <span class="nav-text">进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程实现的三种方式"><span class="nav-number">2.3.</span> <span class="nav-text">线程实现的三种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU-调度"><span class="nav-number">3.</span> <span class="nav-text">CPU 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调度概念"><span class="nav-number">3.1.</span> <span class="nav-text">调度概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度算法"><span class="nav-number">3.2.</span> <span class="nav-text">调度算法</span></a></li></ol></li></ol></div>
             
 
           </div>

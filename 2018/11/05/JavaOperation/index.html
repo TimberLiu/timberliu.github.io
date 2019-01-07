@@ -105,9 +105,9 @@
 <meta property="og:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png">
-<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png">
-<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png">
-<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png">
+<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png">
+<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
 <meta property="og:updated_time" content="2018-11-04T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 中的运算">
@@ -446,14 +446,14 @@
 <p>可以看到，当把 <code>user</code> 传递给 change 方法时，实际参数的地址被拷贝给了形参，而在修改内容时，并没有修改形参本身，而是修改了形参指向的地址中存储的内容。那么真正的修改形参是怎样的呢？</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user2)</span> </span>&#123;</span><br><span class="line">    user2 = <span class="keyword">new</span> User();</span><br><span class="line">    user2.setName(<span class="string">"TimberLiu"</span>);</span><br><span class="line">    user2.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change:"</span> + user2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user1 = <span class="keyword">new</span> User();</span><br><span class="line">    user1.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user1.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user1);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='TimberLiu', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=20&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这个过程发生了什么呢？看下图：</p>
-<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png" width="80%"></p>
+<p><img src="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png" width="80%"></p>
 <p>可以看到，这里把 <code>user1</code> 传递给 <code>change</code> 方法时，实际上是把实际参数的地址复制了一份，传递给了形式参数。在 <code>change</code> 方法中修改参数时，重新了开辟一块内存，此时形参已经指向了新的数据区域，后面对 <code>user2</code> 的修改并不会影响到 <code>user1</code> 中的内容。</p>
 <p>所以，上面的参数其实是值传递，只是把实际参数引用的地址复制了一份当做值传递给了形式参数。</p>
 <p>那么，为什么上面在传递 <code>String</code> 对象和 <code>User</code> 对象结果不一样呢？这是因为 <code>String</code> 类型是不可变的，在赋值 <code>name2 = &quot;TimberLiu&quot;</code> 时，会重新创建一个 <code>String</code>，而并没有修改实际参数的值。</p>
-<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png" width="80%"></p>
+<p><img src="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png" width="80%"></p>
 <p>所以，<strong>Java 中参数传递方式是值传递，只不过对于对象参数，值的内容是对象的引用</strong>。</p>
 <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p><code>Java</code> 中除了布尔类型之外，允许把任何基本类型转换成别的基本数据类型。类型转换图如下：</p>
-<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" width="80%"></p>
+<p><img src="http://media.timberliu.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" width="80%"></p>
 <p>在将较小的数据类型赋值给较大的数据类型时，会进行自动类型转换，但如上图中虚线的转换，可能会损失精度；而在将较大的数据类型赋值给较小的数据类型时，必须进行强制类型转换，这种转换通常都会损失精度。</p>
 <p>另外，在对基本数据进行运算时，所有 <code>byte</code>、<code>short</code>、<code>char</code> 类型的值都会自动被提升为 <code>int</code>。而且表达式中最终结果的数据类型是由出现的最大的数据类型决定。</p>
 <p>在计算中还有可能会超出表示范围，即溢出。对于溢出，不会抛出异常，也没有提示，所以一定要注意数据溢出问题。例如下面的例子：</p>
@@ -614,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

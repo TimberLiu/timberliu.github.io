@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="面向对象,">
+  <meta name="keywords" content="操作系统,">
 
 
 
@@ -96,20 +96,18 @@
 
 
 
-<meta name="description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
-<meta name="keywords" content="面向对象">
+<meta name="description" content="死锁概念在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。 死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。 出现死锁的四个必要条件：  互斥。在任何时刻一个资源只能被一个进程使用。 拥有和请求。已经得到某个资源的进程可以再请求新的资源； 不可抢占。已经分配给进程的资源不能被抢占，而只能被显式释放；">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本数据类型">
-<meta property="og:url" content="https://blog.timberliu.com/2018/11/03/BasicDateType/index.html">
+<meta property="og:title" content="操作系统知识回顾(4)--死锁">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/10/Deadlock/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
+<meta property="og:description" content="死锁概念在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。 死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。 出现死锁的四个必要条件：  互斥。在任何时刻一个资源只能被一个进程使用。 拥有和请求。已经得到某个资源的进程可以再请求新的资源； 不可抢占。已经分配给进程的资源不能被抢占，而只能被显式释放；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png">
-<meta property="og:updated_time" content="2018-11-02T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-01-09T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基本数据类型">
-<meta name="twitter:description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
-<meta name="twitter:image" content="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png">
+<meta name="twitter:title" content="操作系统知识回顾(4)--死锁">
+<meta name="twitter:description" content="死锁概念在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。 死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。 出现死锁的四个必要条件：  互斥。在任何时刻一个资源只能被一个进程使用。 拥有和请求。已经得到某个资源的进程可以再请求新的资源； 不可抢占。已经分配给进程的资源不能被抢占，而只能被显式释放；">
 
 
 
@@ -138,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/11/03/BasicDateType/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/10/Deadlock/">
 
 
 
 
 
-  <title>基本数据类型 | TimberLiu's Blog</title>
+  <title>操作系统知识回顾(4)--死锁 | TimberLiu's Blog</title>
   
 
 
@@ -319,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/03/BasicDateType/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/10/Deadlock/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -336,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基本数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">操作系统知识回顾(4)--死锁</h1>
         
 
         <div class="post-meta">
@@ -348,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">
+                2019-01-10
               </time>
             
 
@@ -364,8 +362,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-10T00:00:00+08:00">
+                2019-01-10
               </time>
             
           </span>
@@ -383,8 +381,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
 
@@ -425,53 +423,65 @@
       
 
       
-        <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p><code>Java</code> 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：</p>
-<p><img src="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png" width="80%"><br><a id="more"></a><br><code>Java</code> 中的 <code>char</code> 使用 <code>Unicode</code> 编码，占两个字节。所以在 <code>Unicode</code> 编码中存在的中文，都可以用 <code>char</code> 存储。</p>
-<p>在整型中，每个类型都有一定的表示范围，对于数据类型的最小最大值的计算方式可参考：<a href="https://blog.csdn.net/qq_23418393/article/details/57421688" target="_blank" rel="noopener">Java中，为什么 <code>byte</code> 类型的取值范围为-128~127?</a>。</p>
-<p>浮点是一种对于实数的近似数值表示法，由一个有效数字和幂数来表示。<code>Java</code> 中使用 <code>IEEE754</code>表示法，分为单精度和双精度两种，也就是 <code>float</code> 和 <code>double</code>，分别占 4 个或 8 个字节。由于保存的小数近似近似值，所以在代码中不使用浮点数来表示金额等重要指标。</p>
-<h2 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h2><p>每一种基本类型都对应着一个包装类型，包装类就是把基本类型包装在一个类里，并提供一些常用的操作。与基本类型主要有以下区别：</p>
+        <h2 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h2><p>在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。</p>
+<p>死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。</p>
+<p>出现死锁的四个必要条件：</p>
 <ul>
-<li>默认值不同。基本类型的默认值为 0、<code>false</code> 等；而包装类默认为 <code>null</code></li>
-<li>初始化不同。基本类型不需要初始化；而包装类需要 <code>new</code>。</li>
-<li>存储方式不同。基本类型直接存储在栈中；而包装类存储在堆中</li>
-<li>元素类型不同。基本类型直接使用；而包装类中通过成员变量和方法</li>
+<li>互斥。在任何时刻一个资源只能被一个进程使用。</li>
+<li>拥有和请求。已经得到某个资源的进程可以再请求新的资源；</li>
+<li>不可抢占。已经分配给进程的资源不能被抢占，而只能被显式释放；</li>
+<li>循环等待。系统中有两个或多个的进程组成一条环路，该环路中的每个进程都等待着另一个进程占有的资源。<a id="more"></a>  </li>
 </ul>
-<p>基本类型与包装类在使用时，会涉及自动拆箱和自动装箱，这是 <code>Java5</code> 提供的一个语法糖。自动装箱就是 <code>Java</code>自动将原始类型值转换为对应的对象；自动拆箱就是 <code>Java</code> 自动将对象转换为对应的基本类型。例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    Integer n = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在反编译后，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    Integer n = Integer.valueOf(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，自动装箱就是调用 <code>Integer</code> 的 <code>valueOf()</code> 方法实现的；而自动拆箱是调用 <code>Integer</code> 的 <code>xxxValue()</code> 方法实现的。</p>
-<h2 id="整型的缓存机制"><a href="#整型的缓存机制" class="headerlink" title="整型的缓存机制"></a>整型的缓存机制</h2><p><code>Java5</code> 中，<code>Integer</code> 引入了一个新功能来节省内存和提高性能。在使用 <code>Integer.valueOf()</code>方法时会使用缓存池中的对象，多次调用时会取得同一个对象的引用。</p>
-<p><code>valueOf()</code> 方法的实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，缓存池中有一个默认的大小，如果值在缓存池中，会直接返回缓存池的内容，否则才会创建新的 <code>Integer</code> 对象。</p>
-<p><code>IntegerCache</code> 是 <code>Integer</code> 的一个内部类，缓存池的大小默认为 <code>-128~127</code>。最大值可通过 <code>-XX:AutoBoxCacheMax=xxx</code> 修改。这个缓存在 <code>Integer</code> 类第一次被使用时，通过一个 <code>for</code> 循环存储在一个整数数组中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// high value may be configured by property</span></span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">        String integerCacheHighPropValue = sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</span><br><span class="line">        <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</span><br><span class="line">                i = Math.max(i, <span class="number">127</span>);</span><br><span class="line">                <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></span><br><span class="line">                h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</span><br><span class="line">                <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        high = h;</span><br><span class="line"></span><br><span class="line">        cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> j = low;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">            cache[k] = <span class="keyword">new</span> Integer(j++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">        <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于编译器在自动装箱时会调用 <code>valueOf</code> 方法，所以创建多个相同的值时，会引用相同的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer i = <span class="number">123</span>;</span><br><span class="line">    Integer j = <span class="number">123</span>;</span><br><span class="line">    System.out.println(i == j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>所有的包装类都有类似的缓存机制：</p>
+<p>对于死锁，有四种处理的策略：1. 忽略；2. 预防死锁；3. 避免死锁；4. 检测死锁并恢复。</p>
+<h2 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h2><p>预防是指通过破坏死锁产生的四个必要条件的一个或多个，以避免发生死锁。</p>
 <ul>
-<li><code>ByteCache</code> 可以缓存 <code>Byte</code> 对象</li>
-<li><code>ShortCache</code> 可以缓存 <code>Short</code> 对象</li>
-<li><code>LongCache</code> 可以缓存 <code>Long</code> 对象</li>
-<li><code>CharacterCache</code> 可以缓存 <code>Character</code> 对象</li>
+<li>破坏互斥：不让资源被一个进程独占，可通过假脱机技术允许多个进程同时访问资源；</li>
+<li>破坏拥有和请求：有两种方案：<ul>
+<li>已拥有资源的进程不能再去请求其他资源。一种实现方法是要求进程在开始执行前请求需要的所有资源。</li>
+<li>要求进程请求资源时，先暂时释放其当前拥有的所有资源，再尝试一次获取所需的全部资源。</li>
 </ul>
-<p><code>Byte</code>、<code>Short</code>、<code>Long</code> 的缓存范围都是固定的，为 <code>-128~127</code>。而 <code>CharacterCache</code> 的范围为 <code>0~127</code>。除了 <code>Integer</code>，这个范围都不能改变。</p>
-<h2 id="高精度类型"><a href="#高精度类型" class="headerlink" title="高精度类型"></a>高精度类型</h2><p>Java 还提供了两个用于高精度计算的类：<code>BigInteger</code> 和 <code>BigDecimal</code>。</p>
+</li>
+<li>破坏不可抢占：有些资源可以通过虚拟化方式实现可抢占；</li>
+<li>破坏循环等待：有两种方案：<ul>
+<li>一种方法是保证每个进程在任何时刻只能占用一个资源，如果要请求另一个资源，必须先释放第一个资源；</li>
+<li>另一种方法是将所有资源进行统一编号，进程可以在任何时刻请求资源，但要求进程必须按照顺序请求资源。</li>
+</ul>
+</li>
+</ul>
+<h2 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h2><p>死锁避免是利用一些事先已知的信息，在分配资源时判断是否会出现死锁，如果不会出现死锁才会分配资源。</p>
+<p>而判断是否会出现死锁就是看是否能找到一个安全序列，系统能按照这个安全序列，也就是进程的推进顺序为每个进程分配其所需资源，直到满足每个进程所需的资源，使每个进程都能顺序执行。</p>
+<h3 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h3><p>为实现银行家算法，进程在进入系统时，要求进程声明需要资源的最大数目，但不能超过系统能提供的最大资源数目。当一个进程请求资源时，需要确定是否有足够资源分配给该进程，如果有，再检查在分配资源后，系统是否安全。</p>
+<p>假定线程数量为 <code>n</code>，资源类型数量为 <code>m</code>，银行家算法的数据结构如下：</p>
 <ul>
-<li><code>BigInteger</code> 支持任意精度的整数，在运算中，可以准确表示任意大小的整数值。</li>
-<li><code>BigDecimal</code> 支持任意精度的定点数。可以用它进行精确的货币运算。</li>
+<li><code>Max</code> (总需求量)：<code>n*m</code> 矩阵，表示进程 <code>Ti</code> 最多请求 <code>Max[i, j]</code> 个类型为 <code>Rj</code> 的资源；</li>
+<li><code>Available</code> (剩余空闲量)：长度为 <code>m</code> 的向量，表示当前有 <code>Available[i]</code> 个类型 <code>Rj</code> 的可用资源；</li>
+<li><code>Allocation</code> (已分配量)：<code>n*m</code> 矩阵，表示进程 <code>Ti</code> 当前分配了 <code>Allocation[i, j]</code> 个类型为 <code>Rj</code> 的资源；</li>
+<li><code>Need</code> (未来需要量)：<code>n*m</code> 矩阵，表示进程 <code>Ti</code> 未来需要 <code>Need[i, j]</code> 个类型为 <code>Rj</code> 资源；</li>
 </ul>
-<p>在 <code>Java</code> 中，对于金额的运算和在数据库中的存储，一般有两种方式：</p>
+<p>可以得出它们满足等式：<code>Need[i, j] = Max[i, j] - Allocation[i, j]</code>。</p>
+<p>银行家算法的核心部分，安全状态的判断如下：</p>
+<ol>
+<li>创建长度为 <code>m</code> 的向量 <code>Work</code>，表示当前资源剩余量，并进行初始化：<code>Work = Avaiable;</code></li>
+<li>在未运行的进程中寻找未来需要量 <code>Need[i]</code> 比当前可用量 <code>Work</code> 小的进程 <code>Ti</code>，如果找到则继续执行 <code>3</code>，否则转 <code>4</code>；</li>
+<li>执行 <code>Work = Work + Allocation[j];</code> ，将资源分配给进程 <code>Ti</code> 运行完毕后，回收其资源。转 <code>2</code>：</li>
+<li>如果资源可以分配给所有进程，则系统处于安全状态；</li>
+</ol>
+<p>如此完整的银行家算法如下：首先进行初始化，<code>Request_i</code> 表示进程 <code>Ti</code> 的资源请求向量，<code>Request_i[j]</code> 表示进程 <code>Ti</code> 请求资源 <code>Rj</code> 的实例。然后循环判断：</p>
+<ol>
+<li>如果 <code>Request_i &lt;= Need[i]</code>，转到 <code>2</code>。否则拒绝资源请求，因为进程已经超过最大要求；</li>
+<li>如果 <code>Request_i &lt;= Available</code>，转到 <code>3</code>。否则进程 <code>Ti</code> 必须等待，因为现在可用资源不足；</li>
+<li>通过安全状态判断来确定是否分配资源给 <code>Ti</code>，如果安全则分配，否则拒绝 <code>Ti</code> 的资源请求。</li>
+</ol>
+<h2 id="死锁检测和恢复"><a href="#死锁检测和恢复" class="headerlink" title="死锁检测和恢复"></a>死锁检测和恢复</h2><p>可以允许系统进入死锁状态，但会维护一个系统的资源分配图，定期调用死锁检测算法来检测途中是否存在死锁，检测到死锁发生后，采取死锁恢复算法进行恢复。</p>
+<p>死锁检测方法如下：</p>
 <ul>
-<li>以元为单位。Java 中存储类型为 <code>BigDecimal</code>，在数据库中的存储类型为 <code>number(10, 2)</code>，表示总共占 10 位，小数位占 2 位。对于应该保留几位小数，保留时按照四舍五入还是向上、向下取整，根据业务情况决定。</li>
-<li>以分为单位。<code>Java</code> 中存储类型为 <code>Long</code>，在数据库中存储类型为 <code>big int</code>。取整和保留方式如前面一样。</li>
+<li>在资源分配图中，找到不会阻塞又不独立的进程结点，使该进程获得其所需资源并运行，运行完毕后，再释放其所占有的全部资源。也就是消去该进程结点的请求边和分配边。</li>
+<li>使用上面的算法进行一系列简化，若能消去所有边，则表示不会出现死锁，否则会出现死锁。</li>
 </ul>
-<p>看一下下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static BigDecimal div(double v1, double v2) &#123;</span><br><span class="line">    BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">    BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">    // 保留两位小数，使用四舍五入模式</span><br><span class="line">    return b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在进行金额运算时，使用 <code>BigDecimal</code> 类，并且将 <code>double</code> 转为 <code>String</code> 类型进行运算。在使用 <code>divide</code> 方法时，第二位参数为保留几位小数，第三位参数为保留小数的方式，这里使用的是四舍五入模式。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>Hollis：<a href="https://www.hollischuang.com/archives/1174" target="_blank" rel="noopener">[译]Java中整型的缓存机制</a></li>
+<p>在检测死锁时，可以采用两种方法：</p>
+<ul>
+<li>抢占资源。从一个或多个进程中抢占资源分配给死锁进程。</li>
+<li>终止进程。可以终止所有的死锁进程；也可以按照某种顺序，逐个终止进程，释放其占有资源，直到死锁解除。</li>
 </ul>
 
       
@@ -505,7 +515,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/11/03/BasicDateType/" title="基本数据类型">https://blog.timberliu.com/2018/11/03/BasicDateType/</a>
+    <a href="https://blog.timberliu.com/2019/01/10/Deadlock/" title="操作系统知识回顾(4)--死锁">https://blog.timberliu.com/2019/01/10/Deadlock/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,7 +530,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
           
         </div>
       
@@ -533,8 +543,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/01/Object-orientedConcept/" rel="next" title="面向对象中的一些概念">
-                <i class="fa fa-chevron-left"></i> 面向对象中的一些概念
+              <a href="/2019/01/08/SynchronizationandCommunication/" rel="next" title="操作系统知识回顾(3)--进程的同步和通信方式">
+                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(3)--进程的同步和通信方式
               </a>
             
           </div>
@@ -542,10 +552,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/05/JavaOperation/" rel="prev" title="Java 中的运算">
-                Java 中的运算 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -719,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包装类型"><span class="nav-number">2.</span> <span class="nav-text">包装类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型的缓存机制"><span class="nav-number">3.</span> <span class="nav-text">整型的缓存机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高精度类型"><span class="nav-number">4.</span> <span class="nav-text">高精度类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁概念"><span class="nav-number">1.</span> <span class="nav-text">死锁概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁预防"><span class="nav-number">2.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁避免"><span class="nav-number">3.</span> <span class="nav-text">死锁避免</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#银行家算法"><span class="nav-number">3.1.</span> <span class="nav-text">银行家算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁检测和恢复"><span class="nav-number">4.</span> <span class="nav-text">死锁检测和恢复</span></a></li></ol></div>
             
 
           </div>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.timberliu.com/about/index.html</loc>
+    
+    <lastmod>2019-01-11T13:36:43.149Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.timberliu.com/2019/01/10/%E6%AD%BB%E9%94%81/</loc>
     
     <lastmod>2019-01-09T16:00:00.000Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://blog.timberliu.com/2018/10/30/Java%E5%B9%B3%E5%8F%B0/</loc>
     
     <lastmod>2018-10-29T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.timberliu.com/about/index.html</loc>
-    
-    <lastmod>2018-10-28T14:30:01.549Z</lastmod>
     
   </url>
   

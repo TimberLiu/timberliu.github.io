@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="面向对象,">
+  <meta name="keywords" content="mmall,">
 
 
 
@@ -96,20 +96,21 @@
 
 
 
-<meta name="description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
-<meta name="keywords" content="面向对象">
+<meta name="description" content="项目搭建使用 IDEA 创建项目，并上传到 Github 上。 参考文章：stevennest：IDEA创建项目及上传到github 用户模块在用户模块中，主要包括以下几个功能：">
+<meta name="keywords" content="mmall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本数据类型">
-<meta property="og:url" content="https://blog.timberliu.com/2018/11/03/BasicDateType/index.html">
+<meta property="og:title" content="mmall_v1.0 项目总结之用户、分类、商品模块">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/27/用户、分类、商品模块/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
+<meta property="og:description" content="项目搭建使用 IDEA 创建项目，并上传到 Github 上。 参考文章：stevennest：IDEA创建项目及上传到github 用户模块在用户模块中，主要包括以下几个功能：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png">
-<meta property="og:updated_time" content="2018-11-02T16:00:00.000Z">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/1/27/mmall-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97.jpg">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f9b292ee27413903a01f0a8c393ac99/xmlnote/6BDE102C8E5A41D7B80688C104FDA1FB/56635">
+<meta property="og:updated_time" content="2019-01-26T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基本数据类型">
-<meta name="twitter:description" content="基本数据类型Java 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：">
-<meta name="twitter:image" content="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png">
+<meta name="twitter:title" content="mmall_v1.0 项目总结之用户、分类、商品模块">
+<meta name="twitter:description" content="项目搭建使用 IDEA 创建项目，并上传到 Github 上。 参考文章：stevennest：IDEA创建项目及上传到github 用户模块在用户模块中，主要包括以下几个功能：">
+<meta name="twitter:image" content="http://media.timberliu.com/image/2019/1/27/mmall-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97.jpg">
 
 
 
@@ -138,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/11/03/BasicDateType/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/27/用户、分类、商品模块/">
 
 
 
 
 
-  <title>基本数据类型 | TimberLiu's Blog</title>
+  <title>mmall_v1.0 项目总结之用户、分类、商品模块 | TimberLiu's Blog</title>
   
 
 
@@ -319,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/03/BasicDateType/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/27/用户、分类、商品模块/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -336,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基本数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">mmall_v1.0 项目总结之用户、分类、商品模块</h1>
         
 
         <div class="post-meta">
@@ -348,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T00:00:00+08:00">
+                2019-01-27
               </time>
             
 
@@ -364,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-03T00:00:00+08:00">
-                2018-11-03
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-27T00:00:00+08:00">
+                2019-01-27
               </time>
             
           </span>
@@ -383,8 +384,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
                   </a>
                 </span>
 
@@ -425,54 +426,52 @@
       
 
       
-        <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p><code>Java</code> 中有 8 种基本数据类型，分为三类：字符型、布尔型、数值型。它们的大小、最大最小值、包装类型、默认值如下：</p>
-<p><img src="http://media.timberliu.com/image/2018/11/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.png" width="80%"><br><a id="more"></a><br><code>Java</code> 中的 <code>char</code> 使用 <code>Unicode</code> 编码，占两个字节。所以在 <code>Unicode</code> 编码中存在的中文，都可以用 <code>char</code> 存储。</p>
-<p>在整型中，每个类型都有一定的表示范围，对于数据类型的最小最大值的计算方式可参考：<a href="https://blog.csdn.net/qq_23418393/article/details/57421688" target="_blank" rel="noopener">Java中，为什么 <code>byte</code> 类型的取值范围为-128~127?</a>。</p>
-<p>浮点是一种对于实数的近似数值表示法，由一个有效数字和幂数来表示。<code>Java</code> 中使用 <code>IEEE754</code>表示法，分为单精度和双精度两种，也就是 <code>float</code> 和 <code>double</code>，分别占 4 个或 8 个字节。由于保存的小数近似近似值，所以在代码中不使用浮点数来表示金额等重要指标。</p>
-<h2 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h2><p>每一种基本类型都对应着一个包装类型，包装类就是把基本类型包装在一个类里，并提供一些常用的操作。与基本类型主要有以下区别：</p>
-<ul>
-<li>默认值不同。基本类型的默认值为 0、<code>false</code> 等；而包装类默认为 <code>null</code></li>
-<li>初始化不同。基本类型不需要初始化；而包装类需要 <code>new</code>。</li>
-<li>存储方式不同。基本类型直接存储在栈中；而包装类存储在堆中</li>
-<li>元素类型不同。基本类型直接使用；而包装类中通过成员变量和方法</li>
-</ul>
-<p>基本类型与包装类在使用时，会涉及自动拆箱和自动装箱，这是 <code>Java5</code> 提供的一个语法糖。自动装箱就是 <code>Java</code>自动将原始类型值转换为对应的对象；自动拆箱就是 <code>Java</code> 自动将对象转换为对应的基本类型。例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    Integer n = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在反编译后，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    Integer n = Integer.valueOf(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，自动装箱就是调用 <code>Integer</code> 的 <code>valueOf()</code> 方法实现的；而自动拆箱是调用 <code>Integer</code> 的 <code>xxxValue()</code> 方法实现的。</p>
-<h2 id="整型的缓存机制"><a href="#整型的缓存机制" class="headerlink" title="整型的缓存机制"></a>整型的缓存机制</h2><p><code>Java5</code> 中，<code>Integer</code> 引入了一个新功能来节省内存和提高性能。在使用 <code>Integer.valueOf()</code>方法时会使用缓存池中的对象，多次调用时会取得同一个对象的引用。</p>
-<p><code>valueOf()</code> 方法的实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，缓存池中有一个默认的大小，如果值在缓存池中，会直接返回缓存池的内容，否则才会创建新的 <code>Integer</code> 对象。</p>
-<p><code>IntegerCache</code> 是 <code>Integer</code> 的一个内部类，缓存池的大小默认为 <code>-128~127</code>。最大值可通过 <code>-XX:AutoBoxCacheMax=xxx</code> 修改。这个缓存在 <code>Integer</code> 类第一次被使用时，通过一个 <code>for</code> 循环存储在一个整数数组中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// high value may be configured by property</span></span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">        String integerCacheHighPropValue = sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</span><br><span class="line">        <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</span><br><span class="line">                i = Math.max(i, <span class="number">127</span>);</span><br><span class="line">                <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></span><br><span class="line">                h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</span><br><span class="line">                <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        high = h;</span><br><span class="line"></span><br><span class="line">        cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> j = low;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">            cache[k] = <span class="keyword">new</span> Integer(j++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">        <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于编译器在自动装箱时会调用 <code>valueOf</code> 方法，所以创建多个相同的值时，会引用相同的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer i = <span class="number">123</span>;</span><br><span class="line">    Integer j = <span class="number">123</span>;</span><br><span class="line">    System.out.println(i == j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>所有的包装类都有类似的缓存机制：</p>
-<ul>
-<li><code>ByteCache</code> 可以缓存 <code>Byte</code> 对象</li>
-<li><code>ShortCache</code> 可以缓存 <code>Short</code> 对象</li>
-<li><code>LongCache</code> 可以缓存 <code>Long</code> 对象</li>
-<li><code>CharacterCache</code> 可以缓存 <code>Character</code> 对象</li>
-</ul>
-<p><code>Byte</code>、<code>Short</code>、<code>Long</code> 的缓存范围都是固定的，为 <code>-128~127</code>。而 <code>CharacterCache</code> 的范围为 <code>0~127</code>。除了 <code>Integer</code>，这个范围都不能改变。</p>
-<h2 id="高精度类型"><a href="#高精度类型" class="headerlink" title="高精度类型"></a>高精度类型</h2><p>Java 还提供了两个用于高精度计算的类：<code>BigInteger</code> 和 <code>BigDecimal</code>。</p>
-<ul>
-<li><code>BigInteger</code> 支持任意精度的整数，在运算中，可以准确表示任意大小的整数值。</li>
-<li><code>BigDecimal</code> 支持任意精度的定点数。可以用它进行精确的货币运算。</li>
-</ul>
-<p>在 <code>Java</code> 中，对于金额的运算和在数据库中的存储，一般有两种方式：</p>
-<ul>
-<li>以元为单位。Java 中存储类型为 <code>BigDecimal</code>，在数据库中的存储类型为 <code>number(10, 2)</code>，表示总共占 10 位，小数位占 2 位。对于应该保留几位小数，保留时按照四舍五入还是向上、向下取整，根据业务情况决定。</li>
-<li>以分为单位。<code>Java</code> 中存储类型为 <code>Long</code>，在数据库中存储类型为 <code>big int</code>。取整和保留方式如前面一样。</li>
-</ul>
-<p>看一下下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static BigDecimal div(double v1, double v2) &#123;</span><br><span class="line">    BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">    BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">    // 保留两位小数，使用四舍五入模式</span><br><span class="line">    return b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在进行金额运算时，使用 <code>BigDecimal</code> 类，并且将 <code>double</code> 转为 <code>String</code> 类型进行运算。在使用 <code>divide</code> 方法时，第二位参数为保留几位小数，第三位参数为保留小数的方式，这里使用的是四舍五入模式。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>Hollis：<a href="https://www.hollischuang.com/archives/1174" target="_blank" rel="noopener">[译]Java中整型的缓存机制</a></li>
-</ul>
+        <h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><p>使用 <code>IDEA</code> 创建项目，并上传到 <code>Github</code> 上。</p>
+<p>参考文章：<a href="https://blog.csdn.net/stevennest/article/details/77877074" target="_blank" rel="noopener">stevennest：IDEA创建项目及上传到github</a></p>
+<h2 id="用户模块"><a href="#用户模块" class="headerlink" title="用户模块"></a>用户模块</h2><p>在用户模块中，主要包括以下几个功能：</p>
+<p><img src="http://media.timberliu.com/image/2019/1/27/mmall-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97.jpg" width="80%"><a id="more"></a></p>
+<p>需要注意的问题有以下几点：</p>
+<p>1、在忘记密码-检查问题时，使用 <code>UUID</code> 生成唯一标识，存储在缓存中，并将这个标识传递给前端；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String forgetToken = UUID.randomUUID().toString();</span><br><span class="line">TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);</span><br></pre></td></tr></table></figure>
+<p>在忘记密码-重置密码时，前端需要携带 <code>token</code>，服务器端需要判断 <code>token</code> 是否过期，并与缓存中的 <code>token</code> 进行对比，以防止横向越权访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);</span><br><span class="line"></span><br><span class="line">if(StringUtils.equals(forgetToken, token)) &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、在后台管理模块中，为防止纵向越权，在数据表设计时添加了 <code>role</code> 属性，在登录后台，或修改其数据时，都需要检验该用户的 <code>role</code>。</p>
+<p>3、对于密码的存储，使用 <code>MD5</code> 进行加密，并且增加了 <code>Salt</code> 值。</p>
+<p>4、在忘记密码-检查问题时，生成的 <code>token</code> 使用 <code>Guava</code> 进行缓存，以 <code>key/value</code> 形式进行存储。缓存使用主要实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private static LoadingCache&lt;String, String&gt; localCache = CacheBuilder.newBuilder()</span><br><span class="line">            .initialCapacity(1000)</span><br><span class="line">            // 设置缓存最大值为 10000，如果超过这个值，会使用 LRU 算法进行清除</span><br><span class="line">            .maximumSize(10000)</span><br><span class="line">            // 过期时间，及单位</span><br><span class="line">            .expireAfterAccess(12, TimeUnit.HOURS)</span><br><span class="line">            .build(new CacheLoader&lt;String, String&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public String load(String s) &#123;</span><br><span class="line">                    return &quot;null&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+<p>然后，可通过 <code>set/get</code> 方法设置、并获取值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void setKey(String key, String value) &#123;</span><br><span class="line">    localCache.put(key, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static String getKey(String key) &#123;</span><br><span class="line">    ···</span><br><span class="line">    value = localCache.get(key);</span><br><span class="line">    ···</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>5、使用 <code>ServerResponse</code> 高复用响应式对象。其中三个属性如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private int status;</span><br><span class="line">private String msg;</span><br><span class="line">private T data;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>enum</code> 枚举类来表示不同的响应码。主要有四种响应码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public enum ResponseCode &#123;</span><br><span class="line"></span><br><span class="line">    SUCCESS(0, &quot;SUCCESS&quot;),</span><br><span class="line">    ERROR(1, &quot;ERROR&quot;),</span><br><span class="line">    NEED_LOGIN(10, &quot;NEED_LOGIN&quot;),</span><br><span class="line">    ILLEGAL_ARGUMENT(2, &quot;ILLEGAL_ARGUMENT&quot;);</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，其中使用了 <code>@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)</code> 标记 <code>ServerResponse</code>，表示在序列化对象时，忽略为空的属性，使用了 <code>@JsonIgnore</code> 标记 <code>isSuccess</code> 方法，表示在序列化时，忽略此方法。</p>
+<p>6、用户登录信息使用 <code>Session</code> 进行存储。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(Const.CURRENT_USER, response.getData());</span><br></pre></td></tr></table></figure>
+<p>7、使用 <code>StringUtils</code>、<code>CollectionUtils</code> 等工具类简化操作。</p>
+<p>8、使用 <code>slf4j</code> 的 <code>LoggerFactory</code> 生成 <code>logger</code> 对象，打印日志。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private static Logger logger = LoggerFactory.getLogger(TokenCache.class);</span><br><span class="line"></span><br><span class="line">logger.info(&quot;···&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="分类管理模块"><a href="#分类管理模块" class="headerlink" title="分类管理模块"></a>分类管理模块</h2><p>1、在分类管理中，需要用到无限层级的树状数据结构显示分类。可以在设计数据表时添加 <code>parentId</code> 属性，表示其父结点的 <code>Id</code>。另外，如果 <code>parentId</code> 为 <code>0</code>，表示当前结点为根结点分类。</p>
+<p>2、在查询子结点分类时，需要用到递归算法。首先，根据前台传来的 <code>id</code> 判断该结点是否存在，如果存在，则添加到 <code>categorySet</code> 中。然后调用 <code>findChildCategory</code> 方法查询子节点分类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Category category = categoryMapper.selectByPrimaryKey(categoryId);</span><br><span class="line">if(category != null) &#123;</span><br><span class="line">    categorySet.add(category);</span><br><span class="line">&#125;</span><br><span class="line">findChildCategory(categorySet, categoryId);</span><br></pre></td></tr></table></figure>
+<p>其中，会根据 <code>parentId</code> 查询与子分类平级的结点得到一个 <code>List</code> 集合。然后遍历此集合，将子分类结点添加到 <code>categroySet</code>，再递归查询子节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private void findChildCategory(Set&lt;Category&gt; categorySet, Integer parentId) &#123;</span><br><span class="line">    List&lt;Category&gt; categoryList = categoryMapper.getChildrenCategoryByParentId(parentId);</span><br><span class="line">    for (Category category: categoryList) &#123;</span><br><span class="line">        categorySet.add(category);</span><br><span class="line">        findChildCategory(categorySet, category.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，创建 <code>List</code> 集合，遍历 <code>categorySet</code>，将 <code>category</code> 的 <code>id</code> 添加到 <code>categoryIdList</code> 中，返回给前端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; categoryIdList = Lists.newArrayList();</span><br><span class="line">if(categoryId != null) &#123;</span><br><span class="line">    for (Category categoryItem: categorySet) &#123;</span><br><span class="line">        categoryIdList.add(categoryItem.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、在存储 <code>category</code> 时，为了防止对象重复，这里使用 <code>Set</code> 进行排重。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Category&gt; categorySet = Sets.newHashSet();</span><br></pre></td></tr></table></figure>
+<p>另外，<code>Set</code> 中存放的对象 <code>Category</code> 要判断是否相等，这里针对 <code>id</code>，重写了 <code>hashCode</code> 和 <code>equals</code> 方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean equals(Object o) &#123;</span><br><span class="line">    if (this == o) &#123; return true; &#125;</span><br><span class="line">    if (!(o instanceof Category)) &#123; return false; &#125;</span><br><span class="line">    Category category = (Category) o;</span><br><span class="line">    return id != null ? id.equals(category.id) : category.id == null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public int hashCode() &#123;</span><br><span class="line">    return id != null ? id.hashCode() : 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="商品管理模块"><a href="#商品管理模块" class="headerlink" title="商品管理模块"></a>商品管理模块</h2><p>1、<code>SpringMVC</code> 文件上传使用 <code>FTPClient</code>。在上传文件之前，首先需要连接服务并登陆。另外，还需要设置远程目录、缓存大小、编码格式等。最后，使用 <code>storeFile</code> 方法传入文件名和文件输入流，上传文件。需要注意的是，上传后要关闭输入流和 <code>FtpClient</code>。主要实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">private boolean uploadFile(String remotePath, List&lt;File&gt; fileList) throws IOException &#123;</span><br><span class="line">    boolean uploaded = false;</span><br><span class="line">    FileInputStream fis = null;</span><br><span class="line">    boolean isSuccess = connectServer(ip, port, user, password); // 连接服务器</span><br><span class="line">    if(isSuccess) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            ftpClient.changeWorkingDirectory(remotePath); // 远程目录</span><br><span class="line">            ftpClient.setBufferSize(1024); // 缓存</span><br><span class="line">            ftpClient.setControlEncoding(&quot;UTF-8&quot;); // 编码格式            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE); // 文件类型</span><br><span class="line">            ftpClient.enterLocalPassiveMode();</span><br><span class="line">            for (File fileItem : fileList) &#123;</span><br><span class="line">                fis = new FileInputStream(fileItem);</span><br><span class="line">                ftpClient.storeFile(fileItem.getName(), fis);</span><br><span class="line">            &#125;</span><br><span class="line">            uploaded = true;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            logger.error(&quot;上传文件异常&quot;, e);</span><br><span class="line">            uploaded = false;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if(fis != null) &#123; fis.close(); &#125;</span><br><span class="line">            ftpClient.disconnect();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return uploaded;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private boolean connectServer(String ip, int port, String user, String password) &#123;</span><br><span class="line">    boolean isSuccess = false;</span><br><span class="line">    ftpClient = new FTPClient();</span><br><span class="line">    try &#123;</span><br><span class="line">        ftpClient.connect(ip, port); // 连接服务器</span><br><span class="line">        isSuccess = ftpClient.login(user, password); // 登录</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        logger.error(&quot;连接 FTP 服务器失败&quot;, e);</span><br><span class="line">    &#125;</span><br><span class="line">    return isSuccess;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、使用流来读取 <code>Properties</code> 配置文件，这里使用 <code>java.util.Properties</code> 类的 <code>load</code> 方法来加载 <code>mmall.properties</code> 文件，再使用 <code>getProperty</code> 方法得到配置。主要实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 使用静态块来初始化并加载配置文件</span><br><span class="line">static &#123;</span><br><span class="line">    String fileName = &quot;mmall.properties&quot;;</span><br><span class="line">    props = new Properties();</span><br><span class="line">    try &#123;</span><br><span class="line">        props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName),&quot;UTF-8&quot;));</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        logger.error(&quot;配置文件读取异常&quot;,e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 然后，可以使用 getProperty 获取</span><br><span class="line">public static String getProperty(String key, String defaultValue)&#123;</span><br><span class="line">    String value = props.getProperty(key.trim());</span><br><span class="line">    if(StringUtils.isBlank(value))&#123;</span><br><span class="line">        value = defaultValue;</span><br><span class="line">    &#125;</span><br><span class="line">    return value.trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、使用 <code>joda-time</code> 处理时间。主要有两种形式：分别为将 <code>String</code> 转为 <code>Date</code> 和将 <code>Date</code> 转为 <code>String</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 将 String 转为 Date</span><br><span class="line">public static Date strToDate(String str, String formatStr) &#123;</span><br><span class="line">    DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(formatStr);</span><br><span class="line">    DateTime dateTime = dateTimeFormatter.parseDateTime(str);</span><br><span class="line">    return dateTime.toDate();</span><br><span class="line">&#125;</span><br><span class="line">// 将 Date 转为 String</span><br><span class="line">public static String dateToStr(Date date, String formatStr) &#123;</span><br><span class="line">    if(date == null) &#123;</span><br><span class="line">        return StringUtils.EMPTY;</span><br><span class="line">    &#125;</span><br><span class="line">    DateTime dateTime = new DateTime(date);</span><br><span class="line">    return dateTime.toString(formatStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、对于 <code>dao</code> 层生成的 <code>pojo</code>，在 <code>service</code> 和 <code>controller</code> 层使用时，可能由于其他业务逻辑，已不能满足需求，这时就可以使用 <code>BO</code>（<code>business Object</code>）、<code>VO</code>（<code>view Object</code>） 对象。它是在原有 <code>pojo</code> 对象的基础上另外添加一些属性以满足业务的需求。它的模型如下：</p>
+<p><img src="https://note.youdao.com/yws/public/resource/6f9b292ee27413903a01f0a8c393ac99/xmlnote/6BDE102C8E5A41D7B80688C104FDA1FB/56635" width="80%"></p>
+<p>项目中，由于业务逻辑还不是特别复杂，所以使用的是简化版本，即 <code>VO</code>(<code>value Object</code>) 对象。</p>
+<p>5、使用 <code>MyBatis-PageHelper</code> 分页及动态排序。一般，都需要先设置页数和每页数量。然后创建 <code>PageInfo</code> 对象，设置 <code>List</code> 集合对象。最后将 <code>PageInfo</code> 对象返回即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PageHelper.startPage(pageNum, pageSize);</span><br><span class="line"></span><br><span class="line">PageInfo pageInfo = new PageInfo(productList);</span><br><span class="line">pageInfo.setList(productListVoList);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -497,30 +496,12 @@
 
 
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    TimberLiu
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/11/03/BasicDateType/" title="基本数据类型">https://blog.timberliu.com/2018/11/03/BasicDateType/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+            <a href="/tags/mmall/" rel="tag"><i class="fa fa-tag"></i> mmall</a>
           
         </div>
       
@@ -533,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/01/Object-orientedConcept/" rel="next" title="面向对象中的一些概念">
-                <i class="fa fa-chevron-left"></i> 面向对象中的一些概念
+              <a href="/2019/01/11/内存分配/" rel="next" title="操作系统知识回顾(5)-内存管理">
+                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(5)-内存管理
               </a>
             
           </div>
@@ -543,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/05/JavaOperation/" rel="prev" title="Java 中的运算">
-                Java 中的运算 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/28/购物车、收货地址、订单模块/" rel="prev" title="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
+                mmall_v1.0 项目总结之购物车、收货地址、订单模块 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -620,7 +601,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -631,7 +612,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -642,7 +623,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -719,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包装类型"><span class="nav-number">2.</span> <span class="nav-text">包装类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型的缓存机制"><span class="nav-number">3.</span> <span class="nav-text">整型的缓存机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高精度类型"><span class="nav-number">4.</span> <span class="nav-text">高精度类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目搭建"><span class="nav-number">1.</span> <span class="nav-text">项目搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户模块"><span class="nav-number">2.</span> <span class="nav-text">用户模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类管理模块"><span class="nav-number">3.</span> <span class="nav-text">分类管理模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#商品管理模块"><span class="nav-number">4.</span> <span class="nav-text">商品管理模块</span></a></li></ol></div>
             
 
           </div>

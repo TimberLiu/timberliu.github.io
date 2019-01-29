@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="面向对象,">
+  <meta name="keywords" content="mmall,">
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。  Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。">
-<meta name="keywords" content="面向对象">
+<meta name="description" content="购物车模块1、购物车模块中购物车的设计，购物车对象如下： 1234567891011public class CartVo &amp;#123;    // 商品集合    private List&amp;lt;CartProductVo&amp;gt; cartProductVoList;    // 购物车总价    private BigDecimal cartTotalPrice;    // 是否全被选中">
+<meta name="keywords" content="mmall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解面向对象思想">
-<meta property="og:url" content="https://blog.timberliu.com/2018/10/28/Object-orientedThought/index.html">
+<meta property="og:title" content="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/28/购物车、收货地址、订单模块/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。  Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。">
+<meta property="og:description" content="购物车模块1、购物车模块中购物车的设计，购物车对象如下： 1234567891011public class CartVo &amp;#123;    // 商品集合    private List&amp;lt;CartProductVo&amp;gt; cartProductVoList;    // 购物车总价    private BigDecimal cartTotalPrice;    // 是否全被选中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-27T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-01-27T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="理解面向对象思想">
-<meta name="twitter:description" content="学习 Java 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。  Java 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 Java 平台又该如何理解？今天就来学习一下。">
+<meta name="twitter:title" content="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
+<meta name="twitter:description" content="购物车模块1、购物车模块中购物车的设计，购物车对象如下： 1234567891011public class CartVo &amp;#123;    // 商品集合    private List&amp;lt;CartProductVo&amp;gt; cartProductVoList;    // 购物车总价    private BigDecimal cartTotalPrice;    // 是否全被选中">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/10/28/Object-orientedThought/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/28/购物车、收货地址、订单模块/">
 
 
 
 
 
-  <title>理解面向对象思想 | TimberLiu's Blog</title>
+  <title>mmall_v1.0 项目总结之购物车、收货地址、订单模块 | TimberLiu's Blog</title>
   
 
 
@@ -317,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/10/28/Object-orientedThought/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/28/购物车、收货地址、订单模块/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">理解面向对象思想</h1>
+          <h1 class="post-title" itemprop="name headline">mmall_v1.0 项目总结之购物车、收货地址、订单模块</h1>
         
 
         <div class="post-meta">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T00:00:00+08:00">
-                2018-10-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T00:00:00+08:00">
+                2019-01-28
               </time>
             
 
@@ -362,8 +362,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-28T00:00:00+08:00">
-                2018-10-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-28T00:00:00+08:00">
+                2019-01-28
               </time>
             
           </span>
@@ -381,8 +381,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
                   </a>
                 </span>
 
@@ -423,42 +423,28 @@
       
 
       
-        <blockquote>
-<p>学习 <code>Java</code> 有段时间了，但有时总感觉好像懂，又说不明白。一番询问之后，终于决定开始开个博客，从读书笔记开始，从基础开始，将自己的理解写下来。</p>
-</blockquote>
-<p><code>Java</code> 是一种面向对象的语言，那到底什么是面向对象，它与面向过程有什么区别，有什么特性，有什么基本的设计原则呢？对于 <code>Java</code> 平台又该如何理解？今天就来学习一下。<a id="more"></a></p>
-<h2 id="面向对象思想"><a href="#面向对象思想" class="headerlink" title="面向对象思想"></a>面向对象思想</h2><p>所有编程语言都提供抽象机制。汇编语言是对底层机器的轻微抽象。之后的命令式语言都是对汇编语言的抽象，它们都是面向过程语言，就是把问题分解成一个一个的步骤，然后每个步骤用函数进行实现，在使用时依次调用即可。一般都是自顶向下，逐步求精。</p>
-<p>而面向对象语言抽象化程度更高，把问题分解为一个一个的步骤，然后对每个步骤进行抽象形成对象，通过对象之间的组合和调用来解决问题。对象具有状态和行为，也就是说，每一个对象都可以拥有内部数据（给出了对象的状态）和操作数据的方法（产生了行为）。</p>
-<p>在面向对象程序设计中会创建抽象数据类型，也就是类 <code>class</code>，它描述了具有相同特性（数据）和行为（方法）的对象集合。一旦类被建立，就可以创建类的任意个对象，然后去操作它们。面向对象的挑战之一就是如何在实际要解决的问题和对象之间建立映射关系。</p>
-<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><p><span id="inline-toc">1.</span><strong>封装</strong></p>
-<p>封装就是隐藏对象内部的属性和实现细节，仅对外公开接口，控制程序中属性读写的访问级别。也就是将属性和方法封装起来形成类，通过访问修饰符来控制访问权限。这样做有两个好处：一是可以让客户端程序员无法触及他们不该触及的部分；二是允许库设计者可以改变类内部的工作方式而不用担心影响到客户端程序员。</p>
-<p>Java 用三个关键字在类内设定边界：<code>public</code>、<code>protected</code>、<code>private</code>，还有一个默认的包访问权限，来决定紧跟其后被定义的东西可以被谁使用。</p>
-<p><span id="inline-toc">2.</span><strong>继承</strong></p>
-<p>代码复用有两种方式，一种是直接在现有类中使用新的类，这称为组合。组合带来了很大的灵活性，通常新类成员对象被声明为 <code>private</code>，使得使用新类的客户端不能访问它们；也可以在不干扰现有客户端代码情况下，修改这些成员。</p>
-<p>另一种方式就是以现有类为基础，然后通过添加和修改代码来创建新类，这称为继承。当继承现有类型时，新的类型不仅包括现有类型的所有成员，而且复制了基类的接口，也就是说，所有可以发送给基类对象的消息同时也可以发送给导出类消息，也就意味着导出类与基类具有相同的类型，这也是多态实现的基础之一。有两种方法可以使基类与导出类产生差异：1、直接在导出类添加新方法；2、改变现有基类的方法，即重写 <code>overriding</code>。</p>
-<p>那在建立新类时这两种方法该如何抉择呢？如果继承使用过多，会导致难以使用并过分复杂的设计，所以应该首先考虑组合，因为它更加简单灵活。</p>
-<p><span id="inline-toc">3.</span><strong>多态</strong></p>
-<p>在处理类型的层次结构时，经常将一个导出类型的对象当作其基类的对象来对待，这个过程称为向上转型，如此可以编写出不依赖于特定类型的代码。当添加新的子类型时，不需要更改调用方法，就能够执行不同代码，这称为多态。</p>
-<p>在面向对象语言中，使用了后期绑定的概念，也就是当向对象发送消息时，编译器只确保被调用方法的存在，并对调用参数和返回值进行类型检查，被执行的确切代码直到运行时才能确定。为执行后期绑定，只需要在对象中存储某种类型信息来替代绝对地址的调用，在运行时决定具体的方法体，如此每一个对象就可以有不同的行为表现。</p>
-<h2 id="五大设计原则"><a href="#五大设计原则" class="headerlink" title="五大设计原则"></a>五大设计原则</h2><p>面向对象编程，需要掌握基本的设计原则，主要有以下五个，也就是 S.O.L.I.D 原则。</p>
-<ul>
-<li><p>单一职责（<code>Single Responsibility</code>）：一个类最好只做一件事，这可以看作低耦合、高内聚的引申。在程序设计中如果发现某个类担任多种任务，可以考虑进行拆分。  </p>
-</li>
-<li><p>开关封闭（<code>Open-Closed</code>）：设计时要对扩展开放，对修改关闭。主要体现在两个方面：1. 对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。2. 对修改关闭，意味着类一旦设计完成，就可以独立完成工作，而不要对其再进行修改。</p>
-</li>
-<li><p>里氏替换（<code>Liskov Substitution</code>）：面向对象的基本要素之一，进行继承关系抽象时，凡是可以用基类的地方，都可以用子类替换。</p>
-</li>
-<li><p>接口隔离（<code>Interface-Segregation</code>）：使用多个小的接口，而不要使用一个大的总接口。如果在接口内定义太多方法，其子类可能只有部分方法有意义，这就破坏了程序的内聚性。可以将其拆分为多个功能单一的接口，进行解耦。</p>
-</li>
-<li><p>依赖倒置（<code>Dependency Inversion</code>）：实体应该依赖于抽象而不是实现。也就是说，高层模块不应该依赖于底层模块，二者都应该依赖于抽象，也就是当两个模块存在紧耦合时，在依赖之间定义一个抽象的接口，高层模块调用接口，而底层模块实现接口的定义，以此来保证代码之间适当的耦合度。</p>
-</li>
-</ul>
-<p>对于以上设计原则，遵守它们可以增强代码的重用性，扩展性等。但在实践中还是应该根据具体情况进行利弊分析，而不是一味地遵守原则。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>《Java 编程思想》</li>
-<li>Hollis：<a href="https://www.hollischuang.com/archives/220" target="_blank" rel="noopener">牢记面向对象五个基本原则</a></li>
-<li>十四期_李光：<a href="https://blog.csdn.net/jerry11112/article/details/79027834" target="_blank" rel="noopener">面向对象与面向过程的本质的区别</a></li>
-</ul>
+        <h2 id="购物车模块"><a href="#购物车模块" class="headerlink" title="购物车模块"></a>购物车模块</h2><p>1、购物车模块中购物车的设计，购物车对象如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class CartVo &#123;</span><br><span class="line">    // 商品集合</span><br><span class="line">    private List&lt;CartProductVo&gt; cartProductVoList;</span><br><span class="line">    // 购物车总价</span><br><span class="line">    private BigDecimal cartTotalPrice;</span><br><span class="line">    // 是否全被选中</span><br><span class="line">    private Boolean allChecked;</span><br><span class="line">    // 图片域名</span><br><span class="line">    private String imageHost;</span><br><span class="line">    // getter/setter 方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>其中，购物车每一件商品 <code>CartProductVo</code> 对象设计如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class CartProductVo &#123;</span><br><span class="line"></span><br><span class="line">    private Integer id;</span><br><span class="line">    private Integer userId;</span><br><span class="line">    private Integer productId;</span><br><span class="line">    // 商品数量</span><br><span class="line">    private Integer quantity;</span><br><span class="line">    private String productName;</span><br><span class="line">    private String productSubtitle;</span><br><span class="line">    private String productMainImage;</span><br><span class="line">    private BigDecimal price;</span><br><span class="line">    private Integer productStatus;</span><br><span class="line">    private BigDecimal productTotalPrice;</span><br><span class="line">    private Integer productStock;</span><br><span class="line">    // 此商品是否勾选</span><br><span class="line">    private Integer productChecked;</span><br><span class="line">    // 限制数量的一个返回结果</span><br><span class="line">    private String limitQuantity;</span><br><span class="line">    // getter/setter 方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、封装一个高可用的购物车核心方法：获取购物车中所有商品信息 <code>getCartVoLimit()</code> 方法。设计思想如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">private CartVo getCartVoLimit(Integer userId) &#123;</span><br><span class="line">    CartVo cartVo = new CartVo();</span><br><span class="line">    // 根据用户 Id 查询购物车信息</span><br><span class="line">    List&lt;Cart&gt; cartList = cartMapper.selectCartByUserId(userId);</span><br><span class="line"></span><br><span class="line">    List&lt;CartProductVo&gt; cartProductVoList = Lists.newArrayList();</span><br><span class="line">    BigDecimal cartTotalPrice = new BigDecimal(&quot;0&quot;);</span><br><span class="line">    if (CollectionUtils.isNotEmpty(cartList)) &#123;</span><br><span class="line">        for (Cart cart : cartList) &#123;</span><br><span class="line">            CartProductVo cartProductVo = new CartProductVo();</span><br><span class="line">            cartProductVo.setId(cart.getId());</span><br><span class="line">            cartProductVo.setUserId(cart.getUserId());</span><br><span class="line">            cartProductVo.setProductId(cart.getProductId());</span><br><span class="line"></span><br><span class="line">            Product product = productMapper.selectByPrimaryKey(cart.getProductId());</span><br><span class="line">            if (product != null) &#123;</span><br><span class="line">                cartProductVo.setProductMainImage(product.getMainImage());</span><br><span class="line">                cartProductVo.setProductName(product.getName());</span><br><span class="line">                cartProductVo.setProductSubtitle(product.getSubtitle());</span><br><span class="line">                cartProductVo.setProductStatus(product.getStatus());</span><br><span class="line">                cartProductVo.setPrice(product.getPrice());</span><br><span class="line">                cartProductVo.setProductStock(product.getStock());</span><br><span class="line"></span><br><span class="line">                int buyLimitCount = 0;</span><br><span class="line">                if (product.getStock() &gt;= cart.getQuantity()) &#123;</span><br><span class="line">                    // 库存足够</span><br><span class="line">                    buyLimitCount = cart.getQuantity();</span><br><span class="line">                    cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_SECCESS);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    // 库存不足</span><br><span class="line">                    buyLimitCount = product.getStock();</span><br><span class="line">                    cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_FAIL);</span><br><span class="line">                    // 购物车中更新为有效的库存</span><br><span class="line">                    Cart cartForQuantity = new Cart();</span><br><span class="line">                    cartForQuantity.setId(cart.getId());</span><br><span class="line">                    cartForQuantity.setQuantity(buyLimitCount);</span><br><span class="line">                    cartMapper.updateByPrimaryKeySelective(cartForQuantity);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                cartProductVo.setQuantity(buyLimitCount);</span><br><span class="line">                // 计算单件商品总价</span><br><span class="line">                cartProductVo.setProductTotalPrice(BigDecimalUtil.mul(product.getPrice().doubleValue(), cartProductVo.getQuantity().doubleValue()));</span><br><span class="line">                cartProductVo.setProductChecked(cart.getChecked());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 如果商品被选中，则相加到购物中总价中</span><br><span class="line">            if (cart.getChecked() == Const.Cart.CHECKED) &#123;</span><br><span class="line">                cartTotalPrice = BigDecimalUtil.add(cartTotalPrice.doubleValue(), cartProductVo.getProductTotalPrice().doubleValue());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            cartProductVoList.add(cartProductVo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cartVo.setCartProductVoList(cartProductVoList);</span><br><span class="line">    cartVo.setAllChecked(getAllCheckedStatus(userId));</span><br><span class="line">    cartVo.setCartTotalPrice(cartTotalPrice);</span><br><span class="line">    cartVo.setImageHost(PropertiesUtil.getProperty(&quot;ftp.server.http.prefix&quot;));</span><br><span class="line">    return cartVo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、对于浮点型在商业运算中丢失精度问题，可以使用 <code>BigDecimal</code> 对象，将参数转为 <code>String</code> 类型进行计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class BigDecimalUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static BigDecimal add(double v1, double v2) &#123;</span><br><span class="line">        BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">        return b1.add(b2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static BigDecimal sub(double v1, double v2) &#123;</span><br><span class="line">        BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">        return b1.subtract(b2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static BigDecimal mul(double v1, double v2) &#123;</span><br><span class="line">        BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">        return b1.multiply(b2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static BigDecimal div(double v1, double v2) &#123;</span><br><span class="line">        BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">        // 保留两位小数，使用四舍五入模式</span><br><span class="line">        return b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="收货地址模块"><a href="#收货地址模块" class="headerlink" title="收货地址模块"></a>收货地址模块</h2><p>1、<code>Mybatis</code> 自动生成主键、配置和使用</p>
+<p>在添加收货地址时，可以自动生成主键，这里指定为 <code>id</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;com.mmall.pojo.Shipping&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后，就可以使用 <code>shipping.getId()</code> 得到新添加收货地址后的 <code>id</code>。</p>
+<p>2、在更新收货地址信息时，为防止横向越权，在 <code>ShippingMapper.xml</code> 文件中，根据用户 <code>Id</code> 和 <code>ShippingId</code> 进行更新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;update id=&quot;updateByShipping&quot; parameterType=&quot;com.mmall.pojo.Shipping&quot;&gt;</span><br><span class="line">    update mmall_shipping</span><br><span class="line">    set receiver_name = #&#123;receiverName,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_phone = #&#123;receiverPhone,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_mobile = #&#123;receiverMobile,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_province = #&#123;receiverProvince,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_city = #&#123;receiverCity,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_district = #&#123;receiverDistrict,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_address = #&#123;receiverAddress,jdbcType=VARCHAR&#125;,</span><br><span class="line">      receiver_zip = #&#123;receiverZip,jdbcType=VARCHAR&#125;,</span><br><span class="line">      create_time = #&#123;createTime,jdbcType=TIMESTAMP&#125;,</span><br><span class="line">      update_time = now()</span><br><span class="line">    where id = #&#123;id,jdbcType=INTEGER&#125;</span><br><span class="line">          and user_id = #&#123;userId,jdbcType=INTEGER&#125;</span><br><span class="line">&lt;/update&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="订单模块"><a href="#订单模块" class="headerlink" title="订单模块"></a>订单模块</h2><p>1、创建订单时需要将订单详情插入到数据库中，可以使用 MyBatis 的批量插入。使用 foreach 标签，集合中每一个对象使用括号括起来，用逗号进行分隔。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;batchInsert&quot; parameterType=&quot;list&quot;&gt;</span><br><span class="line">    insert into mmall_order_item (id, user_id, order_no,</span><br><span class="line">                                  product_id, product_name, product_image,</span><br><span class="line">                                  current_unit_price, quantity, total_price,</span><br><span class="line">                                  create_time, update_time)</span><br><span class="line">    values</span><br><span class="line">    &lt;foreach collection=&quot;list&quot; index=&quot;index&quot; item=&quot;item&quot; separator=&quot;,&quot;&gt;</span><br><span class="line">      (</span><br><span class="line">      #&#123;item.id,jdbcType=INTEGER&#125;, #&#123;item.userId,jdbcType=INTEGER&#125;, #&#123;item.orderNo,jdbcType=BIGINT&#125;,</span><br><span class="line">      #&#123;item.productId,jdbcType=INTEGER&#125;, #&#123;item.productName,jdbcType=VARCHAR&#125;, #&#123;item.productImage,jdbcType=VARCHAR&#125;,</span><br><span class="line">      #&#123;item.currentUnitPrice,jdbcType=DECIMAL&#125;, #&#123;item.quantity,jdbcType=INTEGER&#125;, #&#123;item.totalPrice,jdbcType=DECIMAL&#125;,</span><br><span class="line">      now(), now()</span><br><span class="line">      )</span><br><span class="line">    &lt;/foreach&gt;</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+<p>另外，需要注意的是：Mybatis 批量插入时默认的最大数据量是 1 M，如果超过则会报 <code>PacketTooBigException</code> 异常。可以通过 mysql 安装目录下的 my.ini 文件中，mysqld 段的 <code>max_allowed_packet = 1 M</code> 进行调整；</p>
+<p>2、对于产品状态、订单状态、支付平台、支付方式，都使用枚举类表示。如何设计一个实用安全扩展性强大的枚举类？例如，订单状态如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public enum OrderStatusEnum &#123;</span><br><span class="line">    CANCELED(0, &quot;已取消&quot;),</span><br><span class="line">    NO_PAY(10, &quot;未支付&quot;),</span><br><span class="line">    PAID(20, &quot;已支付&quot;),</span><br><span class="line">    SHIPPED(40, &quot;已发货&quot;),</span><br><span class="line">    ORDER_SUCCESS(50, &quot;订单完成&quot;),</span><br><span class="line">    ORDER_CLOSED(60, &quot;订单关闭&quot;);</span><br><span class="line"></span><br><span class="line">    private String value;</span><br><span class="line">    private int code;</span><br><span class="line">    OrderStatusEnum(int code, String value) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">        this.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getValue() &#123; return value; &#125;</span><br><span class="line">    public int getCode() &#123; return code; &#125;</span><br><span class="line">    </span><br><span class="line">    public static OrderStatusEnum codeOf(int code) &#123;</span><br><span class="line">        for (OrderStatusEnum orderStatusEnum : values()) &#123;</span><br><span class="line">            if(orderStatusEnum.getCode() == code) &#123;</span><br><span class="line">                return orderStatusEnum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        throw new RuntimeException(&quot;没有找到对应的枚举&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、订单号的生成规则，必须唯一严谨。由于这里用户量不多，并发量小，可使用如下方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private long generateOrderNo() &#123;</span><br><span class="line">    long currentTime = System.currentTimeMillis();</span><br><span class="line">    return currentTime + new Random().nextInt(100);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用当前时间戳并加上一个 100 以内的随机数生成。</p>
 
       
     </div>
@@ -483,30 +469,12 @@
 
 
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    TimberLiu
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/10/28/Object-orientedThought/" title="理解面向对象思想">https://blog.timberliu.com/2018/10/28/Object-orientedThought/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+            <a href="/tags/mmall/" rel="tag"><i class="fa fa-tag"></i> mmall</a>
           
         </div>
       
@@ -519,14 +487,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/27/用户、分类、商品模块/" rel="next" title="mmall_v1.0 项目总结之用户、分类、商品模块">
+                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之用户、分类、商品模块
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/30/TheJavaPlatform/" rel="prev" title="对 Java 平台的理解">
-                对 Java 平台的理解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/28/支付模块/" rel="prev" title="mmall_v1.0 项目总结之支付模块">
+                mmall_v1.0 项目总结之支付模块 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,7 +574,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -613,7 +585,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -624,7 +596,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -701,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象思想"><span class="nav-number">1.</span> <span class="nav-text">面向对象思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三大特征"><span class="nav-number">2.</span> <span class="nav-text">三大特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大设计原则"><span class="nav-number">3.</span> <span class="nav-text">五大设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#购物车模块"><span class="nav-number">1.</span> <span class="nav-text">购物车模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收货地址模块"><span class="nav-number">2.</span> <span class="nav-text">收货地址模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#订单模块"><span class="nav-number">3.</span> <span class="nav-text">订单模块</span></a></li></ol></div>
             
 
           </div>

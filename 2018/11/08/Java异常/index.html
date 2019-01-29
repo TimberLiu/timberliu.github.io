@@ -96,23 +96,20 @@
 
 
 
-<meta name="description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
+<meta name="description" content="Java 标准异常Throwable 是 Java 中最顶级的异常类，继承自 Object，实现了序列化接口，它有两个重要的子类：Exception 和 Error，二者都是 Java 异常处理的重要子类，它们之间的区别和联系如下：  Error：表示系统级的错误，是 Java 运行环境内部或硬件问题，一般与虚拟机相关，例如：栈溢出、内存溢出等。这种异常抛出后不能指望程序来进行处理。 Except">
 <meta name="keywords" content="面向对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 中的运算">
-<meta property="og:url" content="https://blog.timberliu.com/2018/11/05/JavaOperation/index.html">
+<meta property="og:title" content="Java 异常">
+<meta property="og:url" content="https://blog.timberliu.com/2018/11/08/Java异常/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
+<meta property="og:description" content="Java 标准异常Throwable 是 Java 中最顶级的异常类，继承自 Object，实现了序列化接口，它有两个重要的子类：Exception 和 Error，二者都是 Java 异常处理的重要子类，它们之间的区别和联系如下：  Error：表示系统级的错误，是 Java 运行环境内部或硬件问题，一般与虚拟机相关，例如：栈溢出、内存溢出等。这种异常抛出后不能指望程序来进行处理。 Except">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png">
-<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png">
-<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png">
-<meta property="og:image" content="http://media.timberliu.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
-<meta property="og:updated_time" content="2018-11-04T16:00:00.000Z">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/1/29/Java%E5%BC%82%E5%B8%B8.png">
+<meta property="og:updated_time" content="2018-11-07T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 中的运算">
-<meta name="twitter:description" content="值传递与引用传递先来看一下值传递与引用传递的概念：  值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。 引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。">
-<meta name="twitter:image" content="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png">
+<meta name="twitter:title" content="Java 异常">
+<meta name="twitter:description" content="Java 标准异常Throwable 是 Java 中最顶级的异常类，继承自 Object，实现了序列化接口，它有两个重要的子类：Exception 和 Error，二者都是 Java 异常处理的重要子类，它们之间的区别和联系如下：  Error：表示系统级的错误，是 Java 运行环境内部或硬件问题，一般与虚拟机相关，例如：栈溢出、内存溢出等。这种异常抛出后不能指望程序来进行处理。 Except">
+<meta name="twitter:image" content="http://media.timberliu.com/image/2019/1/29/Java%E5%BC%82%E5%B8%B8.png">
 
 
 
@@ -141,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2018/11/05/JavaOperation/">
+  <link rel="canonical" href="https://blog.timberliu.com/2018/11/08/Java异常/">
 
 
 
 
 
-  <title>Java 中的运算 | TimberLiu's Blog</title>
+  <title>Java 异常 | TimberLiu's Blog</title>
   
 
 
@@ -322,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/05/JavaOperation/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2018/11/08/Java异常/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -339,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 中的运算</h1>
+          <h1 class="post-title" itemprop="name headline">Java 异常</h1>
         
 
         <div class="post-meta">
@@ -351,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-05T00:00:00+08:00">
-                2018-11-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T00:00:00+08:00">
+                2018-11-08
               </time>
             
 
@@ -367,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-05T00:00:00+08:00">
-                2018-11-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-08T00:00:00+08:00">
+                2018-11-08
               </time>
             
           </span>
@@ -428,45 +425,74 @@
       
 
       
-        <h2 id="值传递与引用传递"><a href="#值传递与引用传递" class="headerlink" title="值传递与引用传递"></a>值传递与引用传递</h2><p>先来看一下值传递与引用传递的概念：</p>
+        <h2 id="Java-标准异常"><a href="#Java-标准异常" class="headerlink" title="Java 标准异常"></a>Java 标准异常</h2><p><code>Throwable</code> 是 <code>Java</code> 中最顶级的异常类，继承自 <code>Object</code>，实现了序列化接口，它有两个重要的子类：<code>Exception</code> 和 <code>Error</code>，二者都是 <code>Java</code> 异常处理的重要子类，它们之间的区别和联系如下：</p>
 <ul>
-<li>值传递：指在调用函数时将实际参数复制一份传递到函数中，那么在函数中如果对参数进行修改，不会影响到实际参数。</li>
-<li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中如果对参数进行修改，将会影响到实际参数。<a id="more"></a>
-那么 <code>Java</code> 中到底是值传递还是引用传递？先来看下面的例子：</li>
+<li><code>Error</code>：表示系统级的错误，是 <code>Java</code> 运行环境内部或硬件问题，一般与虚拟机相关，例如：栈溢出、内存溢出等。这种异常抛出后不能指望程序来进行处理。</li>
+<li><code>Exception</code>：表示需要程序捕获并处理的异常，是由程序设计的不完善而出现的问题，包括运行时异常（<code>RuntimeException</code>）和其他异常，例如 <code>IOException</code> 等。<a id="more"></a></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    j = <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"change: j = "</span> + j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    change(i);</span><br><span class="line">    System.out.println(<span class="string">"main: i = "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: j = 2</span></span><br><span class="line"><span class="comment">// main: i = 1</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，<code>change</code> 方法内部并没有改变实际参数的值，那么 <code>Java</code> 就是值传递吗？再来看下面的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    user.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='Timber', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=21&#125;</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，实际参数的值被改变了，那么 <code>Java</code> 在传递基本类型时是值传递，在传递对象类型是引用类型。其实，这种表述也不对，看下面的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String name2)</span> </span>&#123;</span><br><span class="line">    name2 = <span class="string">"TimberLiu"</span>;</span><br><span class="line">    System.out.println(<span class="string">"change: "</span> + name2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String name1 = <span class="string">"Timber"</span>;</span><br><span class="line">    change(name1);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + name1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: TimberLiu</span></span><br><span class="line"><span class="comment">// main: Timber</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，实际参数的值又被改变了，这又作何解释呢？</p>
-<h2 id="Java-的值传递"><a href="#Java-的值传递" class="headerlink" title="Java 的值传递"></a>Java 的值传递</h2><p>其实，上面的例子，关注的重点不对。对于值传递与引用传递，区别的重点在于 <strong>传递参数时是否会进行拷贝，创建一个副本</strong>。</p>
-<p>再来看一下上面的第二个例子，是如何传递的呢？</p>
-<p><img src="http://phra9vo17.bkt.clouddn.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%921.png" width="80%"></p>
-<p>可以看到，当把 <code>user</code> 传递给 change 方法时，实际参数的地址被拷贝给了形参，而在修改内容时，并没有修改形参本身，而是修改了形参指向的地址中存储的内容。那么真正的修改形参是怎样的呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(User user2)</span> </span>&#123;</span><br><span class="line">    user2 = <span class="keyword">new</span> User();</span><br><span class="line">    user2.setName(<span class="string">"TimberLiu"</span>);</span><br><span class="line">    user2.setAge(<span class="number">21</span>);</span><br><span class="line">    System.out.println(<span class="string">"change:"</span> + user2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    User user1 = <span class="keyword">new</span> User();</span><br><span class="line">    user1.setName(<span class="string">"Timber"</span>);</span><br><span class="line">    user1.setAge(<span class="number">20</span>);</span><br><span class="line">    change(user1);</span><br><span class="line">    System.out.println(<span class="string">"main: "</span> + user1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change: User&#123;name='TimberLiu', age=21&#125;</span></span><br><span class="line"><span class="comment">// main: User&#123;name='Timber', age=20&#125;</span></span><br></pre></td></tr></table></figure>
-<p>这个过程发生了什么呢？看下图：</p>
-<p><img src="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%922.png" width="80%"></p>
-<p>可以看到，这里把 <code>user1</code> 传递给 <code>change</code> 方法时，实际上是把实际参数的地址复制了一份，传递给了形式参数。在 <code>change</code> 方法中修改参数时，重新了开辟一块内存，此时形参已经指向了新的数据区域，后面对 <code>user2</code> 的修改并不会影响到 <code>user1</code> 中的内容。</p>
-<p>所以，上面的参数其实是值传递，只是把实际参数引用的地址复制了一份当做值传递给了形式参数。</p>
-<p>那么，为什么上面在传递 <code>String</code> 对象和 <code>User</code> 对象结果不一样呢？这是因为 <code>String</code> 类型是不可变的，在赋值 <code>name2 = &quot;TimberLiu&quot;</code> 时，会重新创建一个 <code>String</code>，而并没有修改实际参数的值。</p>
-<p><img src="http://media.timberliu.com/image/2018/11/%E5%80%BC%E4%BC%A0%E9%80%923.png" width="80%"></p>
-<p>所以，<strong>Java 中参数传递方式是值传递，只不过对于对象参数，值的内容是对象的引用</strong>。</p>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p><code>Java</code> 中除了布尔类型之外，允许把任何基本类型转换成别的基本数据类型。类型转换图如下：</p>
-<p><img src="http://media.timberliu.com/image/2018/11/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" width="80%"></p>
-<p>在将较小的数据类型赋值给较大的数据类型时，会进行自动类型转换，但如上图中虚线的转换，可能会损失精度；而在将较大的数据类型赋值给较小的数据类型时，必须进行强制类型转换，这种转换通常都会损失精度。</p>
-<p>另外，在对基本数据进行运算时，所有 <code>byte</code>、<code>short</code>、<code>char</code> 类型的值都会自动被提升为 <code>int</code>。而且表达式中最终结果的数据类型是由出现的最大的数据类型决定。</p>
-<p>在计算中还有可能会超出表示范围，即溢出。对于溢出，不会抛出异常，也没有提示，所以一定要注意数据溢出问题。例如下面的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Overflow</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> big = Integer.MAX_VALUE;</span><br><span class="line">        System.out.println(<span class="string">"big = "</span> + big);</span><br><span class="line">        System.out.println(<span class="string">"bigger = "</span> + (big + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// big = 2147483647</span></span><br><span class="line"><span class="comment">// bigger = -2147483648</span></span><br></pre></td></tr></table></figure>
-<h2 id="switch-对-String-的支持"><a href="#switch-对-String-的支持" class="headerlink" title="switch 对 String 的支持"></a>switch 对 String 的支持</h2><p><code>switch</code> 原本只支持整型，而 <code>byte</code>、<code>short</code>、<code>char</code> 可以转换为 <code>int</code> 型，所以也可以使用。但从 <code>Java7</code> 开始，在 <code>switch</code> 条件判断语句中也可以使用 <code>String</code> 类型了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decompile</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(str) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"aaa"</span>:</span><br><span class="line">            System.out.println(<span class="string">"aaa"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"bbb"</span>:</span><br><span class="line">            System.out.println(<span class="string">"bbb"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            System.out.println(<span class="string">"other"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在反编译后，可以看到：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decompile</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">byte</span> var3 = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">switch</span>(str.hashCode()) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">96321</span>:</span><br><span class="line">        <span class="keyword">if</span> (str.equals(<span class="string">"aaa"</span>)) &#123;</span><br><span class="line">            var3 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">97314</span>:</span><br><span class="line">        <span class="keyword">if</span> (str.equals(<span class="string">"bbb"</span>)) &#123;</span><br><span class="line">            var3 = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span>(var3) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        System.out.println(<span class="string">"aaa"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        System.out.println(<span class="string">"bbb"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        System.out.println(<span class="string">"other"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，<code>String</code> 的 <code>switch</code> 还是比较的 <code>byte</code> 类型。先声明了一个 <code>byte</code> 类型，然后通过 <code>hashCode</code> 和 <code>equals</code> 两个方法先后进行比较来赋予 <code>byte</code> 变量不同的值，最后 <code>switch</code> 来执行不同的代码。这里在 <code>hash</code> 之后再进行 <code>equals</code> 判断是有必要的，因为 <code>hash</code> 可能发生碰撞。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>Hollis：<a href="https://mp.weixin.qq.com/s/F7Niaa7nD1tLApCEGKAj4A" target="_blank" rel="noopener">为什么说Java中只有值传递</a></li>
-<li>SEU_Calvin：<a href="https://blog.csdn.net/seu_calvin/article/details/70089977" target="_blank" rel="noopener">Java技术——Java中的参数传值方式</a></li>
+<p>异常体系图如下：</p>
+<p><img src="http://media.timberliu.com/image/2019/1/29/Java%E5%BC%82%E5%B8%B8.png" width="80%"></p>
+<h2 id="异常分类"><a href="#异常分类" class="headerlink" title="异常分类"></a>异常分类</h2><p><code>Java</code> 中的异常可分为两类：非受检异常（<code>Unchecked Exception</code>）和受检异常（<code>Checked Exception</code>）。</p>
+<p>其中 <code>Error</code> 和 <code>RuntimeExcpetion</code> 表示属于非受检异常。这种异常不需要显式地捕获，也不需要在异常说明中声明，但是如果发生异常就会中断程序的执行。这种异常一般是由于代码原因导致的，例如空指针、数组越界、转型异常等。所以，只要代码没问题，这些异常就可以避免，也就不需要显式处理。</p>
+<p>而其他的异常都属于受检异常。这种异常需要使用 <code>try-catch</code> 捕获处理或者在异常说明中进行声明，<br>如果一个方法调用了有受检异常抛出的方法那么就需要对该异常进行处理，否则编译就不能通过。例如 <code>IOException</code>、<code>SQLException</code>、<code>ClassNotFoundException</code> 等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void test() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        // 异常捕获</span><br><span class="line">        Class.forName(&quot;timberliu.exception.User&quot;);</span><br><span class="line">    &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 异常说明中进行声明</span><br><span class="line">// throws 用来声明方法可能抛出的所有异常</span><br><span class="line">public void test() throws IOException &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>受检异常在 <code>IO</code> 操作中使用较多。例如 <code>FileNotFoundException</code>，它表示的是：告诉方法调用者，不保证这个寻找文件的操作一定成功，取决于外部因素，所以需要明确地对调用失败的情况进行特殊处理。</p>
+<h2 id="异常的处理"><a href="#异常的处理" class="headerlink" title="异常的处理"></a>异常的处理</h2><p>在异常被捕获后，有两种处理方式：1. 自己进行处理；2. 向上抛出，交给调用者处理。具体处理时，如果不知道如何处理那就向上抛出；如果知道如何处理，那么有以下处理方式：</p>
+<ul>
+<li>打印记录日志</li>
+<li>封装异常后重新抛出</li>
+<li>返回失败通用对象 <code>Response.Failed()</code></li>
+<li>更改程序结果后正常返回</li>
+<li>忽略或 <code>e.printStackTrace()</code>，一般禁止这样使用。</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    // 明确抛出一个异常</span><br><span class="line">    throw new Exception();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    // 处理异常</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">    // 关闭 IO、网络连接等资源</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将捕获的异常重新封装到一个新的异常里重新抛出，这称为异常链。大多用于将受检异常封装成非受检异常。另外，抛出的新异常必须包含原有异常，这样在处理程序时才可以通过 <code>getCause()</code> 和 <code>initCause()</code> 方法访问异常的根源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void test() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        throw new FileNotFoundException();</span><br><span class="line">    &#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">        // 将 e 封装到新创建的异常里</span><br><span class="line">        throw new RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="意外情况"><a href="#意外情况" class="headerlink" title="意外情况"></a>意外情况</h2><p><strong style="color:#000000;font-size:16px">1.在 return 中使用 finally</strong></p>
+<p>在 <code>try</code> 语句中有 <code>return</code> 语句时，<code>finally</code> 中的代码会在 <code>try</code> 或 <code>catch</code> 块中的 <code>return</code> 语句执行之后，返回之前执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static int test() &#123;</span><br><span class="line">    int i = 1;</span><br><span class="line">    try &#123;</span><br><span class="line">        System.out.println(&quot;try&quot;);</span><br><span class="line">        return i = 2;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        System.out.println(&quot;before finally: &quot; + i);</span><br><span class="line">        i = 3;</span><br><span class="line">        System.out.println(&quot;after finally: &quot; + i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.println(&quot;return: &quot; + test());</span><br><span class="line">&#125;</span><br><span class="line">// try</span><br><span class="line">// before finally: 2</span><br><span class="line">// after finally: 3</span><br><span class="line">// return: 2</span><br></pre></td></tr></table></figure>
+<p>可以看到，这里的执行顺序是先执行 <code>i = 2</code>；然后执行 <code>finally</code> 块中的语句；最后 <code>return</code>。但是在 <code>finally</code> 语句中修改 <code>a</code> 的值，对结果不会造成影响。</p>
+<p>如果 <code>finally</code> 语句中也有 <code>return</code> 语句，还会覆盖 <code>try</code> 或 <code>catch</code> 中的 <code>return</code> 语句的返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static int test() &#123;</span><br><span class="line">    int i = 1;</span><br><span class="line">    try &#123;</span><br><span class="line">        return i = 2;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        return i = 3;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.println(&quot;return: &quot; + test());</span><br><span class="line">&#125;</span><br><span class="line">// return 3</span><br></pre></td></tr></table></figure>
+<p><strong style="color:#000000;font-size:16px">2.异常丢失</strong></p>
+<p>如果在 <code>try/catch</code> 块中，执行 <code>System.exit(0);</code> 后，进程会被杀死，<code>finally</code> 中的代码就不会执行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        System.out.println(&quot;try&quot;);</span><br><span class="line">        System.exit(0);</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">        System.out.println(&quot;finally&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// try</span><br></pre></td></tr></table></figure>
+<h2 id="常见的运行时异常"><a href="#常见的运行时异常" class="headerlink" title="常见的运行时异常"></a>常见的运行时异常</h2><ul>
+<li><code>IndexOutOfBoundsException</code>：数组下标越界异常</li>
+<li><code>ArrayStoreException</code>：向数组中存放与声明类型不兼容的对象异常</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animal[] a = new Dog[1];</span><br><span class="line">a[0] = new Cat();</span><br><span class="line"></span><br><span class="line">// java.lang.ArrayStoreException: timberliu.exception.Cat</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ArithmeticException</code>：算术运算异常，例如除 <code>0</code> 运算</li>
+<li><code>ClassCastException</code>：类型强制转换异常</li>
+<li><code>DateTimeException</code>：时间运算异常</li>
+<li><code>IllegalArgumentException</code>：非法参数异常</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animal animal = new Dog();</span><br><span class="line">Cat cat = (Cat)animal;</span><br><span class="line"></span><br><span class="line">// java.lang.ClassCastException: timberliu.exception.Dog cannot be cast to timberliu.exception.Cat</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>NegativeArraySizeException</code>：创建一个大小为负数的数组错误</li>
+<li><code>NullPointerException</code>：空指针异常</li>
+<li><code>NumberFormatException</code>：数字格式异常，例如在字符串转换为数字时：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a = Integer.parseInt(&quot;abc&quot;);</span><br><span class="line"></span><br><span class="line">// java.lang.NumberFormatException: For input string: &quot;abc&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>SecurityException</code>：安全异常</li>
+<li><code>UnSupportedOperationException</code>：不支持的操作异常</li>
+</ul>
+<p>更多的异常可见官方的 <code>doc</code>：<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html" target="_blank" rel="noopener">RuntimeExcpetion（Java Platform SE 8）</a></p>
+<h2 id="Java7-新特性"><a href="#Java7-新特性" class="headerlink" title="Java7 新特性"></a>Java7 新特性</h2><p><strong style="color:#000000;font-size:16px">try-with-resources</strong></p>
+<p>在 <code>Java7</code> 之前，对于 <code>IO</code> 操作、网络连接等，用完之后必须在 <code>finally</code> 块中调用 <code>close</code> 方法进行关闭，否则可能会导致内存泄露等问题。而从 <code>Java7</code> 中，可以使用 <code>try-with-resources</code> 语句，不需要再显式地关闭资源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try (BufferedReader bufferedReader = new BufferedReader(new FileReader(&quot;e:\\file.txt&quot;));) &#123;</span><br><span class="line">        String line;</span><br><span class="line">        while((line = bufferedReader.readLine()) != null) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        // handle exception</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反编译一下，看它背后的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        BufferedReader bufferedReader = new BufferedReader(new FileReader(&quot;e:\\file.txt&quot;));</span><br><span class="line">        Throwable var2 = null;</span><br><span class="line">    </span><br><span class="line">        try &#123;</span><br><span class="line">            String line;</span><br><span class="line">            try &#123;</span><br><span class="line">                while((line = bufferedReader.readLine()) != null) &#123;</span><br><span class="line">                    System.out.println(line);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Throwable var12) &#123;</span><br><span class="line">                var2 = var12;</span><br><span class="line">                throw var12;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (bufferedReader != null) &#123;</span><br><span class="line">                if (var2 != null) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        bufferedReader.close();</span><br><span class="line">                    &#125; catch (Throwable var11) &#123;</span><br><span class="line">                        var2.addSuppressed(var11);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    bufferedReader.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IOException var14) &#123;</span><br><span class="line">        ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，编译器自动生成了关闭资源的操作。而且，以前在关闭资源时有可能也会抛出异常，在 <code>Java7</code> 中可以使用 <code>Throwable.addSuppressed</code> 方法来抑制可能抛出的异常，这也是 <code>Java7</code> 增加的方法。</p>
+<p><strong style="color:#000000;font-size:16px">Multi-Catch Exceptions</strong></p>
+<p>它表示 <code>catch</code> 语句能同时捕获多个异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        BufferedReader bufferedReader = new BufferedReader(new FileReader(&quot;e:\\file.txt&quot;));</span><br><span class="line">        String line = bufferedReader.readLine();</span><br><span class="line"></span><br><span class="line">        SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">        Date date = format.parse(line);</span><br><span class="line">    &#125; catch (ParseException | IOException e) &#123;</span><br><span class="line">        // handle exception</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以用同样的异常处理程序，来处理多个异常。</p>
+<p><strong style="color:#000000;font-size:16px">Rethrowing Exceptions</strong></p>
+<p>能够直接再次抛出已捕获的异常。注意：<code>throw new Exception(e)</code> 抛出的是重新包装之后的异常；而 <code>throw e</code> 抛出的是原始的异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void test() throws IOException &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        throw new IOException(&quot;IOException&quot;);</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        throw e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        test();</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// IOException</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -491,24 +517,6 @@
 
 
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    TimberLiu
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blog.timberliu.com/2018/11/05/JavaOperation/" title="Java 中的运算">https://blog.timberliu.com/2018/11/05/JavaOperation/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
 
     <footer class="post-footer">
       
@@ -527,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/03/BasicDateType/" rel="next" title="基本数据类型">
-                <i class="fa fa-chevron-left"></i> 基本数据类型
+              <a href="/2018/11/06/接口与内部类/" rel="next" title="接口与内部类">
+                <i class="fa fa-chevron-left"></i> 接口与内部类
               </a>
             
           </div>
@@ -537,8 +545,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/06/AbstractClassAndInterface/" rel="prev" title="抽象类和接口">
-                抽象类和接口 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/06/操作系统概述/" rel="prev" title="操作系统知识回顾(1)--操作系统概述">
+                操作系统知识回顾(1)--操作系统概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -614,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -625,7 +633,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -636,7 +644,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -713,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#值传递与引用传递"><span class="nav-number">1.</span> <span class="nav-text">值传递与引用传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-的值传递"><span class="nav-number">2.</span> <span class="nav-text">Java 的值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">3.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch-对-String-的支持"><span class="nav-number">4.</span> <span class="nav-text">switch 对 String 的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-标准异常"><span class="nav-number">1.</span> <span class="nav-text">Java 标准异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常分类"><span class="nav-number">2.</span> <span class="nav-text">异常分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常的处理"><span class="nav-number">3.</span> <span class="nav-text">异常的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意外情况"><span class="nav-number">4.</span> <span class="nav-text">意外情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的运行时异常"><span class="nav-number">5.</span> <span class="nav-text">常见的运行时异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java7-新特性"><span class="nav-number">6.</span> <span class="nav-text">Java7 新特性</span></a></li></ol></div>
             
 
           </div>

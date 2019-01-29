@@ -472,7 +472,7 @@
 <li>以分为单位。<code>Java</code> 中存储类型为 <code>Long</code>，在数据库中存储类型为 <code>big int</code>。取整和保留方式如前面一样。</li>
 </ul>
 <p>看一下下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static BigDecimal div(double v1, double v2) &#123;</span><br><span class="line">    BigDecimal b1 = new BigDecimal(Double.toString(v1));</span><br><span class="line">    BigDecimal b2 = new BigDecimal(Double.toString(v2));</span><br><span class="line">    // 保留两位小数，使用四舍五入模式</span><br><span class="line">    return b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BigDecimal <span class="title">div</span><span class="params">(<span class="keyword">double</span> v1, <span class="keyword">double</span> v2)</span> </span>&#123;</span><br><span class="line">    BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</span><br><span class="line">    BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</span><br><span class="line">    <span class="comment">// 保留两位小数，使用四舍五入模式</span></span><br><span class="line">    <span class="keyword">return</span> b1.divide(b2, <span class="number">2</span>, BigDecimal.ROUND_HALF_UP);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在进行金额运算时，使用 <code>BigDecimal</code> 类，并且将 <code>double</code> 转为 <code>String</code> 类型进行运算。在使用 <code>divide</code> 方法时，第二位参数为保留几位小数，第三位参数为保留小数的方式，这里使用的是四舍五入模式。</p>
 <h2 id="值传递与引用传递"><a href="#值传递与引用传递" class="headerlink" title="值传递与引用传递"></a>值传递与引用传递</h2><p>先来看一下值传递与引用传递的概念：</p>
 <ul>
@@ -556,8 +556,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/01/面向对象概念/" rel="next" title="面向对象中的一些概念">
-                <i class="fa fa-chevron-left"></i> 面向对象中的一些概念
+              <a href="/2018/10/28/面向对象思想与Java平台/" rel="next" title="面向对象思想与 Java 平台">
+                <i class="fa fa-chevron-left"></i> 面向对象思想与 Java 平台
               </a>
             
           </div>
@@ -643,7 +643,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

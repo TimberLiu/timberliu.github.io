@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="mmall,">
 
 
 
@@ -96,16 +96,22 @@
 
 
 
-<meta name="description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TimberLiu&#39;s Blog">
-<meta property="og:url" content="https://blog.timberliu.com/archives/index.html">
+<meta name="description" content="Redis 配置与安装从官网下载 redis 到 /developer/setup 目录下 1wget http://download.redis.io/releases/redis-4.0.12.tar.gz 然后，将其解压到 /developer 目录下，进入到 redis-4.0.12 目录下，进行编译： 123tar -zxvf redis-4.0.12.tar.gz -C ../cd r">
+<meta name="keywords" content="mmall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mmall_v2.0 环境搭建">
+<meta property="og:url" content="https://blog.timberliu.com/2019/02/14/mmallv2.0项目环境搭建/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
+<meta property="og:description" content="Redis 配置与安装从官网下载 redis 到 /developer/setup 目录下 1wget http://download.redis.io/releases/redis-4.0.12.tar.gz 然后，将其解压到 /developer 目录下，进入到 redis-4.0.12 目录下，进行编译： 123tar -zxvf redis-4.0.12.tar.gz -C ../cd r">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/1/30/Tomcat%E5%8D%95%E6%9C%BA%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/1/30/%E5%A4%8D%E5%88%B6%E5%87%BA%E4%B8%A4%E4%B8%AA%E5%AE%9E%E4%BE%8B.png">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/1/30/%E5%AE%9E%E4%BE%8B%E5%90%AF%E5%8A%A8.png">
+<meta property="og:updated_time" content="2019-02-13T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TimberLiu&#39;s Blog">
-<meta name="twitter:description" content="所有学习上的事，都只靠两件事:策略和坚持而坚持本身就是最重要的策略">
+<meta name="twitter:title" content="mmall_v2.0 环境搭建">
+<meta name="twitter:description" content="Redis 配置与安装从官网下载 redis 到 /developer/setup 目录下 1wget http://download.redis.io/releases/redis-4.0.12.tar.gz 然后，将其解压到 /developer 目录下，进入到 redis-4.0.12 目录下，进行编译： 123tar -zxvf redis-4.0.12.tar.gz -C ../cd r">
+<meta name="twitter:image" content="http://media.timberliu.com/image/2019/1/30/Tomcat%E5%8D%95%E6%9C%BA%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%83%A8%E7%BD%B2.png">
 
 
 
@@ -134,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/archives/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/02/14/mmallv2.0项目环境搭建/">
 
 
 
 
 
-  <title>归档 | TimberLiu's Blog</title>
+  <title>mmall_v2.0 环境搭建 | TimberLiu's Blog</title>
   
 
 
@@ -165,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -301,391 +307,240 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/mmallv2.0项目环境搭建/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TimberLiu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">mmall_v2.0 环境搭建</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T00:00:00+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-14T00:00:00+08:00">
+                2019-02-14
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 18 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2019">2019</h2>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/14/mmallv2.0分布式锁定时关单/" itemprop="url">
-              
-                <span itemprop="name">mmall_v2.0 分布式锁实现定时关单</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T00:00:00+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/14/mmallv2.0redis+cookie实现单点登录/" itemprop="url">
-              
-                <span itemprop="name">mmall_v2.0 Redis + Cookie 实现单点登录</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T00:00:00+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/14/mmallv2.0项目环境搭建/" itemprop="url">
-              
-                <span itemprop="name">mmall_v2.0 环境搭建</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T00:00:00+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="Redis-配置与安装"><a href="#Redis-配置与安装" class="headerlink" title="Redis 配置与安装"></a>Redis 配置与安装</h1><p>从官网下载 <code>redis</code> 到 <code>/developer/setup</code> 目录下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//download.redis.io/releases/redis-4.0.12.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>然后，将其解压到 <code>/developer</code> 目录下，进入到 <code>redis-4.0.12</code> 目录下，进行编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf redis-<span class="number">4.0</span>.12.tar.gz -C ../</span><br><span class="line">cd redis-<span class="number">4.0</span>.12/</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>再将其名修改为 <code>redis-4.0.12_1</code>，另外再拷贝一份为 <code>redis-4.0.12_2</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv redis-<span class="number">4.0</span>.12/ redis-<span class="number">4.0</span>.12_1</span><br><span class="line">cp redis-<span class="number">4.0</span>.12_1/ redis-<span class="number">4.0</span>.12_2/ -R</span><br></pre></td></tr></table></figure>
+<p>然后，修改 <code>redis-4.0.12_2/src/</code> 目录下的 <code>redis.conf</code> 文件，端口修改为 <code>6380</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port <span class="number">6380</span></span><br></pre></td></tr></table></figure>
+<p>然后，分别进入到 <code>src/</code> 目录下，后台启动 <code>redis</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./redis-server ../redis.conf &amp;</span><br></pre></td></tr></table></figure>
+<h1 id="Tomcat-配置多实例"><a href="#Tomcat-配置多实例" class="headerlink" title="Tomcat 配置多实例"></a>Tomcat 配置多实例</h1><p>在单机部署多应用时，官方不建议复制一个又一份的全部 <code>Tomcat</code> 目录进行多实例的部署，而是按照如下图实现：</p>
+<p><img src="http://media.timberliu.com/image/2019/1/30/Tomcat%E5%8D%95%E6%9C%BA%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%83%A8%E7%BD%B2.png" width="60%"></p>
+<p><code>CATALINA_HOME</code> 指 <code>Tomcat</code> 的安装路径，包含 <code>bin</code> 和 <code>lib</code> 目录，而 <code>CATALINA_BASE</code> 指实例存放路径，包含 <code>conf</code>、<code>webapps</code>、<code>logs</code> 等目录。</p>
+<p><strong>复制出两个实例</strong></p>
+<p>首先新建两个 <code>tomcat1</code>、<code>tomcat2</code> 文件夹，并把 <code>apache-tomcat-8.5.35</code> 目录下的 <code>conf</code>、<code>webapps</code>、<code>temp</code>、<code>logs</code>、<code>work</code> 五个文件移动到 <code>tomcat1</code> 中，再将其复制一份到 <code>tomcat2</code> 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir tomcat1 tomcat2</span><br><span class="line">cd apache-tomcat-<span class="number">8.5</span>.11</span><br><span class="line">mv conf/ webapps/ temp/ logs/ work/ -t ../tomcat1</span><br><span class="line">cp -r ../tomcat1<span class="comment">/* ../tomcat2</span></span><br></pre></td></tr></table></figure>
+<p>结果如下图所示：</p>
+<p><img src="http://media.timberliu.com/image/2019/1/30/%E5%A4%8D%E5%88%B6%E5%87%BA%E4%B8%A4%E4%B8%AA%E5%AE%9E%E4%BE%8B.png" width="80%"></p>
+<p><strong>配置 server.xml 端口</strong></p>
+<p>修改 <code>conf/server.xml</code> 中的三个端口：</p>
+<ul>
+<li><code>Server port</code>：用于监听关闭 <code>Tomcat</code> 的 shutdown 命令，默认为 <code>8005</code></li>
+<li><code>Connector port</code>：用于监听 <code>HTTP</code> 请求，默认为 8080</li>
+<li><code>Connector port</code>（protocol=”AJP/1.3”）：用于监听 <code>AJP</code> 协议上的请求，通常用于整合 <code>Apache Server</code> 等其他 <code>HTTP</code> 服务器，默认为 <code>8009</code></li>
+</ul>
+<p>将 <code>tomcat2</code> 实例的端口分别修改为 <code>8006</code>、<code>8080</code>、<code>8010</code>，并对 <code>webapps/ROOT</code> 下的 <code>index.jsp</code> 首页作相应修改。</p>
+<p><strong>创建启动、关闭脚本</strong></p>
+<p>新建一个 <code>tomcat-shell</code> 文件夹，存放启动和关闭脚本，并赋予其执行权限：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir tomcat-shell</span><br><span class="line">cd tomcat-shell/</span><br><span class="line">vim start.sh</span><br><span class="line">vim shutdown.sh</span><br><span class="line">chmod u+x start.sh shutdown.sh</span><br></pre></td></tr></table></figure>
+<p>start.sh 脚本如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">export CATALINA_BASE=/developer/$<span class="number">1</span></span><br><span class="line">export CATALINA_HOME=/developer/apache-tomcat-<span class="number">8.5</span>.35</span><br><span class="line"></span><br><span class="line">cd $CATALINA_HOME/bin</span><br><span class="line"></span><br><span class="line">sh startup.sh</span><br></pre></td></tr></table></figure>
+<p>shutdown.sh 脚本如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">export CATALINA_BASE=/developer/$<span class="number">1</span></span><br><span class="line">export CATALINA_HOME=/developer/apache-tomcat-<span class="number">8.5</span>.35</span><br><span class="line"></span><br><span class="line">cd $CATALINA_HOME/bin</span><br><span class="line"></span><br><span class="line">sh shutdown.sh</span><br></pre></td></tr></table></figure>
+<p>启动和关闭脚本中，<code>$1</code> 表示执行时的第一个参数。</p>
+<p><strong>启动实例</strong></p>
+<p>执行以下命令，启动两个实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start.sh tomcat1</span><br><span class="line">./start.sh tomcat2</span><br></pre></td></tr></table></figure>
+<p><img src="http://media.timberliu.com/image/2019/1/30/%E5%AE%9E%E4%BE%8B%E5%90%AF%E5%8A%A8.png" width="80%"></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/29/mmallv1.0项目环境搭建/" itemprop="url">
-              
-                <span itemprop="name">mmall_v1.0 项目总结之环境搭建</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-29T00:00:00+08:00" content="2019-01-29">
-          01-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/28/mmallv1.0支付模块/" itemprop="url">
-              
-                <span itemprop="name">mmall_v1.0 项目总结之支付模块</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-28T00:00:00+08:00" content="2019-01-28">
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/28/mmallv1.0购物车、收货地址、订单模块/" itemprop="url">
-              
-                <span itemprop="name">mmall_v1.0 项目总结之购物车、收货地址、订单模块</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-28T00:00:00+08:00" content="2019-01-28">
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/27/mmallv1.0用户、分类、商品模块/" itemprop="url">
-              
-                <span itemprop="name">mmall_v1.0 项目总结之用户、分类、商品模块</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-27T00:00:00+08:00" content="2019-01-27">
-          01-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/11/虚拟内存/" itemprop="url">
-              
-                <span itemprop="name">操作系统知识回顾(6)-虚拟内存和文件分配</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-11T00:00:00+08:00" content="2019-01-11">
-          01-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/11/内存分配/" itemprop="url">
-              
-                <span itemprop="name">操作系统知识回顾(5)-内存管理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-11T00:00:00+08:00" content="2019-01-11">
-          01-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/10/死锁/" itemprop="url">
-              
-                <span itemprop="name">操作系统知识回顾(4)--死锁</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-10T00:00:00+08:00" content="2019-01-10">
-          01-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------- 本文结束 --------</div>
+    
+</div>
+      
+    </div>
+
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mmall/" rel="tag"><i class="fa fa-tag"></i> mmall</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/29/mmallv1.0项目环境搭建/" rel="next" title="mmall_v1.0 项目总结之环境搭建">
+                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/14/mmallv2.0redis+cookie实现单点登录/" rel="prev" title="mmall_v2.0 Redis + Cookie 实现单点登录">
+                mmall_v2.0 Redis + Cookie 实现单点登录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -693,6 +548,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -713,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="TimberLiu">
           <p class="site-author-name" itemprop="name">TimberLiu</p>
@@ -816,6 +684,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-配置与安装"><span class="nav-number">1.</span> <span class="nav-text">Redis 配置与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat-配置多实例"><span class="nav-number">2.</span> <span class="nav-text">Tomcat 配置多实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -949,11 +833,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   

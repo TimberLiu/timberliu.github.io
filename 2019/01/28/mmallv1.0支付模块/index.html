@@ -100,7 +100,7 @@
 <meta name="keywords" content="mmall">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mmall_v1.0 项目总结之支付模块">
-<meta property="og:url" content="https://blog.timberliu.com/2019/01/28/支付模块/index.html">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/28/mmallv1.0支付模块/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="扫码支付支付流程 在商家发出预下单请求后，支付宝后台会返回二维码信息给用户，然后用户通过支付宝钱包扫码，之后支付宝后台会把支付结果信息返回给商家后台。">
 <meta property="og:locale" content="zh-Hans">
@@ -139,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/01/28/支付模块/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/28/mmallv1.0支付模块/">
 
 
 
@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/28/支付模块/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/28/mmallv1.0支付模块/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -431,43 +431,43 @@
 <h2 id="扫码支付调用流程"><a href="#扫码支付调用流程" class="headerlink" title="扫码支付调用流程"></a>扫码支付调用流程</h2><p><img src="http://media.timberliu.com/image/2019/1/29/%E6%94%AF%E4%BB%98%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B.png" width="60%"></p>
 <p>主要的思路如下：</p>
 <ol>
-<li>商家系统调用支付宝接口发起预下单请求，获得二维码图片地址；然后通过二维码串生成二维码图片，上传至图片服务器，并将 url 返回给前台；</li>
+<li>商家系统调用支付宝接口发起预下单请求，获得二维码图片地址；然后通过二维码串生成二维码图片，上传至图片服务器，并将 <code>url</code> 返回给前台；</li>
 <li>发起轮询获得支付结果：通过支付时传入的商品订单号查询支付结果；</li>
 <li>还可以通过异步通知获得支付结果，注意：一定要对异步通知进行验签，确保通知是支付宝发出的。另外，还要更新数据库中的信息</li>
 </ol>
 <h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p><strong style="color:#ff6600">预下单请求</strong></p>
-<p>首先，创建扫码支付请求 builder，并设置标题、总金额、交易号、回调地址、商品列表集合等请求参数。在创建商品时，可以使用 newInstance 方法传入商品 id、名称、单价、数量等信息创建，然后添加到商品列表集合中。</p>
+<p>首先，创建扫码支付请求 <code>builder</code>，并设置标题、总金额、交易号、回调地址、商品列表集合等请求参数。在创建商品时，可以使用 <code>newInstance</code>方法传入商品 <code>id</code>、名称、单价、数量等信息创建，然后添加到商品列表集合中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">List&lt;GoodsDetail&gt; goodsDetailList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;OrderItem&gt; orderItemList = orderItemMapper.getByOrderNoUserId(orderNo, userId);</span><br><span class="line"><span class="keyword">for</span> (OrderItem orderItem : orderItemList) &#123;</span><br><span class="line">    <span class="comment">// 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail</span></span><br><span class="line">    GoodsDetail goods = GoodsDetail.newInstance(orderItem.getProductId().toString(), orderItem.getProductName(),</span><br><span class="line">            BigDecimalUtil.add(orderItem.getCurrentUnitPrice().doubleValue(), <span class="number">100.0</span>).longValue(), orderItem.getQuantity());</span><br><span class="line">    <span class="comment">// 创建好一个商品后添加至商品明细列表</span></span><br><span class="line">    goodsDetailList.add(goods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">AlipayTradePrecreateRequestBuilder builder = <span class="keyword">new</span> AlipayTradePrecreateRequestBuilder()</span><br><span class="line">    .setSubject(subject).setTotalAmount(totalAmount)</span><br><span class="line">    .setOutTradeNo(outTradeNo).setUndiscountableAmount(undiscountableAmount)</span><br><span class="line">    .setSellerId(sellerId).setBody(body).setOperatorId(operatorId)</span><br><span class="line">    .setStoreId(storeId).setExtendParams(extendParams).setTimeoutExpress(timeoutExpress)</span><br><span class="line">    .setNotifyUrl(PropertiesUtil.getProperty(<span class="string">"alipay.callback.url"</span>))   <span class="comment">//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置</span></span><br><span class="line">    .setGoodsDetailList(goodsDetailList);</span><br></pre></td></tr></table></figure>
-<p>然后，使用 Config.init() 加载 zbinfo 配置文件，其中配置了支付宝的支付宝网关名、pid、appid、RSA 私钥、公钥等。注意：加载文件一定要在创建 AlipayTradeService 对象之前调用：</p>
+<p>然后，使用 <code>Config.init()</code> 加载 <code>zbinfo</code> 配置文件，其中配置了支付宝的支付宝网关名、<code>pid</code>、<code>appid</code>、<code>RSA</code>私钥、公钥等。注意：加载文件一定要在创建 <code>AlipayTradeService</code> 对象之前调用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Configs.init(<span class="string">"zfbinfo.properties"</span>);</span><br></pre></td></tr></table></figure>
-<p>再然后，创建 AlipayTradeService 单例或静态对象：</p>
+<p>再然后，创建 <code>AlipayTradeService</code> 单例或静态对象：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AlipayTradeService tradeService = <span class="keyword">new</span> AlipayTradeServiceImpl.ClientBuilder().build();</span><br></pre></td></tr></table></figure>
-<p>最后，使用 tradePrecreate() 方法发起预下单请求：</p>
+<p>最后，使用 <code>tradePrecreate()</code> 方法发起预下单请求：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);</span><br></pre></td></tr></table></figure>
 <p><strong style="color:#ff6600">同步订单的二维码串，并生成二维码</strong></p>
-<p>首先，判断上一步中 result 的订单状态，如果为 SUCCESS，则表示预下单成功；</p>
+<p>首先，判断上一步中 <code>result</code> 的订单状态，如果为 <code>SUCCESS</code>，则表示预下单成功；</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (result.getTradeStatus()) &#123;</span><br><span class="line">    <span class="keyword">case</span> SUCCESS:</span><br><span class="line">        log.info(<span class="string">"支付宝预下单成功: )"</span>);</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后，可以使用 result.getResponse() 得到响应对象。再使用 response.getOutTradeNo() 得到订单号，并创建上传到服务器的存放路径。</p>
+<p>然后，可以使用 <code>result.getResponse()</code> 得到响应对象。再使用 <code>response.getOutTradeNo()</code> 得到订单号，并创建上传到服务器的存放路径。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AlipayTradePrecreateResponse response = result.getResponse();</span><br><span class="line">···</span><br><span class="line">String qrPath = String.format(path + <span class="string">"/qr-%s.png"</span>, response.getOutTradeNo());</span><br></pre></td></tr></table></figure>
-<p>然后，使用 ZxingUtils.getQRCodeImge() 方法将 getQrCode() 得到的二维码串转换为宽度为 256 的图片存放在 qrPath 下。</p>
+<p>然后，使用 <code>ZxingUtils.getQRCodeImge()</code> 方法将 <code>getQrCode()</code> 得到的二维码串转换为宽度为 <code>256</code> 的图片存放在 <code>qrPath</code> 下。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZxingUtils.getQRCodeImge(response.getQrCode(), <span class="number">256</span>, qrPath);</span><br></pre></td></tr></table></figure>
-<p>最后，使用 FtpUtil.uploadFile 方法将图片上传到图片服务器。</p>
+<p>最后，使用 <code>FtpUtil.uploadFile</code> 方法将图片上传到图片服务器。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">File targetFile = <span class="keyword">new</span> File(qrPath);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    FtpUtil.uploadFile(Lists.newArrayList(targetFile));</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    log.error(<span class="string">"上传二维码失败"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong style="color:#ff6600">轮询查看交易的状态</strong></p>
 <p>这里，主要是到数据库中查询订单信息，判断订单状态即可：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(order.getStatus() &gt;= Const.OrderStatusEnum.PAID.getCode()) &#123;</span><br><span class="line">    <span class="keyword">return</span> ServerResponse.createBySuccess();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong style="color:#ff6600">异步通知结果</strong></p>
-<p>首先，在收到异步通知时，参数以 Map&lt;String, String[]&gt; 的形式封装在 request 中，需要将其转换为 Map&lt;String, String&gt; 形式：</p>
+<p>首先，在收到异步通知时，参数以 <code>Map&lt;String, String[]&gt;</code> 的形式封装在 <code>request</code> 中，需要将其转换为 <code>Map&lt;String, String&gt;</code> 形式：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; params = Maps.newHashMap();</span><br><span class="line"></span><br><span class="line">Map&lt;String, String[]&gt; requestParams = request.getParameterMap();</span><br><span class="line"><span class="keyword">for</span>(Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) &#123;</span><br><span class="line">    String name = (String) iter.next();</span><br><span class="line">    String[] values = (String[]) requestParams.get(name);</span><br><span class="line">    String valueStr = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; values.length; i++) &#123;</span><br><span class="line">        valueStr = (i == values.length - <span class="number">1</span>) ? valueStr + values[i] : valueStr + values[i] + <span class="string">","</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    params.put(name, valueStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后，对于返回的结果，除了 sign、sign_type 两个参数，其他都需要验签。在源码实现中，已经移除了 sign 参数，只需要移除 sign_type 即可。另外对剩余参数进行 url_encode，并进行字段排序组成待验签字符串，还有将 sign 使用 base64 解码为字节码串也都已实现：</p>
+<p>然后，对于返回的结果，除了 <code>sign</code>、<code>sign_type</code> 两个参数，其他都需要验签。在源码实现中，已经移除了 <code>sign</code> 参数，只需要移除 <code>sign_type</code> 即可。另外对剩余参数进行 <code>url_encode</code>，并进行字段排序组成待验签字符串，还有将 <code>sign</code> 使用 <code>base64</code> 解码为字节码串也都已实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">params.remove(<span class="string">"sign_type"</span>);</span><br></pre></td></tr></table></figure>
-<p>然后，使用 RSA 验签方法，通过签名字符串、支付宝公钥、字符编码、signType 验证签名。</p>
+<p>然后，使用 <code>RSA</code> 验签方法，通过签名字符串、支付宝公钥、字符编码、<code>signType</code> 验证签名。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> alipayRSACheckedV2 = AlipaySignature.rsaCheckV2(params, Configs.getAlipayPublicKey(), <span class="string">"utf-8"</span>, Configs.getSignType());</span><br></pre></td></tr></table></figure>
 <p>然后，在服务层中，需要更改订单的支付时间与支付状态：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Const.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(tradeStatus)) &#123;</span><br><span class="line">    order.setPaymentTime(DateTimeUtil.strToDate(params.get(<span class="string">"gmt_payment"</span>)));</span><br><span class="line">    order.setStatus(Const.OrderStatusEnum.PAID.getCode());</span><br><span class="line">    orderMapper.updateByPrimaryKeySelective(order);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后，再将支付信息添加到支付信息表中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PayInfo payInfo = <span class="keyword">new</span> PayInfo();</span><br><span class="line">payInfo.setUserId(order.getUserId());</span><br><span class="line">payInfo.setOrderNo(orderNo);</span><br><span class="line">payInfo.setPayPlatform(Const.PayPlatformEnum.ALIPAY.getCode());</span><br><span class="line">payInfo.setPlatformNumber(tradeNo);</span><br><span class="line">payInfo.setPlatformStatus(tradeStatus);</span><br><span class="line"></span><br><span class="line">payInfoMapper.insert(payInfo);</span><br></pre></td></tr></table></figure>
-<h2 id="NatAPP-内网穿透"><a href="#NatAPP-内网穿透" class="headerlink" title="NatAPP 内网穿透"></a>NatAPP 内网穿透</h2><p>在支付时，支付宝异步回调需要让回调地址可以被外网访问，可以使用 natapp 进行内网穿透。这里参考文档 <a href="https://natapp.cn/article/natapp_newbie" target="_blank" rel="noopener">NATAPP1分钟快速新手图文教程</a> 即可。</p>
+<h2 id="NatAPP-内网穿透"><a href="#NatAPP-内网穿透" class="headerlink" title="NatAPP 内网穿透"></a>NatAPP 内网穿透</h2><p>在支付时，支付宝异步回调需要让回调地址可以被外网访问，可以使用 <code>natapp</code> 进行内网穿透。这里参考文档 <a href="https://natapp.cn/article/natapp_newbie" target="_blank" rel="noopener">NATAPP1分钟快速新手图文教程</a> 即可。</p>
 
       
     </div>
@@ -510,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/27/用户、分类、商品模块/" rel="next" title="mmall_v1.0 项目总结之用户、分类、商品模块">
-                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之用户、分类、商品模块
+              <a href="/2019/01/28/mmallv1.0购物车、收货地址、订单模块/" rel="next" title="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
+                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之购物车、收货地址、订单模块
               </a>
             
           </div>
@@ -520,8 +520,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/28/购物车、收货地址、订单模块/" rel="prev" title="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
-                mmall_v1.0 项目总结之购物车、收货地址、订单模块 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/29/mmallv1.0项目环境搭建/" rel="prev" title="mmall_v1.0 项目总结之环境搭建">
+                mmall_v1.0 项目总结之环境搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -597,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

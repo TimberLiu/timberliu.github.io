@@ -100,7 +100,7 @@
 <meta name="keywords" content="mmall">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mmall_v1.0 项目总结之环境搭建">
-<meta property="og:url" content="https://blog.timberliu.com/2019/01/29/项目环境搭建/index.html">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/29/mmallv1.0项目环境搭建/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="配置软件源首先，需要进行源配置，可使用阿里云的源，可查看： https://opsx.alibaba.com/mirror 1234561、备份mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/wget -O /e">
 <meta property="og:locale" content="zh-Hans">
@@ -136,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/01/29/项目环境搭建/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/29/mmallv1.0项目环境搭建/">
 
 
 
@@ -317,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/29/项目环境搭建/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/29/mmallv1.0项目环境搭建/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -487,7 +487,7 @@
 <p>查看安全策略，确保其中的 <code>SELINUX</code> 为 <code>disabled</code>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config</span><br></pre></td></tr></table></figure>
 <p>为避免验证时碰到 550 拒绝访问错误，执行下面的命令：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setsebool -P ftp_home_dir <span class="number">1</span></span><br><span class="line">setsebool:  SELinux is disabled.</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[timberliu<span class="meta">@iZ</span>2ze222ncoofcesrn22waZ vsftpd]$ sudo setsebool -P ftp_home_dir <span class="number">1</span></span><br><span class="line">setsebool:  SELinux is disabled.</span><br></pre></td></tr></table></figure>
 <p><strong style="color:#ff6600">配置 vsftpd.conf 文件</strong></p>
 <p>使用 <code>sudo vim vsftpd.conf</code> 命令编辑：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">local_root=/product/ftpfile</span><br><span class="line">#chroot_local_user=YES</span><br><span class="line">anon_root=/product/ftpfile</span><br><span class="line">use_localtime=YES</span><br><span class="line"></span><br><span class="line">#匿名</span><br><span class="line">anonymous_enable=NO</span><br><span class="line"></span><br><span class="line">chroot_local_user=NO</span><br><span class="line">chroot_list_enable=YES</span><br><span class="line"># (default follows)</span><br><span class="line">chroot_list_file=/etc/vsftpd/chroot_list</span><br><span class="line"></span><br><span class="line">#pasv_enable=YES</span><br><span class="line">pasv_min_port=<span class="number">61001</span></span><br><span class="line">pasv_max_port=<span class="number">62000</span></span><br></pre></td></tr></table></figure>
@@ -513,8 +513,19 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim nginx.conf</span><br></pre></td></tr></table></figure>
 <p>在其中添加如下:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include vhost<span class="comment">/*.conf;</span></span><br></pre></td></tr></table></figure>
-<p>然后，在 <code>conf</code> 目录下创建 <code>vhost</code> 文件夹：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mkdir vhost</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">然后，在 `vhost` 文件夹中创建 `admin.timberliu.com.conf`、`timberliu.com.conf`、`s.timberliu.com.conf` 和 `img.timberliu.com.conf` 文件。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在启动 `Nginx` 后，访问 `<span class="number">192.168</span>.25.131`，即可看到 Nginx 页面。</span><br><span class="line"></span><br><span class="line">## 安装 MySQL</span><br><span class="line"></span><br><span class="line">首先，需要删除掉系统自装或以前安装的 mysql：</span><br><span class="line"></span><br><span class="line">&gt; rosten：[centos下完全卸载mysql](https:<span class="comment">//blog.csdn.net/rosten/article/details/25096159?utm_source=blogxgwz2)</span></span><br><span class="line"></span><br><span class="line">下载与安装： </span><br><span class="line">&gt; 近博：[Centos6.8通过yum安装mysql5.7](https:<span class="comment">//www.cnblogs.com/jimboi/p/6405560.html)  </span></span><br><span class="line">&gt; Linux社区-xyang81：[CentOS7 <span class="number">64</span>位下MySQL5.7安装与配置（YUM）](https:<span class="comment">//www.linuxidc.com/Linux/2016-09/135288.htm)</span></span><br><span class="line"></span><br><span class="line">注意：`CentOS <span class="number">6</span>` 和 `<span class="number">7</span>` 中对于服务的管理也出现不同。`CentOS <span class="number">6</span>` 中使用 `service` 命令进行启动停止服务，使用 `chkconfig` 命令设置开机自启；而在 `CentOS <span class="number">7</span>` 中对所有服务都集中在到 `systemctl` 中，通过 `/usr/lib/systemd/system` 下以 `.service` 结尾的配置文件来管理。</span><br><span class="line"></span><br><span class="line">在安装完 `MySQL` 后，使用 `mysql -u root` 进入 `mysql`，通过如下方式修改密码：</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">update mysql.user set authentication_string=password(<span class="string">'root'</span>) where user=<span class="string">'root'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>然后，在 <code>conf</code> 目录下创建 <code>vhost</code> 文件夹。在 <code>vhost</code> 文件夹中创建 <code>admin.timberliu.com.conf</code>、<code>timberliu.com.conf</code>、<code>s.timberliu.com.conf</code> 和 <code>img.timberliu.com.conf</code> 文件。</p>
+<p>在启动 <code>Nginx</code> 后，访问 <code>123.56.9.126</code>，即可看到 <code>Nginx</code> 页面。</p>
+<h2 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h2><p>首先，需要删除掉系统自装或以前安装的 <code>mysql</code>：</p>
+<blockquote>
+<p>rosten：<a href="https://blog.csdn.net/rosten/article/details/25096159?utm_source=blogxgwz2" target="_blank" rel="noopener">centos下完全卸载mysql</a></p>
+</blockquote>
+<p>下载与安装： </p>
+<blockquote>
+<p>近博：<a href="https://www.cnblogs.com/jimboi/p/6405560.html" target="_blank" rel="noopener">Centos6.8通过yum安装mysql5.7</a><br>Linux社区-xyang81：<a href="https://www.linuxidc.com/Linux/2016-09/135288.htm" target="_blank" rel="noopener">CentOS7 64位下MySQL5.7安装与配置（YUM）</a></p>
+</blockquote>
+<p>注意：<code>CentOS 6</code> 和 <code>7</code> 中对于服务的管理也出现不同。<code>CentOS 6</code> 中使用 <code>service</code> 命令进行启动停止服务，使用 <code>chkconfig</code> 命令设置开机自启；而在 <code>CentOS 7</code> 中对所有服务都集中在到 <code>systemctl</code> 中，通过 <code>/usr/lib/systemd/system</code> 下以 <code>.service</code> 结尾的配置文件来管理。</p>
+<p>在安装完 <code>MySQL</code> 后，使用 <code>mysql -u root</code> 进入 <code>mysql</code>，通过如下方式修改密码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string=password(<span class="string">'root'</span>) where user=<span class="string">'root'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 <p>然后退出 <code>mysql</code>，重新登录。使用如下命令创建一个新用户 <code>mmall</code>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant usage on *.* to <span class="string">'username'</span>@<span class="string">'localhost'</span> identified by <span class="string">'password'</span> with grant option;</span><br></pre></td></tr></table></figure>
 <p>然后创建数据库：</p>
@@ -532,7 +543,7 @@
 <p>然后进行编译，安装:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /developer/git-<span class="number">2.11</span>.1</span><br><span class="line">make prefix=/usr/local/git all</span><br><span class="line">make prefix=/usr/local/git install</span><br></pre></td></tr></table></figure>
 <p>打开 <code>vim /etc/profile</code> 配置环境变量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:/usr/local/git/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:/usr/local/git/bin</span><br></pre></td></tr></table></figure>
 <p>执行 <code>source /etc/profile</code> 使之生效。可以使用 <code>git --version</code> 查看版本。</p>
 <p>然后，添加用户名和邮箱：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"yourusername"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
@@ -551,10 +562,7 @@
 <p>然后，使用下面的命令获取公钥：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>将其复制到 <code>github</code> 的 <code>SSH keys</code> 中即可。</p>
-<h2 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><p>在阿里云服务器中，需要配置规则，放行所需端口入方向规则。可以参考这篇文章：</p>
-<blockquote>
-<p>aquarius_wing：<a href="https://www.jianshu.com/p/087774e1cc22" target="_blank" rel="noopener">阿里云服务器上tomcat无法访问的问题</a></p>
-</blockquote>
+<h2 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><p>在阿里云服务器中，需要配置规则，放行所需端口入方向规则。可以参考这篇文章：aquarius_wing：<a href="https://www.jianshu.com/p/087774e1cc22" target="_blank" rel="noopener">阿里云服务器上tomcat无法访问的问题</a></p>
 <p>在 <code>CentOS7</code> 下默认使用 <code>firewall</code> 作为防火墙，使用 <code>iptables</code> 需要重新设置一下。在 <code>/etc/sysconfig</code> 目录下没有 <code>iptables</code> 文件，需要执行以下命令进行安装：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install iptables-services</span><br></pre></td></tr></table></figure>
 <p>然后在 <code>iptables</code> 文件中配置端口如下：</p>
@@ -604,8 +612,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/28/购物车、收货地址、订单模块/" rel="next" title="mmall_v1.0 项目总结之购物车、收货地址、订单模块">
-                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之购物车、收货地址、订单模块
+              <a href="/2019/01/28/mmallv1.0支付模块/" rel="next" title="mmall_v1.0 项目总结之支付模块">
+                <i class="fa fa-chevron-left"></i> mmall_v1.0 项目总结之支付模块
               </a>
             
           </div>
@@ -613,6 +621,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/14/mmallv2.0项目环境搭建/" rel="prev" title="mmall_v2.0 环境搭建">
+                mmall_v2.0 环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -687,7 +699,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -786,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置软件源"><span class="nav-number">1.</span> <span class="nav-text">配置软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户并修改密码"><span class="nav-number">2.</span> <span class="nav-text">创建用户并修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-JDK"><span class="nav-number">3.</span> <span class="nav-text">安装 JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装 Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Maven"><span class="nav-number">5.</span> <span class="nav-text">安装 Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-vsftpd"><span class="nav-number">6.</span> <span class="nav-text">安装 vsftpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">7.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Git"><span class="nav-number">8.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙配置"><span class="nav-number">9.</span> <span class="nav-text">防火墙配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置软件源"><span class="nav-number">1.</span> <span class="nav-text">配置软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户并修改密码"><span class="nav-number">2.</span> <span class="nav-text">创建用户并修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-JDK"><span class="nav-number">3.</span> <span class="nav-text">安装 JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装 Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Maven"><span class="nav-number">5.</span> <span class="nav-text">安装 Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-vsftpd"><span class="nav-number">6.</span> <span class="nav-text">安装 vsftpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">7.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySQL"><span class="nav-number">8.</span> <span class="nav-text">安装 MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Git"><span class="nav-number">9.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙配置"><span class="nav-number">10.</span> <span class="nav-text">防火墙配置</span></a></li></ol></div>
             
 
           </div>

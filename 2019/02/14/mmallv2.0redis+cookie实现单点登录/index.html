@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="mmall,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TimberLiu's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon3.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="电商项目中，在单服务器时，用户登录时将用户信息设置到 session 中，获取用户信息从 session 中获取，退出时从 session 中删除即可。 但在搭建 Tomcat 集群后，就需要考虑 Session 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 Redis + Cookie 自己实现，另一种是借助 Spring Session 框架解决。">
+<meta name="keywords" content="mmall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mmall_v2.0 Redis + Cookie 实现单点登录">
+<meta property="og:url" content="https://blog.timberliu.com/2019/02/14/mmallv2.0redis+cookie实现单点登录/index.html">
+<meta property="og:site_name" content="TimberLiu&#39;s Blog">
+<meta property="og:description" content="电商项目中，在单服务器时，用户登录时将用户信息设置到 session 中，获取用户信息从 session 中获取，退出时从 session 中删除即可。 但在搭建 Tomcat 集群后，就需要考虑 Session 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 Redis + Cookie 自己实现，另一种是借助 Spring Session 框架解决。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mmall_v2.0 Redis + Cookie 实现单点登录">
+<meta name="twitter:description" content="电商项目中，在单服务器时，用户登录时将用户信息设置到 session 中，获取用户信息从 session 中获取，退出时从 session 中删除即可。 但在搭建 Tomcat 集群后，就需要考虑 Session 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 Redis + Cookie 自己实现，另一种是借助 Spring Session 框架解决。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.timberliu.com/2019/02/14/mmallv2.0redis+cookie实现单点登录/">
+
+
+
+
+
+  <title>mmall_v2.0 Redis + Cookie 实现单点登录 | TimberLiu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TimberLiu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Easy coding, easy life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/mmallv2.0redis+cookie实现单点登录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TimberLiu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mmall_v2.0 Redis + Cookie 实现单点登录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T00:00:00+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-14T00:00:00+08:00">
+                2019-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>电商项目中，在单服务器时，用户登录时将用户信息设置到 <code>session</code> 中，获取用户信息从 <code>session</code> 中获取，退出时从 <code>session</code> 中删除即可。</p>
+<p>但在搭建 <code>Tomcat</code> 集群后，就需要考虑 <code>Session</code> 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 <code>Redis + Cookie</code> 自己实现，另一种是借助 <code>Spring Session</code> 框架解决。<a id="more"></a></p>
+<h1 id="Redis-Cookie-实现"><a href="#Redis-Cookie-实现" class="headerlink" title="Redis+Cookie 实现"></a>Redis+Cookie 实现</h1><h2 id="单点登录的思路"><a href="#单点登录的思路" class="headerlink" title="单点登录的思路"></a>单点登录的思路</h2><p>用户登录：</p>
+<ul>
+<li>首先验证用户密码是否正确，并返回用户信息；</li>
+<li>使用 <code>uuid</code> 或 <code>session.getId</code> 生成唯一 <code>id(token)</code>，设置到 <code>cookie</code> 中，将其写给客户端；</li>
+<li>将用户信息(<code>user</code> 对象)转换为 <code>json</code> 格式；</li>
+<li>以 <code>key=token</code>，<code>value=(user 的 json 格式)</code>，写到 <code>redis</code> 中，并设置过期时间；</li>
+</ul>
+<p>退出登录：</p>
+<ul>
+<li>用户请求时会携带 <code>cookie</code>，从 <code>cookie</code> 中获取到 <code>token</code>；</li>
+<li>从请求中获取到 <code>cookie</code>，将其过期时间设置为 <code>0</code>，再写入到响应中，即删除了 <code>token</code>；</li>
+<li>再从 <code>redis</code> 中删除 <code>token</code>；</li>
+</ul>
+<p>获取用户信息：</p>
+<ul>
+<li>从请求携带的 <code>cookie</code> 中获取到 <code>token</code>；</li>
+<li>根据 <code>token</code> 在 <code>redis</code> 中查询相应的 <code>user</code> 对象的 <code>json</code> 串；</li>
+<li>将 <code>json</code> 串转换为 <code>user</code> 对象；</li>
+</ul>
+<h2 id="Redis-连接池及工具类"><a href="#Redis-连接池及工具类" class="headerlink" title="Redis 连接池及工具类"></a>Redis 连接池及工具类</h2><p>由于 <code>token</code> 和 <code>user</code> 对象都会存储在 <code>redis</code> 中，所以这里封装一个 <code>redis</code> 的连接池和工具类。</p>
+<p>首先，封装一个 <code>redis</code> 连接池，每次直接从连接池中获取 <code>jedis</code> 实例即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> JedisPool jedisPool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String redisIP = PropertiesUtil.getProperty(<span class="string">"redis.ip"</span>, <span class="string">"192.168.23.130"</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer redisPort = Integer.parseInt(PropertiesUtil.getProperty(<span class="string">"redis.port"</span>, <span class="string">"6379"</span>));</span><br><span class="line">    <span class="comment">// 最大连接数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer maxTotal = Integer.parseInt(PropertiesUtil.getProperty(<span class="string">"redis.max.total"</span>, <span class="string">"20"</span>));</span><br><span class="line">    <span class="comment">// 最大的 idle 状态的 jedis 实例个数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer maxIdle = Integer.parseInt(PropertiesUtil.getProperty(<span class="string">"redis.max.idle"</span>, <span class="string">"10"</span>));</span><br><span class="line">    <span class="comment">// 最小的 idle 状态的 jedis 实例个数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Integer minIdle = Integer.parseInt(PropertiesUtil.getProperty(<span class="string">"redis.min.idle"</span>, <span class="string">"2"</span>));</span><br><span class="line">    <span class="comment">// 在 borrow 一个 jedis 实例时，是否要进行验证操作</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Boolean testOnBorrow = Boolean.parseBoolean(PropertiesUtil.getProperty(<span class="string">"redis.test.borrow"</span>, <span class="string">"true"</span>));</span><br><span class="line">    <span class="comment">// 在 return 一个 jedis 实例时，是否要进行验证操作</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Boolean testOnReturn = Boolean.parseBoolean(PropertiesUtil.getProperty(<span class="string">"redis.test.return"</span>, <span class="string">"true"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        JedisPoolConfig config = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">        config.setMaxTotal(maxTotal);</span><br><span class="line">        config.setMaxIdle(maxIdle);</span><br><span class="line">        config.setMinIdle(minIdle);</span><br><span class="line">        config.setTestOnBorrow(testOnBorrow);</span><br><span class="line">        config.setTestOnReturn(testOnReturn);</span><br><span class="line">        jedisPool = <span class="keyword">new</span> JedisPool(config, redisIP, redisPort, <span class="number">1000</span>*<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title">getJedis</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> jedisPool.getResource();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">returnJedis</span><span class="params">(Jedis jedis)</span> </span>&#123;</span><br><span class="line">        jedis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，再将其封装成一个工具类，基本操作就是从 <code>redis</code> 连接池中获取 <code>jedis</code> 实例，进行 <code>set/get/expire</code> 等操作，然后将其放回到 <code>redis</code> 连接池中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisPoolUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// exTime 以秒为单位</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Long <span class="title">expire</span><span class="params">(String key, <span class="keyword">int</span> exTime)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">        Long result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            jedis = RedisPool.getJedis();</span><br><span class="line">            result = jedis.expire(key, exTime);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"expire key:&#123;&#125;, error"</span>, key, e);</span><br><span class="line">        &#125;</span><br><span class="line">        RedisPool.returnJedis(jedis);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Long <span class="title">del</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">        Long result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            jedis = RedisPool.getJedis();</span><br><span class="line">            result = jedis.del(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"del key:&#123;&#125;, error"</span>, key, e);</span><br><span class="line">        &#125;</span><br><span class="line">        RedisPool.returnJedis(jedis);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            jedis = RedisPool.getJedis();</span><br><span class="line">            result = jedis.get(key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"get key:&#123;&#125;, error"</span>, key, e);</span><br><span class="line">        &#125;</span><br><span class="line">        RedisPool.returnJedis(jedis);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">set</span><span class="params">(String key, String value)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            jedis = RedisPool.getJedis();</span><br><span class="line">            result = jedis.set(key, value);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"set key:&#123;&#125;, value:&#123;&#125;, error"</span>, key, value, e);</span><br><span class="line">        &#125;</span><br><span class="line">        RedisPool.returnJedis(jedis);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// exTime 以秒为单位</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">setEx</span><span class="params">(String key, String value, <span class="keyword">int</span> exTime)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            jedis = RedisPool.getJedis();</span><br><span class="line">            result = jedis.setex(key, exTime, value);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"setex key:&#123;&#125;, value:&#123;&#125;, error"</span>, key, value, e);</span><br><span class="line">        &#125;</span><br><span class="line">        RedisPool.returnJedis(jedis);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JsonUtil-工具类"><a href="#JsonUtil-工具类" class="headerlink" title="JsonUtil 工具类"></a>JsonUtil 工具类</h2><p>将 <code>user</code> 对象存储在 <code>redis</code> 中，需要转换为 <code>json</code> 格式，从 <code>redis</code> 中获取 <code>user</code> 对象，又需要转换为 <code>user</code> 对象。这里封装一个 <code>json</code> 的工具类。</p>
+<p><code>JsonUtil</code> 工具类主要使用 <code>ObjectMapper</code> 类。</p>
+<ul>
+<li><code>bean</code> 类转换为 <code>String</code> 类型，使用 <code>writerValueAsString</code> 方法。</li>
+<li><code>String</code> 类型转换为 <code>bean</code> 类，使用 <code>readValue</code> 方法。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 序列化时将所有字段列入</span></span><br><span class="line">        objectMapper.setSerializationInclusion(JsonSerialize.Inclusion.ALWAYS);</span><br><span class="line">        <span class="comment">// 取消默认将 DATES 转换为 TIMESTAMPS</span></span><br><span class="line">        objectMapper.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, <span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// 忽略空 bean 转 json 的错误</span></span><br><span class="line">        objectMapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, <span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// 所有日期样式统一</span></span><br><span class="line">        objectMapper.setDateFormat(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>));</span><br><span class="line">        <span class="comment">// 忽略 在 json 字符串中存在，在 java 对象中不存在对应属性的情况</span></span><br><span class="line">        objectMapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">String <span class="title">obj2Str</span><span class="params">(T obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123; <span class="keyword">return</span> <span class="keyword">null</span>; &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> obj <span class="keyword">instanceof</span> String ? (String) obj : objectMapper.writeValueAsString(obj);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.warn(<span class="string">"Parse Object to String error"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">String <span class="title">obj2StrPretty</span><span class="params">(T obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123; <span class="keyword">return</span> <span class="keyword">null</span>; &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> obj <span class="keyword">instanceof</span> String ? (String) obj :</span><br><span class="line">                    objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.warn(<span class="string">"Parse Object to String error"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">str2Obj</span><span class="params">(String str, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(str) || clazz == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> clazz.equals(String.class) ? (T)str : objectMapper.readValue(str, clazz);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.warn(<span class="string">"Parse String to Object error"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">str2Obj</span><span class="params">(String str, TypeReference&lt;T&gt; typeReference)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(str) || typeReference == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> typeReference.getType().equals(String.class) ? (T)str : objectMapper.readValue(str, typeReference);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.warn(<span class="string">"Parse String to Object error"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">str2Obj</span><span class="params">(String str, Class&lt;?&gt; collectionClass, Class&lt;?&gt; elementClass)</span> </span>&#123;</span><br><span class="line">        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(collectionClass, elementClass);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> objectMapper.readValue(str, javaType);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.warn(<span class="string">"Parse String to Object error"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CookieUtil-工具类"><a href="#CookieUtil-工具类" class="headerlink" title="CookieUtil 工具类"></a>CookieUtil 工具类</h2><p>登录时需要将 <code>token</code> 设置到 <code>cookie</code> 中返回给客户端，退出时需要从 <code>request</code> 中携带的 <code>cookie</code> 中读取 <code>token</code>，设置过期时间后，又将其设置到 <code>cookie</code> 中返回给客户端，获取用户信息时，获取用户信息时，需要从 <code>request</code> 中携带的 <code>cookie</code> 中读取 <code>token</code>，在 <code>redis</code> 中查询后获得 <code>user</code> 对象。这里呢，也封装一个 <code>cookie</code> 的工具类。</p>
+<p>在 <code>CookieUtil</code> 中：</p>
+<ul>
+<li><code>readLoginToken</code> 方法主要从 <code>request</code> 读取 <code>Cookie</code>；</li>
+<li><code>writeLoginToken</code> 方法主要设置 <code>Cookie</code> 对象加到 <code>response</code> 中；</li>
+<li><code>delLoginToken</code> 方法主要从 <code>request</code> 中读取 <code>Cookie</code>，将其 <code>maxAge</code> 设置为 <code>0</code>，再添加到 <code>response</code> 中；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookieUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String COOKIE_DOMAIN = <span class="string">".happymmall.com"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String COOKIE_NAME = <span class="string">"mmall_login_token"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readLoginToken</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        Cookie[] cookies = request.getCookies();</span><br><span class="line">        <span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">                log.info(<span class="string">"read cookieName:&#123;&#125;, cookieValue:&#123;&#125;"</span>, cookie.getName(), cookie.getValue());</span><br><span class="line">                <span class="keyword">if</span> (StringUtils.equals(COOKIE_NAME, cookie.getName())) &#123;</span><br><span class="line">                    log.info(<span class="string">"return cookieName:&#123;&#125;, cookieValue:&#123;&#125;"</span>, cookie.getName(), cookie.getValue());</span><br><span class="line">                    <span class="keyword">return</span> cookie.getValue();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeLoginToken</span><span class="params">(HttpServletResponse response, String token)</span> </span>&#123;</span><br><span class="line">        Cookie cookie  = <span class="keyword">new</span> Cookie(COOKIE_NAME, token);</span><br><span class="line">        cookie.setDomain(COOKIE_DOMAIN);</span><br><span class="line">        cookie.setPath(<span class="string">"/"</span>);</span><br><span class="line">        <span class="comment">// 防止脚本攻击</span></span><br><span class="line">        cookie.setHttpOnly(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 单位是秒，如果是 -1，代表永久；</span></span><br><span class="line">        <span class="comment">// 如果 MaxAge 不设置，cookie 不会写入硬盘，而是在内存，只在当前页面有效</span></span><br><span class="line">        cookie.setMaxAge(<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">365</span>);</span><br><span class="line">        log.info(<span class="string">"write cookieName:&#123;&#125;, cookieValue:&#123;&#125;"</span>, cookie.getName(), cookie.getValue());</span><br><span class="line">        response.addCookie(cookie);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">delLoginToken</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;</span><br><span class="line">        Cookie[] cookies = request.getCookies();</span><br><span class="line">        <span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">                <span class="keyword">if</span> (StringUtils.equals(COOKIE_NAME, cookie.getName())) &#123;</span><br><span class="line">                    cookie.setDomain(COOKIE_DOMAIN);</span><br><span class="line">                    cookie.setPath(<span class="string">"/"</span>);</span><br><span class="line">                    <span class="comment">// maxAge 设置为 0，表示将其删除</span></span><br><span class="line">                    cookie.setMaxAge(<span class="number">0</span>);</span><br><span class="line">                    log.info(<span class="string">"del cookieName:&#123;&#125;, cookieValue:&#123;&#125;"</span>, cookie.getName(), cookie.getValue());</span><br><span class="line">                    response.addCookie(cookie);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="具体业务"><a href="#具体业务" class="headerlink" title="具体业务"></a>具体业务</h2><p>登录时验证密码后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CookieUtil.writeLoginToken(response, session.getId());</span><br><span class="line">RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.obj2Str(serverResponse.getData()), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);</span><br></pre></td></tr></table></figure>
+<p>退出登录时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String loginToken = CookieUtil.readLoginToken(request);</span><br><span class="line">CookieUtil.delLoginToken(request, response);</span><br><span class="line">RedisShardedPoolUtil.del(loginToken);</span><br></pre></td></tr></table></figure>
+<p>获取用户信息时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String loginToken = CookieUtil.readLoginToken(request);</span><br><span class="line"><span class="keyword">if</span> (StringUtils.isEmpty(loginToken)) &#123;</span><br><span class="line">    <span class="keyword">return</span> ServerResponse.createByErrorMessage(<span class="string">"用户未登录，无法获取当前用户信息"</span>);</span><br><span class="line">&#125;</span><br><span class="line">String userJsonStr = RedisShardedPoolUtil.get(loginToken);</span><br><span class="line">User user = JsonUtil.str2Obj(userJsonStr, User.class);</span><br></pre></td></tr></table></figure>
+<h2 id="SessionExpireFilter-过滤器"><a href="#SessionExpireFilter-过滤器" class="headerlink" title="SessionExpireFilter 过滤器"></a>SessionExpireFilter 过滤器</h2><p>另外，在用户登录后，每次操作后，都需要重置 <code>Session</code> 的有效期。可以使用过滤器来实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionExpireFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;</span><br><span class="line">        String loginToken = CookieUtil.readLoginToken(httpServletRequest);</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isNotEmpty(loginToken)) &#123;</span><br><span class="line">            String userJsonStr = RedisShardedPoolUtil.get(loginToken);</span><br><span class="line">            User user = JsonUtil.str2Obj(userJsonStr, User.class);</span><br><span class="line">            <span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</span><br><span class="line">                RedisShardedPoolUtil.expire(loginToken, Const.RedisCacheExtime.REDIS_SESSION_EXTIME);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还需要在 <code>web.xml</code> 文件中进行配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;sessionExpireFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-<span class="class"><span class="keyword">class</span>&gt;<span class="title">com</span>.<span class="title">mmall</span>.<span class="title">controller</span>.<span class="title">common</span>.<span class="title">SessionExpireFilter</span>&lt;/<span class="title">filter</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">filter</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">filter</span>-<span class="title">name</span>&gt;<span class="title">sessionExpireFilter</span>&lt;/<span class="title">filter</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">url</span>-<span class="title">pattern</span>&gt;*.<span class="title">do</span>&lt;/<span class="title">url</span>-<span class="title">pattern</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">filter</span>-<span class="title">mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="此方式的缺陷"><a href="#此方式的缺陷" class="headerlink" title="此方式的缺陷"></a>此方式的缺陷</h2><ul>
+<li><code>redis + cookie</code> 方式实现的单点登录对代码侵入性比较大；</li>
+<li>客户端必须启用 <code>cookie</code>，而有些浏览器不支持 <code>cookie</code>；</li>
+<li><code>Cookie</code> 设置 <code>domain</code> 时必须统一，服务器也必须统一域名方式；</li>
+</ul>
+<h1 id="Spring-Session-实现"><a href="#Spring-Session-实现" class="headerlink" title="Spring Session 实现"></a>Spring Session 实现</h1><p><code>Spring Session</code> 是 <code>Spring</code> 的项目之一，它提供了创建和管理 <code>Server</code> <code>HTTPSession</code> 的方案。并提供了集群 <code>Session</code> 功能，默认采用外置的 <code>Redis</code> 来存储 <code>Session</code> 数据，以此来解决 <code>Session</code> 共享的问题。</p>
+<p><code>Spring Session</code> 可以无侵入式地解决 <code>Session</code> 共享问题，但是不能进行分片。</p>
+<h2 id="Spring-Session-项目集成"><a href="#Spring-Session-项目集成" class="headerlink" title="Spring Session 项目集成"></a>Spring Session 项目集成</h2><p>1、引入 <code>Spring Session pom</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.session&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-session-data-redis&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.2.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>2、配置 <code>DelegatingFilterProxy</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;springSessionRepositoryFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-<span class="class"><span class="keyword">class</span>&gt;<span class="title">org</span>.<span class="title">springframework</span>.<span class="title">web</span>.<span class="title">filter</span>.<span class="title">DelegatingFilterProxy</span>&lt;/<span class="title">filter</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">filter</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">filter</span>-<span class="title">name</span>&gt;<span class="title">springSessionRepositoryFilter</span>&lt;/<span class="title">filter</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">url</span>-<span class="title">pattern</span>&gt;*.<span class="title">do</span>&lt;/<span class="title">url</span>-<span class="title">pattern</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">filter</span>-<span class="title">mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3、配置 <code>RedisHttpSessionConfiguration</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"redisHttpSessionConfiguration"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">"maxInactiveIntervalInSeconds"</span> value=<span class="string">"1800"</span> /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>4、配置 <code>JedisPoolConfig</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"jedisPoolConfig"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"redis.clients.jedis.JedisPoolConfig"</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">"maxTotal"</span> value=<span class="string">"20"</span> /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>5、配置 <code>JedisSessionFactory</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"jedisConnectionFactory"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.data.redis.connection.jedis.JedisConnectionFactory"</span> &gt;</span><br><span class="line">    &lt;property name=<span class="string">"hostName"</span> value=<span class="string">"192.168.23.130"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"port"</span> value=<span class="string">"6379"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"database"</span> value=<span class="string">"0"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"poolConfig"</span> ref=<span class="string">"jedisPoolConfig"</span> /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>6、配置 <code>DefaultCookieSerializer</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"defaultCookieSerializer"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.session.web.http.DefaultCookieSerializer"</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">"cookieName"</span> value=<span class="string">"SESSION_NAME"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"domainName"</span> value=<span class="string">".happymmall.com"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"useHttpOnlyCookie"</span> value=<span class="string">"true"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"cookiePath"</span> value=<span class="string">"/"</span> /&gt;</span><br><span class="line">    &lt;property name=<span class="string">"cookieMaxAge"</span> value=<span class="string">"31536000"</span> /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h2><p>用户登录时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(Const.CURRENT_USER, response.getData());</span><br></pre></td></tr></table></figure>
+<p>退出登录时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.removeAttribute(Const.CURRENT_USER);</span><br></pre></td></tr></table></figure>
+<p>获得用户信息时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User user = (User) session.getAttribute(Const.CURRENT_USER);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------- 本文结束 --------</div>
+    
+</div>
+      
+    </div>
+
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mmall/" rel="tag"><i class="fa fa-tag"></i> mmall</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/14/mmallv2.0项目环境搭建/" rel="next" title="mmall_v2.0 环境搭建">
+                <i class="fa fa-chevron-left"></i> mmall_v2.0 环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/14/mmallv2.0分布式锁定时关单/" rel="prev" title="mmall_v2.0 分布式锁实现定时关单">
+                mmall_v2.0 分布式锁实现定时关单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="TimberLiu">
+          <p class="site-author-name" itemprop="name">TimberLiu</p>
+           
+              <p class="site-description motion-element" itemprop="description">所有学习上的事，都只靠两件事:<br>策略和坚持<br>而坚持本身就是最重要的策略</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/TimberLiu/timberliu.github.io" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/5bdaed62e51d455a385e5597" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-layer-group"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="timberliu1210@gmail.com" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-Cookie-实现"><span class="nav-number">1.</span> <span class="nav-text">Redis+Cookie 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单点登录的思路"><span class="nav-number">1.1.</span> <span class="nav-text">单点登录的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-连接池及工具类"><span class="nav-number">1.2.</span> <span class="nav-text">Redis 连接池及工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JsonUtil-工具类"><span class="nav-number">1.3.</span> <span class="nav-text">JsonUtil 工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CookieUtil-工具类"><span class="nav-number">1.4.</span> <span class="nav-text">CookieUtil 工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体业务"><span class="nav-number">1.5.</span> <span class="nav-text">具体业务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SessionExpireFilter-过滤器"><span class="nav-number">1.6.</span> <span class="nav-text">SessionExpireFilter 过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#此方式的缺陷"><span class="nav-number">1.7.</span> <span class="nav-text">此方式的缺陷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Session-实现"><span class="nav-number">2.</span> <span class="nav-text">Spring Session 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Session-项目集成"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Session 项目集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务代码"><span class="nav-number">2.2.</span> <span class="nav-text">业务代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2018 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TimberLiu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      总访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":100,"height":100,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>

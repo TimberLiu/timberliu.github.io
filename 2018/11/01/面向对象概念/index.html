@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="面向对象,">
+  <meta name="keywords" content="Java基础,">
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="this、superthis 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 this 调用构造器，但必须将构造器置于最起始处。">
-<meta name="keywords" content="面向对象">
+<meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象中的一些概念">
 <meta property="og:url" content="https://blog.timberliu.com/2018/11/01/面向对象概念/index.html">
@@ -423,12 +423,12 @@
       
 
       
-        <h2 id="this、super"><a href="#this、super" class="headerlink" title="this、super"></a>this、super</h2><p><code>this</code> 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 <code>this</code> 调用构造器，但必须将构造器置于最起始处。<a id="more"></a></p>
+        <h1 id="this、super"><a href="#this、super" class="headerlink" title="this、super"></a>this、super</h1><p><code>this</code> 关键字只能在方法内部使用，表示对“调用方法的那个对象“的引用。还可以用 <code>this</code> 调用构造器，但必须将构造器置于最起始处。<a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>super</code> 关键字表示如果子类重写了父类的某个方法，可以通过 <code>super</code> 关键字来调用父类的方法实现，也可以用来调用父类的构造器。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, age);</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.say();</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + age + <span class="string">","</span> + score);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"Timber"</span>, <span class="number">20</span>, <span class="number">80</span>);</span><br><span class="line">        student.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Timber:20</span></span><br><span class="line"><span class="comment">// Timber:20,80</span></span><br></pre></td></tr></table></figure>
-<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p><code>final</code> 关键字可用于三种情况：变量、方法和类。</p>
+<h1 id="final"><a href="#final" class="headerlink" title="final"></a>final</h1><p><code>final</code> 关键字可用于三种情况：变量、方法和类。</p>
 <p><span id="inline-toc">1.</span><strong>变量</strong></p>
 <p>对于基本类型时，<code>final</code> 使数值恒定不变；对于引用类型时，<code>final</code> 使引用恒定不变，也就是说无法指向其他对象，但是对象其本身却可以修改。</p>
 <p>另外，在参数列表中还可以将参数声明为 <code>final</code>，所以在方法中无法修改参数引用指向的对象。这一特性在向匿名内部类传递数据时特别常用。</p>
@@ -437,7 +437,7 @@
 <p>类中所有的 <code>private</code> 方法都隐式地指定为 <code>final</code>，所以 <code>private</code> 方法也就无法覆盖。如果在子类中定义一个和基类中方法签名相同的方法，此时子类并不是重写了基类的方法，而是在子类中添加了一个新的方法。</p>
 <p><span id="inline-toc">3.</span><strong>类</strong></p>
 <p><code>final</code> 类不能被继承，而且 <code>final</code> 类中的所有方法都隐式地被指定为 <code>final</code>，无法覆盖它们。</p>
-<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>当声明一个事物时，意味着这个域或方法不会与包含它的那个类的任何对象实例关联在一起。所以，即时从未创建某个类的任何对象，也可以调用其 <code>static</code> 方法或访问其 <code>static</code> 域。</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>当声明一个事物时，意味着这个域或方法不会与包含它的那个类的任何对象实例关联在一起。所以，即时从未创建某个类的任何对象，也可以调用其 <code>static</code> 方法或访问其 <code>static</code> 域。</p>
 <p><span id="inline-toc">1.</span><strong>变量</strong></p>
 <p>当 <code>static</code> 作用于某个字段时，会改变数据的创建方式，因为 <code>static</code> 字段对每个类只有一份存储空间，存放在方法区中；而非 <code>static</code> 字段则对每个对象都有一个存储空间，存放在堆中。</p>
 <p><span id="inline-toc">2.</span><strong>方法</strong></p>
@@ -446,7 +446,7 @@
 <p><code>Java</code> 允许将多个静态初始化动作组成一个特殊的静态子句，即静态块。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class User &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        name = <span class="string">"Timber"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这段代码仅当首次生成这个对象或首次访问这个类的静态成员时执行一次。</p>
-<h2 id="重写与重载"><a href="#重写与重载" class="headerlink" title="重写与重载"></a>重写与重载</h2><p><span id="inline-toc">1.</span><strong>重写</strong></p>
+<h1 id="重写与重载"><a href="#重写与重载" class="headerlink" title="重写与重载"></a>重写与重载</h1><p><span id="inline-toc">1.</span><strong>重写</strong></p>
 <p>重写指的是在父类和继承它的子类中有两个方法名和参数列表都相同的情况。由于方法签名相同，子类中的方法会覆盖父类中原有的方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"do something"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"studying"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line">        person.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// studying</span></span><br></pre></td></tr></table></figure>
 <p>上面就是一个重写的例子。重写一般需要注意以下几点：</p>
@@ -468,7 +468,7 @@
 <li>根据方法的返回值不能区分重载</li>
 <li>重载涉及到基本类型的自动提升时可能会造成混淆。</li>
 </ul>
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>构造器是一种特殊的方法，构造器名必须与类名相同，但是它没有返回类型，不会被继承，且可以有范围修饰符。它总是与 <code>new</code> 运算符一起在创建对象的语句中使用，主要用来在创建对象时初始化对象。</p>
+<h1 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h1><p>构造器是一种特殊的方法，构造器名必须与类名相同，但是它没有返回类型，不会被继承，且可以有范围修饰符。它总是与 <code>new</code> 运算符一起在创建对象的语句中使用，主要用来在创建对象时初始化对象。</p>
 <p>一个类可以有多个构造器，可根据其参数个数或顺序的不同来区分它们，即构造器的重载。将没有参数的构造器称为默认构造器，如果类中没有构造器，编译器会自动创建一个默认构造器。但如果定义了构造器，编译器就不会帮你创建默认构造器，而你这样 <code>new Person()</code> 创建对象时就会报错。</p>
 <p>对于方法的局部变量，必须进行初始化。而对于类的成员变量，如果没有进行初始化，就会把成员变量初始化为默认值，如 <code>int</code> 初始化为 <code>0</code>，引用类型初始化为 <code>null</code>等。并且成员变量会在任何方法（包括构造器）被调用之前得到初始化，按照变量定义的先后顺序所决定。</p>
 <p>对象的创建过程如下：</p>
@@ -479,7 +479,7 @@
 <li>然后执行出现于成员变量定义处的初始化动作；</li>
 <li>然后再执行构造器。</li>
 </ul>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态，简单来说就是同一段代码作用于不同的对象，可以有不同的解释，以产生不同的执行结果。一般需要满足三个条件：</p>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><p>多态，简单来说就是同一段代码作用于不同的对象，可以有不同的解释，以产生不同的执行结果。一般需要满足三个条件：</p>
 <ul>
 <li>有类继承或接口实现</li>
 <li>子类要重写父类的方法</li>
@@ -515,7 +515,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+            <a href="/tags/Java基础/" rel="tag"><i class="fa fa-tag"></i> Java基础</a>
           
         </div>
       
@@ -615,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -637,7 +637,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -714,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this、super"><span class="nav-number">1.</span> <span class="nav-text">this、super</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">2.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">3.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写与重载"><span class="nav-number">4.</span> <span class="nav-text">重写与重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造器"><span class="nav-number">5.</span> <span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this、super"><span class="nav-number">1.</span> <span class="nav-text">this、super</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#final"><span class="nav-number">2.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#static"><span class="nav-number">3.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重写与重载"><span class="nav-number">4.</span> <span class="nav-text">重写与重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造器"><span class="nav-number">5.</span> <span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多态"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a></li></ol></div>
             
 
           </div>

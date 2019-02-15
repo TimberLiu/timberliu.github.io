@@ -434,9 +434,9 @@
         <blockquote>
 <p>存储器管理的主要对象是内存。这篇文章总结了内存分配的两种方式，其中重点需要掌握非连续分配方式：即分页式、分段式、段页式分配的基本概念和地址转换。</p>
 </blockquote>
-<h2 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h2><p>在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。</p>
+<h1 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h1><p>在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。</p>
 <p>动态分区分配是一种连续分配方式，它根据进程的实际需要，在程序被加载时，动态地为之建立一个大小可变的分区，这个分区的地址是连续的。<a id="more"></a>  </p>
-<h3 id="内存管理方式"><a href="#内存管理方式" class="headerlink" title="内存管理方式"></a>内存管理方式</h3><p>为实现动态分区分配，系统必须对空闲的内存进行管理，主要有两种方法：位图法和空闲区链表。</p>
+<h2 id="内存管理方式"><a href="#内存管理方式" class="headerlink" title="内存管理方式"></a>内存管理方式</h2><p>为实现动态分区分配，系统必须对空闲的内存进行管理，主要有两种方法：位图法和空闲区链表。</p>
 <p><strong>位图法</strong></p>
 <p>使用位图方法时，内存可能被划分为小到几个字或大到几千个字节的分配单元。每个分配单元对应位图中的一位，<code>0</code> 表示空闲，<code>1</code> 表示占用。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c362872002dc?w=1100&h=355&f=png&s=17765" width="80%"></p>
@@ -444,7 +444,7 @@
 <p><strong>空闲区链表法</strong></p>
 <p>链表法是维护一个已分配内存段和空闲内存段的链表。链表的结点包括一个进程，或两个进程间的一块空闲区。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628979c765?w=887&h=282&f=png&s=16628" width="80%"></p>
-<h3 id="内存分配算法"><a href="#内存分配算法" class="headerlink" title="内存分配算法"></a>内存分配算法</h3><p>在将程序加载入内存时，需要按照一定的算法，从位图或空闲链表中选择分区分配给进程。</p>
+<h2 id="内存分配算法"><a href="#内存分配算法" class="headerlink" title="内存分配算法"></a>内存分配算法</h2><p>在将程序加载入内存时，需要按照一定的算法，从位图或空闲链表中选择分区分配给进程。</p>
 <p><strong>首次适配(first fit)</strong></p>
 <p>首次适配算法要求空闲区链表按照地址递增的顺序排序。在分配内存时，沿着链表进行搜索，直到找到一个足够大的分区，将其分为两部分，一部分供进程使用，一部分形成新的空闲区。</p>
 <p>它的实现比较简单，但是低地址部分不断被划分，会留下许多小空闲分区。</p>
@@ -459,8 +459,8 @@
 <p><strong>快速适配(quick fit)</strong></p>
 <p>快速适配算法是将空闲分区按照其容量进行分类，为每一类相同容量的空闲分区单独维护一个链表。同时，设立一张管理索引表，表中每一项对应一种空闲分区类型。</p>
 <p>快速适配算法的缺点是在进程被终止或换出释放分区时，有效地合并分区非常耗时。</p>
-<h2 id="非连续内存分配"><a href="#非连续内存分配" class="headerlink" title="非连续内存分配"></a>非连续内存分配</h2><p>在非连续分配时，根据所分配地址空间的基本单位不同，可将其分为分页存储管理、分段存储管理、段页式存储管理三种方式。</p>
-<h3 id="分页存储管理"><a href="#分页存储管理" class="headerlink" title="分页存储管理"></a>分页存储管理</h3><p>在分页存储管理方式中，把用户程序的地址空间划分为若干个固定大小的页。典型的页面大小为 <code>1KB</code>。相应地，也将内存空闲分为若干个物理块，页和块大小相同，这样可以将用户程序的任一页放入任一物理快中实现非连续分配。</p>
+<h1 id="非连续内存分配"><a href="#非连续内存分配" class="headerlink" title="非连续内存分配"></a>非连续内存分配</h1><p>在非连续分配时，根据所分配地址空间的基本单位不同，可将其分为分页存储管理、分段存储管理、段页式存储管理三种方式。</p>
+<h2 id="分页存储管理"><a href="#分页存储管理" class="headerlink" title="分页存储管理"></a>分页存储管理</h2><p>在分页存储管理方式中，把用户程序的地址空间划分为若干个固定大小的页。典型的页面大小为 <code>1KB</code>。相应地，也将内存空闲分为若干个物理块，页和块大小相同，这样可以将用户程序的任一页放入任一物理快中实现非连续分配。</p>
 <p>分页地址中的地址结构为：</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628983ec51?w=561&h=149&f=png&s=5286" width="40%"></p>
 <p>地址长度为 <code>32</code> 位，其中 <code>0~11</code> 位为页内地址，即每页的大小为 <code>4KB</code>；<code>12~31</code> 位为页号，最多允许有 <code>1M</code> 页。</p>
@@ -473,26 +473,26 @@
 <li>性能问题：访问一个内存单元需要两次内存访问，第一次访问获取页表项，第二次访问才访问数据。（快表）</li>
 <li>如果每页太小，页表可能会非常大，较难找到连续的大内存空间。（多级页表）</li>
 </ul>
-<h3 id="页表改进"><a href="#页表改进" class="headerlink" title="页表改进"></a>页表改进</h3><p><strong>快表</strong></p>
+<h2 id="页表改进"><a href="#页表改进" class="headerlink" title="页表改进"></a>页表改进</h2><p><strong>快表</strong></p>
 <p>为提高地址转换速度，可在地址转换机构中增加一个可并行查询的缓冲寄存器，称为快表。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c36289e63a6f?w=934&h=601&f=png&s=33581" width="70%"></p>
 <p>在进行地址转换时，首先将页号与快表中的所有页号进行比较，如果其中有与此相匹配的页号，便可直接从快表中读出该页所对应的物理块号。如果在快表中没有对应的页表项，则还需要去访问内存中的页表，在找到物理块号后，得到要访问的物理地址。另外，还要将此页表项存入到快表中。如果快表已满，则需要找到一个合适的页表项，将其换出。</p>
 <p><strong>两级页表或多级页表</strong></p>
 <p>两级页表或多级页表的方法，将页表进行分页，使每个页面的大小与内存物理块的大小相同，并为它们进行编号，然后离散地将各个页面分别存放在不同的物理块中。同样，建立一张外层页表，每个页表项中记录了页表层面的物理块号。</p>
 <p>在进行地址变换时，需要增加一个外层页表寄存器，用于存放外层页表的起始地址。利用外层页表始址和逻辑地址中的外层页号找到指定页表分页的始址，再利用外层页内地址找到指定的页表项，从中得到该页在内存的物理块号，最终得到物理地址。访问一次内存单元一共需要 <code>3</code> 次内存访问。</p>
-<h3 id="分段式存储管理"><a href="#分段式存储管理" class="headerlink" title="分段式存储管理"></a>分段式存储管理</h3><p>在分段式存储管理方式中，进程的地址空间被划分为若干个段，例如主代码段、子模块代码段、堆栈段、初始化数据段、符号表等。每个段都从 <code>0</code> 开始编址，采用连续的地址空间，各段的长度也并不相等。</p>
+<h2 id="分段式存储管理"><a href="#分段式存储管理" class="headerlink" title="分段式存储管理"></a>分段式存储管理</h2><p>在分段式存储管理方式中，进程的地址空间被划分为若干个段，例如主代码段、子模块代码段、堆栈段、初始化数据段、符号表等。每个段都从 <code>0</code> 开始编址，采用连续的地址空间，各段的长度也并不相等。</p>
 <p>分段地址中的地址结构如下：</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628abeddf3?w=561&h=151&f=png&s=4715" width="50%"></p>
 <p>该地址结构中，允许一个进程最多有 <code>64K</code> 个段，每个段的最大长度为 <code>64KB</code>。</p>
 <p>系统为每个进程建立了一张段表，用于实现从逻辑段到物理内存区的映射。每个段在表中占有一个表项，其中记录了该段在内存中的基址和段的长度。</p>
 <p>系统中设置了段表寄存器，用于存放段表始址和段表长度。在进行地址转换时，首先将段号与段表长度进行比较。如果段号大于段表长度，则访问越界。</p>
 <p>如果没有越界，则根据段表的始址和该段的段号，得到该段对应段表项的位置，从中读出该段在内存的起始地址。再检查段内地址是否超过该段的段长。如果超过，同样产生越界中断；否则将该段的基址和段内地址相加，最后得到要访问的内存地址。</p>
-<h3 id="分页式和分段式比较"><a href="#分页式和分段式比较" class="headerlink" title="分页式和分段式比较"></a>分页式和分段式比较</h3><ul>
+<h2 id="分页式和分段式比较"><a href="#分页式和分段式比较" class="headerlink" title="分页式和分段式比较"></a>分页式和分段式比较</h2><ul>
 <li>采用分页存储是为了提高内存的利用率；采用分段是为了更好地满足用户的需要。</li>
 <li>分页存储中，页面的大小由系统决定，而且大小固定；分段存储中，段的长度由用户程序决定。</li>
 <li>分页存储中，页表中主要存储物理块号；分段存储中，段表中主要存储段基址和段长。</li>
 </ul>
-<h3 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h3><p>段页式存储是分段和分页的结合，先将用户程序分为若干个段，再把每个段分成若干个页。段页式的地址结构为段号、段内页号和页内地址三部分。</p>
+<h2 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h2><p>段页式存储是分段和分页的结合，先将用户程序分为若干个段，再把每个段分成若干个页。段页式的地址结构为段号、段内页号和页内地址三部分。</p>
 <p>为实现地址转换，系统中需要同时设置段表和页表。不过这里的段表中存储的是页表始址和段长。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c2eba0bb6bb7?w=886&h=525&f=png&s=30075" width="60%"></p>
 <p>在进行地址转换时，首先将段号与段长进行比较，如果段号小于段长表示未越界，于是利用段表始址和段号求出该段所对应的段表项在段表中的位置，从中得到该段的页表始址，并利用逻辑地址中的段内页号来获得对应页的页表项位置，从中读出该页所在的物理块号，再利用块号和页内地址来得到物理地址。</p>
@@ -625,7 +625,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -647,7 +647,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -724,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#连续内存分配"><span class="nav-number">1.</span> <span class="nav-text">连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方式"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配算法"><span class="nav-number">1.2.</span> <span class="nav-text">内存分配算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非连续内存分配"><span class="nav-number">2.</span> <span class="nav-text">非连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分页存储管理"><span class="nav-number">2.1.</span> <span class="nav-text">分页存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页表改进"><span class="nav-number">2.2.</span> <span class="nav-text">页表改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段式存储管理"><span class="nav-number">2.3.</span> <span class="nav-text">分段式存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页式和分段式比较"><span class="nav-number">2.4.</span> <span class="nav-text">分页式和分段式比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段页式存储管理"><span class="nav-number">2.5.</span> <span class="nav-text">段页式存储管理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#连续内存分配"><span class="nav-number">1.</span> <span class="nav-text">连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理方式"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配算法"><span class="nav-number">1.2.</span> <span class="nav-text">内存分配算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非连续内存分配"><span class="nav-number">2.</span> <span class="nav-text">非连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分页存储管理"><span class="nav-number">2.1.</span> <span class="nav-text">分页存储管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页表改进"><span class="nav-number">2.2.</span> <span class="nav-text">页表改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段式存储管理"><span class="nav-number">2.3.</span> <span class="nav-text">分段式存储管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页式和分段式比较"><span class="nav-number">2.4.</span> <span class="nav-text">分页式和分段式比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#段页式存储管理"><span class="nav-number">2.5.</span> <span class="nav-text">段页式存储管理</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -423,7 +423,7 @@
       
 
       
-        <h2 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h2><p>在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。</p>
+        <h1 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h1><p>在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。</p>
 <p>死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。</p>
 <p>出现死锁的四个必要条件：</p>
 <ul>
@@ -433,7 +433,7 @@
 <li>循环等待。系统中有两个或多个的进程组成一条环路，该环路中的每个进程都等待着另一个进程占有的资源。<a id="more"></a>  </li>
 </ul>
 <p>对于死锁，有四种处理的策略：1. 忽略；2. 预防死锁；3. 避免死锁；4. 检测死锁并恢复。</p>
-<h2 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h2><p>预防是指通过破坏死锁产生的四个必要条件的一个或多个，以避免发生死锁。</p>
+<h1 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h1><p>预防是指通过破坏死锁产生的四个必要条件的一个或多个，以避免发生死锁。</p>
 <ul>
 <li>破坏互斥：不让资源被一个进程独占，可通过假脱机技术允许多个进程同时访问资源；</li>
 <li>破坏拥有和请求：有两种方案：<ul>
@@ -448,9 +448,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h2><p>死锁避免是利用一些事先已知的信息，在分配资源时判断是否会出现死锁，如果不会出现死锁才会分配资源。</p>
+<h1 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h1><p>死锁避免是利用一些事先已知的信息，在分配资源时判断是否会出现死锁，如果不会出现死锁才会分配资源。</p>
 <p>而判断是否会出现死锁就是看是否能找到一个安全序列，系统能按照这个安全序列，也就是进程的推进顺序为每个进程分配其所需资源，直到满足每个进程所需的资源，使每个进程都能顺序执行。</p>
-<h3 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h3><p>为实现银行家算法，进程在进入系统时，要求进程声明需要资源的最大数目，但不能超过系统能提供的最大资源数目。当一个进程请求资源时，需要确定是否有足够资源分配给该进程，如果有，再检查在分配资源后，系统是否安全。</p>
+<h2 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h2><p>为实现银行家算法，进程在进入系统时，要求进程声明需要资源的最大数目，但不能超过系统能提供的最大资源数目。当一个进程请求资源时，需要确定是否有足够资源分配给该进程，如果有，再检查在分配资源后，系统是否安全。</p>
 <p>假定线程数量为 <code>n</code>，资源类型数量为 <code>m</code>，银行家算法的数据结构如下：</p>
 <ul>
 <li><code>Max</code> (总需求量)：<code>n*m</code> 矩阵，表示进程 <code>Ti</code> 最多请求 <code>Max[i, j]</code> 个类型为 <code>Rj</code> 的资源；</li>
@@ -472,7 +472,7 @@
 <li>如果 <code>Request_i &lt;= Available</code>，转到 <code>3</code>。否则进程 <code>Ti</code> 必须等待，因为现在可用资源不足；</li>
 <li>通过安全状态判断来确定是否分配资源给 <code>Ti</code>，如果安全则分配，否则拒绝 <code>Ti</code> 的资源请求。</li>
 </ol>
-<h2 id="死锁检测和恢复"><a href="#死锁检测和恢复" class="headerlink" title="死锁检测和恢复"></a>死锁检测和恢复</h2><p>可以允许系统进入死锁状态，但会维护一个系统的资源分配图，定期调用死锁检测算法来检测途中是否存在死锁，检测到死锁发生后，采取死锁恢复算法进行恢复。</p>
+<h1 id="死锁检测和恢复"><a href="#死锁检测和恢复" class="headerlink" title="死锁检测和恢复"></a>死锁检测和恢复</h1><p>可以允许系统进入死锁状态，但会维护一个系统的资源分配图，定期调用死锁检测算法来检测途中是否存在死锁，检测到死锁发生后，采取死锁恢复算法进行恢复。</p>
 <p>死锁检测方法如下：</p>
 <ul>
 <li>在资源分配图中，找到不会阻塞又不独立的进程结点，使该进程获得其所需资源并运行，运行完毕后，再释放其所占有的全部资源。也就是消去该进程结点的请求边和分配边。</li>
@@ -612,7 +612,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -634,7 +634,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -711,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁概念"><span class="nav-number">1.</span> <span class="nav-text">死锁概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁预防"><span class="nav-number">2.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁避免"><span class="nav-number">3.</span> <span class="nav-text">死锁避免</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#银行家算法"><span class="nav-number">3.1.</span> <span class="nav-text">银行家算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁检测和恢复"><span class="nav-number">4.</span> <span class="nav-text">死锁检测和恢复</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁概念"><span class="nav-number">1.</span> <span class="nav-text">死锁概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁预防"><span class="nav-number">2.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁避免"><span class="nav-number">3.</span> <span class="nav-text">死锁避免</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#银行家算法"><span class="nav-number">3.1.</span> <span class="nav-text">银行家算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁检测和恢复"><span class="nav-number">4.</span> <span class="nav-text">死锁检测和恢复</span></a></li></ol></div>
             
 
           </div>

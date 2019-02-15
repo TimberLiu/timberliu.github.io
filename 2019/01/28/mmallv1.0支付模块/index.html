@@ -426,16 +426,16 @@
       
 
       
-        <h2 id="扫码支付支付流程"><a href="#扫码支付支付流程" class="headerlink" title="扫码支付支付流程"></a>扫码支付支付流程</h2><p><img src="http://media.timberliu.com/image/2019/1/29/%E6%94%AF%E4%BB%98%E6%B5%81%E7%A8%8B.png" width="80%"></p>
+        <h1 id="扫码支付支付流程"><a href="#扫码支付支付流程" class="headerlink" title="扫码支付支付流程"></a>扫码支付支付流程</h1><p><img src="http://media.timberliu.com/image/2019/1/29/%E6%94%AF%E4%BB%98%E6%B5%81%E7%A8%8B.png" width="80%"></p>
 <p>在商家发出预下单请求后，支付宝后台会返回二维码信息给用户，然后用户通过支付宝钱包扫码，之后支付宝后台会把支付结果信息返回给商家后台。<a id="more"></a></p>
-<h2 id="扫码支付调用流程"><a href="#扫码支付调用流程" class="headerlink" title="扫码支付调用流程"></a>扫码支付调用流程</h2><p><img src="http://media.timberliu.com/image/2019/1/29/%E6%94%AF%E4%BB%98%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B.png" width="60%"></p>
+<h1 id="扫码支付调用流程"><a href="#扫码支付调用流程" class="headerlink" title="扫码支付调用流程"></a>扫码支付调用流程</h1><p><img src="http://media.timberliu.com/image/2019/1/29/%E6%94%AF%E4%BB%98%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B.png" width="60%"></p>
 <p>主要的思路如下：</p>
 <ol>
 <li>商家系统调用支付宝接口发起预下单请求，获得二维码图片地址；然后通过二维码串生成二维码图片，上传至图片服务器，并将 <code>url</code> 返回给前台；</li>
 <li>发起轮询获得支付结果：通过支付时传入的商品订单号查询支付结果；</li>
 <li>还可以通过异步通知获得支付结果，注意：一定要对异步通知进行验签，确保通知是支付宝发出的。另外，还要更新数据库中的信息</li>
 </ol>
-<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p><strong style="color:#ff6600">预下单请求</strong></p>
+<h1 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h1><p><strong style="color:#ff6600">预下单请求</strong></p>
 <p>首先，创建扫码支付请求 <code>builder</code>，并设置标题、总金额、交易号、回调地址、商品列表集合等请求参数。在创建商品时，可以使用 <code>newInstance</code>方法传入商品 <code>id</code>、名称、单价、数量等信息创建，然后添加到商品列表集合中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">List&lt;GoodsDetail&gt; goodsDetailList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;OrderItem&gt; orderItemList = orderItemMapper.getByOrderNoUserId(orderNo, userId);</span><br><span class="line"><span class="keyword">for</span> (OrderItem orderItem : orderItemList) &#123;</span><br><span class="line">    <span class="comment">// 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail</span></span><br><span class="line">    GoodsDetail goods = GoodsDetail.newInstance(orderItem.getProductId().toString(), orderItem.getProductName(),</span><br><span class="line">            BigDecimalUtil.add(orderItem.getCurrentUnitPrice().doubleValue(), <span class="number">100.0</span>).longValue(), orderItem.getQuantity());</span><br><span class="line">    <span class="comment">// 创建好一个商品后添加至商品明细列表</span></span><br><span class="line">    goodsDetailList.add(goods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">AlipayTradePrecreateRequestBuilder builder = <span class="keyword">new</span> AlipayTradePrecreateRequestBuilder()</span><br><span class="line">    .setSubject(subject).setTotalAmount(totalAmount)</span><br><span class="line">    .setOutTradeNo(outTradeNo).setUndiscountableAmount(undiscountableAmount)</span><br><span class="line">    .setSellerId(sellerId).setBody(body).setOperatorId(operatorId)</span><br><span class="line">    .setStoreId(storeId).setExtendParams(extendParams).setTimeoutExpress(timeoutExpress)</span><br><span class="line">    .setNotifyUrl(PropertiesUtil.getProperty(<span class="string">"alipay.callback.url"</span>))   <span class="comment">//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置</span></span><br><span class="line">    .setGoodsDetailList(goodsDetailList);</span><br></pre></td></tr></table></figure>
 <p>然后，使用 <code>Config.init()</code> 加载 <code>zbinfo</code> 配置文件，其中配置了支付宝的支付宝网关名、<code>pid</code>、<code>appid</code>、<code>RSA</code>私钥、公钥等。注意：加载文件一定要在创建 <code>AlipayTradeService</code> 对象之前调用：</p>
@@ -467,7 +467,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Const.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(tradeStatus)) &#123;</span><br><span class="line">    order.setPaymentTime(DateTimeUtil.strToDate(params.get(<span class="string">"gmt_payment"</span>)));</span><br><span class="line">    order.setStatus(Const.OrderStatusEnum.PAID.getCode());</span><br><span class="line">    orderMapper.updateByPrimaryKeySelective(order);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后，再将支付信息添加到支付信息表中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PayInfo payInfo = <span class="keyword">new</span> PayInfo();</span><br><span class="line">payInfo.setUserId(order.getUserId());</span><br><span class="line">payInfo.setOrderNo(orderNo);</span><br><span class="line">payInfo.setPayPlatform(Const.PayPlatformEnum.ALIPAY.getCode());</span><br><span class="line">payInfo.setPlatformNumber(tradeNo);</span><br><span class="line">payInfo.setPlatformStatus(tradeStatus);</span><br><span class="line"></span><br><span class="line">payInfoMapper.insert(payInfo);</span><br></pre></td></tr></table></figure>
-<h2 id="NatAPP-内网穿透"><a href="#NatAPP-内网穿透" class="headerlink" title="NatAPP 内网穿透"></a>NatAPP 内网穿透</h2><p>在支付时，支付宝异步回调需要让回调地址可以被外网访问，可以使用 <code>natapp</code> 进行内网穿透。这里参考文档 <a href="https://natapp.cn/article/natapp_newbie" target="_blank" rel="noopener">NATAPP1分钟快速新手图文教程</a> 即可。</p>
+<h1 id="NatAPP-内网穿透"><a href="#NatAPP-内网穿透" class="headerlink" title="NatAPP 内网穿透"></a>NatAPP 内网穿透</h1><p>在支付时，支付宝异步回调需要让回调地址可以被外网访问，可以使用 <code>natapp</code> 进行内网穿透。这里参考文档 <a href="https://natapp.cn/article/natapp_newbie" target="_blank" rel="noopener">NATAPP1分钟快速新手图文教程</a> 即可。</p>
 
       
     </div>
@@ -597,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -619,7 +619,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -696,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫码支付支付流程"><span class="nav-number">1.</span> <span class="nav-text">扫码支付支付流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扫码支付调用流程"><span class="nav-number">2.</span> <span class="nav-text">扫码支付调用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-number">3.</span> <span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NatAPP-内网穿透"><span class="nav-number">4.</span> <span class="nav-text">NatAPP 内网穿透</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#扫码支付支付流程"><span class="nav-number">1.</span> <span class="nav-text">扫码支付支付流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扫码支付调用流程"><span class="nav-number">2.</span> <span class="nav-text">扫码支付调用流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现细节"><span class="nav-number">3.</span> <span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NatAPP-内网穿透"><span class="nav-number">4.</span> <span class="nav-text">NatAPP 内网穿透</span></a></li></ol></div>
             
 
           </div>

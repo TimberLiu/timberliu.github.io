@@ -423,15 +423,15 @@
       
 
       
-        <h2 id="配置软件源"><a href="#配置软件源" class="headerlink" title="配置软件源"></a>配置软件源</h2><p>首先，需要进行源配置，可使用阿里云的源，可查看：<a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener"> https://opsx.alibaba.com/mirror</a></p>
+        <h1 id="配置软件源"><a href="#配置软件源" class="headerlink" title="配置软件源"></a>配置软件源</h1><p>首先，需要进行源配置，可使用阿里云的源，可查看：<a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener"> https://opsx.alibaba.com/mirror</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、备份</span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="number">2</span>、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http:<span class="comment">//mirrors.aliyun.com/repo/Centos-7.repo</span></span><br><span class="line"><span class="number">3</span>、生成缓存</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="创建用户并修改密码"><a href="#创建用户并修改密码" class="headerlink" title="创建用户并修改密码"></a>创建用户并修改密码</h2><p>首先，添加普通用户：</p>
+<h1 id="创建用户并修改密码"><a href="#创建用户并修改密码" class="headerlink" title="创建用户并修改密码"></a>创建用户并修改密码</h1><p>首先，添加普通用户：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd  timberliu</span><br></pre></td></tr></table></figure>
 <p>再更改密码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd timberliu</span><br></pre></td></tr></table></figure>
 <p>之后退出重新登录验证。</p>
-<h2 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h2><p><strong style="color:#ff6600">删除系统自带 jdk</strong></p>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><p><strong style="color:#ff6600">删除系统自带 jdk</strong></p>
 <p>首先，执行以下命令查看自带的 <code>jdk</code>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep jdk</span><br></pre></td></tr></table></figure>
 <p>然后，使用 <code>sudo yum remove xxx</code> 命令进行删除。</p>
@@ -450,7 +450,7 @@
 <p>执行 <code>sudo vim /etc/profile</code> 命令配置环境变量：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
 <p>然后，执行 <code>source /etc/profile</code> 使配置生效。使用 <code>java -version</code>，查看是否配置成功：</p>
-<h2 id="安装-Tomcat"><a href="#安装-Tomcat" class="headerlink" title="安装 Tomcat"></a>安装 Tomcat</h2><p>首先，使用 <code>wget</code> 命令从阿里云镜像网站下载 <code>tomcat</code>，到 <code>setup</code> 目录下：</p>
+<h1 id="安装-Tomcat"><a href="#安装-Tomcat" class="headerlink" title="安装 Tomcat"></a>安装 Tomcat</h1><p>首先，使用 <code>wget</code> 命令从阿里云镜像网站下载 <code>tomcat</code>，到 <code>setup</code> 目录下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//mirrors.aliyun.com/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz</span></span><br></pre></td></tr></table></figure>
 <p>再使用 <code>tar</code> 命令解压缩到 <code>developer</code> 目录下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-<span class="number">8.5</span>.35.tar.gz -C ../</span><br></pre></td></tr></table></figure>
@@ -462,14 +462,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=<span class="string">"8080"</span> protocol=<span class="string">"HTTP/1.1"</span></span><br><span class="line">   connectionTimeout=<span class="string">"20000"</span></span><br><span class="line">   redirectPort=<span class="string">"8443"</span> URIEncoding=<span class="string">"UTF-8"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>最后，启动 <code>tomcat</code>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/startup.sh</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Maven"><a href="#安装-Maven" class="headerlink" title="安装 Maven"></a>安装 Maven</h2><p>和 <code>tomcat</code> 一样，得到 <code>maven</code> 的下载地址，进行下载：</p>
+<h1 id="安装-Maven"><a href="#安装-Maven" class="headerlink" title="安装 Maven"></a>安装 Maven</h1><p>和 <code>tomcat</code> 一样，得到 <code>maven</code> 的下载地址，进行下载：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//mirrors.aliyun.com/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz</span></span><br></pre></td></tr></table></figure>
 <p>然后，使用 <code>tar</code> 解压缩到 <code>developer</code> 目录下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-maven-<span class="number">3.0</span>.5-bin.tar.gz -C ../</span><br></pre></td></tr></table></figure>
 <p>然后，将 <code>maven</code> 配置到环境变量中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export MAVEN_HOME=/developer/apache-maven-<span class="number">3.0</span>.5</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin</span><br></pre></td></tr></table></figure>
 <p>执行 <code>source /etc/profile</code> 使配置生效。执行 <code>mvn -version</code> 查看是否安装成功。</p>
-<h2 id="安装-vsftpd"><a href="#安装-vsftpd" class="headerlink" title="安装 vsftpd"></a>安装 vsftpd</h2><p><strong style="color:#ff6600">下载与安装</strong></p>
+<h1 id="安装-vsftpd"><a href="#安装-vsftpd" class="headerlink" title="安装 vsftpd"></a>安装 vsftpd</h1><p><strong style="color:#ff6600">下载与安装</strong></p>
 <p>使用 <code>yum</code> 直接执行下面的命令安装：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
 <p>在根目录下创建 <code>product</code> 目录，再创建 <code>ftpfile</code> 目录，用于存放上传的文件：</p>
@@ -497,7 +497,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status vsftpd.service</span><br></pre></td></tr></table></figure>
 <p>将其设置开机自启动：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable vsftpd.service</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h2><p><strong style="color:#ff6600">下载与安装</strong></p>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p><strong style="color:#ff6600">下载与安装</strong></p>
 <p>首先，安装 <code>Nginx</code> 需要依赖的环境：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
 <p>使用 <code>wget</code> 命令从官网下载 <code>Nginx</code>：</p>
@@ -515,7 +515,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include vhost<span class="comment">/*.conf;</span></span><br></pre></td></tr></table></figure>
 <p>然后，在 <code>conf</code> 目录下创建 <code>vhost</code> 文件夹。在 <code>vhost</code> 文件夹中创建 <code>admin.timberliu.com.conf</code>、<code>timberliu.com.conf</code>、<code>s.timberliu.com.conf</code> 和 <code>img.timberliu.com.conf</code> 文件。</p>
 <p>在启动 <code>Nginx</code> 后，访问 <code>123.56.9.126</code>，即可看到 <code>Nginx</code> 页面。</p>
-<h2 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h2><p>首先，需要删除掉系统自装或以前安装的 <code>mysql</code>：</p>
+<h1 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h1><p>首先，需要删除掉系统自装或以前安装的 <code>mysql</code>：</p>
 <blockquote>
 <p>rosten：<a href="https://blog.csdn.net/rosten/article/details/25096159?utm_source=blogxgwz2" target="_blank" rel="noopener">centos下完全卸载mysql</a></p>
 </blockquote>
@@ -534,7 +534,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on mmall.* to <span class="string">'username'</span>@<span class="string">'localhost'</span> identified by <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
 <p>再导入 <code>sql</code> 文件创建表。这里需要先将 <code>sql</code> 文件上传到服务器上，然后使用 <code>source</code> 命令就可以创建表了：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /developer/mmall.sql</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>首先，安装 <code>git</code> 环境需要的依赖：</p>
+<h1 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h1><p>首先，安装 <code>git</code> 环境需要的依赖：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel curl-devel perl-ExtUtils-CBuilder</span><br></pre></td></tr></table></figure>
 <p>再下载 <code>git</code> 的压缩包到 <code>setup</code> 目录下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.kernel.org/pub/software/scm/git/git-2.11.1.tar.gz</span></span><br></pre></td></tr></table></figure>
@@ -562,7 +562,7 @@
 <p>然后，使用下面的命令获取公钥：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>将其复制到 <code>github</code> 的 <code>SSH keys</code> 中即可。</p>
-<h2 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><p>在阿里云服务器中，需要配置规则，放行所需端口入方向规则。可以参考这篇文章：aquarius_wing：<a href="https://www.jianshu.com/p/087774e1cc22" target="_blank" rel="noopener">阿里云服务器上tomcat无法访问的问题</a></p>
+<h1 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h1><p>在阿里云服务器中，需要配置规则，放行所需端口入方向规则。可以参考这篇文章：aquarius_wing：<a href="https://www.jianshu.com/p/087774e1cc22" target="_blank" rel="noopener">阿里云服务器上tomcat无法访问的问题</a></p>
 <p>在 <code>CentOS7</code> 下默认使用 <code>firewall</code> 作为防火墙，使用 <code>iptables</code> 需要重新设置一下。在 <code>/etc/sysconfig</code> 目录下没有 <code>iptables</code> 文件，需要执行以下命令进行安装：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install iptables-services</span><br></pre></td></tr></table></figure>
 <p>然后在 <code>iptables</code> 文件中配置端口如下：</p>
@@ -622,8 +622,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/14/mmallv2.0项目环境搭建/" rel="prev" title="mmall_v2.0 环境搭建">
-                mmall_v2.0 环境搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/14/mmallv2.0分布式锁定时关单/" rel="prev" title="mmall_v2.0 分布式锁实现定时关单">
+                mmall_v2.0 分布式锁实现定时关单 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -699,7 +699,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -721,7 +721,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -798,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置软件源"><span class="nav-number">1.</span> <span class="nav-text">配置软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户并修改密码"><span class="nav-number">2.</span> <span class="nav-text">创建用户并修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-JDK"><span class="nav-number">3.</span> <span class="nav-text">安装 JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装 Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Maven"><span class="nav-number">5.</span> <span class="nav-text">安装 Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-vsftpd"><span class="nav-number">6.</span> <span class="nav-text">安装 vsftpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">7.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySQL"><span class="nav-number">8.</span> <span class="nav-text">安装 MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Git"><span class="nav-number">9.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙配置"><span class="nav-number">10.</span> <span class="nav-text">防火墙配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置软件源"><span class="nav-number">1.</span> <span class="nav-text">配置软件源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建用户并修改密码"><span class="nav-number">2.</span> <span class="nav-text">创建用户并修改密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-JDK"><span class="nav-number">3.</span> <span class="nav-text">安装 JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装 Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Maven"><span class="nav-number">5.</span> <span class="nav-text">安装 Maven</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-vsftpd"><span class="nav-number">6.</span> <span class="nav-text">安装 vsftpd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">7.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-MySQL"><span class="nav-number">8.</span> <span class="nav-text">安装 MySQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Git"><span class="nav-number">9.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防火墙配置"><span class="nav-number">10.</span> <span class="nav-text">防火墙配置</span></a></li></ol></div>
             
 
           </div>

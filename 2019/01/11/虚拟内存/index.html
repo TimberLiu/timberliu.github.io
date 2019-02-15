@@ -426,14 +426,14 @@
         <blockquote>
 <p>虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。</p>
 </blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：</p>
 <ul>
 <li>时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数据可能再次被访问；</li>
 <li>空间局限性：如果某段存储单元被访问，其附近的存储单元可能也会被访问。<a id="more"></a>  </li>
 </ul>
 <p>基于局部性原理，在加载程序时，只需将当前执行所需的部分页面或段装入内存。程序执行时，如果要访问的页面或段不在内存中，则发生缺页中断，于是 <code>OS</code> 利用请求调页功能将相应的页面或段调入内存，继续执行。如果内存已满，则利用置换功能，将内存中暂时不用的页面或段调出到外存，再将所需的页面或段调入内存，使程序继续执行。</p>
 <p>虚拟内存是指具有请求调入功能和置换功能，从逻辑上对内存容量进行扩充的一种内存系统。实现方式有三种：请求分页存储管理方式、请求段式存储管理方式和请求段页式存储管理方式。</p>
-<h2 id="请求分页存储管理"><a href="#请求分页存储管理" class="headerlink" title="请求分页存储管理"></a>请求分页存储管理</h2><p>请求分页存储管理是在分页存储管理的基础上，增加请求调页和页面置换功能。它允许用户程序只装入部分页面就启动程序运行。在运行中如果发现所需页面不在内存中，则发出缺页中断，<code>OS</code> 就会将外存中相应的页面调入内存使其继续运行。每次调入和换出的基本单位是长度固定的页面。</p>
+<h1 id="请求分页存储管理"><a href="#请求分页存储管理" class="headerlink" title="请求分页存储管理"></a>请求分页存储管理</h1><p>请求分页存储管理是在分页存储管理的基础上，增加请求调页和页面置换功能。它允许用户程序只装入部分页面就启动程序运行。在运行中如果发现所需页面不在内存中，则发出缺页中断，<code>OS</code> 就会将外存中相应的页面调入内存使其继续运行。每次调入和换出的基本单位是长度固定的页面。</p>
 <p>请求分页存储管理中的地址转换与分页式相比，在页表项中添加了一些标志位：</p>
 <ul>
 <li>状态位：表示该页是否已调入内存。</li>
@@ -444,7 +444,7 @@
 <p>请求分页存储管理系统中，在进行地址转换时，首先在快表中查找要访问的页。如果找到，便修改页表项中的访问位，供置换算法选择换出页面时参考。如果是写指令，还需要将修改位置为 <code>1</code>，表示该页在调入内存后被修改过。然后利用页表项中的物理块号和页内地址，得到物理地址。</p>
 <p>如果在快表中未找到该页的页表项，则应到内存中去查找页表，再从找到的页表项中的状态位来判断该页是否调入内存。如果该页已调入，则应将该页的页表项写入快表；如果该页没有调入内存，则应该产生缺页中断，操作系统从外存中找到缺失的页面。</p>
 <p>如果内存已满，则利用置换算法选择一页换出，如果该页被修改过，则需要将该页写回到外存中。最后将缺页从外存换入到内存中，继续运行程序。</p>
-<h2 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h2><p><strong>最优算法（Optimal）</strong></p>
+<h1 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h1><p><strong>最优算法（Optimal）</strong></p>
 <p>置换在未来最长时间内不再被访问的页面。这只是一种理想情况，只能用来评价其他置换算法的性能。</p>
 <p><strong>先进先出算法（FIFO）</strong></p>
 <p>选择进入内存时间最长的页面进行置换。在实现时维护一个所有已调入内存的页面的链表，按照进入内存的先后次序排序，链首最早，链尾最进。在出现缺页时，选择链首的页面进行置换，将新页面添加到链尾。</p>
@@ -458,7 +458,7 @@
 <p>当访问某页面时，将其访问项置为 <code>1</code>。在出现缺页异常时，从指针处开始查找，如果页面没有被访问过，即访问项为 <code>0</code>，则进行置换；如果被访问过，则将访问项置为 <code>0</code>，暂不换出，再将指针指向下一个页面继续查找，直到找到可以置换的页面。</p>
 <p><strong>最少使用算法（LFU）</strong></p>
 <p>置换最近一段时间访问次数最少的页面。在实现时，对每个页面设置一个访问计数，在访问页面时，对访问计数加 <code>1</code>；在出现缺页异常时，置换访问计数最少的页面。</p>
-<h2 id="文件分配"><a href="#文件分配" class="headerlink" title="文件分配"></a>文件分配</h2><p>文件分配实际上是如何表示分配给一个文件的数据块的位置和顺序。主要有以下几种分配方式：连续分配、链式分配和索引分配。</p>
+<h1 id="文件分配"><a href="#文件分配" class="headerlink" title="文件分配"></a>文件分配</h1><p>文件分配实际上是如何表示分配给一个文件的数据块的位置和顺序。主要有以下几种分配方式：连续分配、链式分配和索引分配。</p>
 <p><strong>连续分配</strong></p>
 <p>使用连续的若干个数据块来存储文件。它在文件控制块中记录起始第一个数据块的位置和长度。</p>
 <p>采用连续分配方式，读取文件的顺序访问和随机访问效率较高，但是剩余的碎片难以利用，另外文件长度增长也比较复杂。</p>
@@ -600,7 +600,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -699,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求分页存储管理"><span class="nav-number">2.</span> <span class="nav-text">请求分页存储管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面置换算法"><span class="nav-number">3.</span> <span class="nav-text">页面置换算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件分配"><span class="nav-number">4.</span> <span class="nav-text">文件分配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求分页存储管理"><span class="nav-number">2.</span> <span class="nav-text">请求分页存储管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面置换算法"><span class="nav-number">3.</span> <span class="nav-text">页面置换算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件分配"><span class="nav-number">4.</span> <span class="nav-text">文件分配</span></a></li></ol></div>
             
 
           </div>

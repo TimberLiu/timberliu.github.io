@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="操作系统,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TimberLiu's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon3.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统知识回顾(2)--进程和线程">
+<meta property="og:url" content="https://blog.timberliu.com/2019/01/07/007_进程和线程/index.html">
+<meta property="og:site_name" content="TimberLiu&#39;s Blog">
+<meta property="og:description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/2CD68ECA7B1C401FABAE9CD82860590C/70250">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/C9CBECFDE0E84441B4714E85049A20A7/70252">
+<meta property="og:updated_time" content="2019-01-06T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统知识回顾(2)--进程和线程">
+<meta name="twitter:description" content="进程什么是进程进程（process）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 OS 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。 在某一瞬间，一个 CPU 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.timberliu.com/2019/01/07/007_进程和线程/">
+
+
+
+
+
+  <title>操作系统知识回顾(2)--进程和线程 | TimberLiu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TimberLiu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Easy coding, easy life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/07/007_进程和线程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TimberLiu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统知识回顾(2)--进程和线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T00:00:00+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-07T00:00:00+08:00">
+                2019-01-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2><p>进程（<code>process</code>）是具有一定独立功能的程序关于某个数据集合上的一次运行活动。在传统 <code>OS</code> 中，进程是系统进行资源分配和调度的基本单位。进程是一个正在运行程序的实例，包括程序代码、程序计数器和寄存器的值以及系统资源（如打开的文件）等。</p>
+<p>在某一瞬间，一个 <code>CPU</code> 中只能运行一个进程，它是在各个进程之间来回切换的，每个进程执行的速度也不确定。<br><a id="more"></a><br>进程和程序间的联系和区别如下：</p>
+<ul>
+<li>程序是一段静态的代码；进程是一个动态运行的过程；</li>
+<li>程序是产生进程的基础；进程是程序功能的体现；</li>
+<li>程序的每次执行都构成了不同的进程，通过多次运行，一个程序可对应多个进程；通过调用关系，一个进程可包括多个程序；</li>
+</ul>
+<h2 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h2><p>为了实现进程，操作系统维护了一张进程表（结构数组），每个进程占用一个进程表项（进程控制块 <code>PCB</code>），它是进程存在的唯一标志。该表项包含了进程状态的重要信息，包括进程标识符、状态、优先级、程序计数器、堆栈指针、寄存器等；</p>
+<p>对进程的管理就是对通过 <code>PCB</code> 的组织管理来实现的。由于保存了在进程的状态变化时的必要信息，在中断一个正在执行的进程，并在后来恢复时，就好像进程从未中断过。它是支持多进程和提供多处理的关键。</p>
+<h2 id="进程的状态及转换"><a href="#进程的状态及转换" class="headerlink" title="进程的状态及转换"></a>进程的状态及转换</h2><p>如下图是进程的三种状态的状态图。一个进程的三种状态是：</p>
+<ul>
+<li>运行态：进程正在占用 <code>CPU</code> 执行；</li>
+<li>就绪态：进程处于准备运行状态，已经获得除 <code>CPU</code> 外的所有资源；</li>
+<li>阻塞态：进程由于等待某种外部事件而暂停运行，即使获得 <code>CPU</code>，也不能运行。</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/CE2E283B6F144294859EA68C058832B2/75804" width="60%"></p>
+<p>进程之间主要有四种转换关系：</p>
+<ul>
+<li>由运行态转换为就绪态：在时间片用完后，不得不让出 <code>CPU</code>；</li>
+<li>由就绪态转换为运行态：进程被调度，获得处理机资源；</li>
+<li>由阻塞态转换为就绪态：进程的 <code>I/O</code> 请求完成；</li>
+<li>由运行态转换为阻塞态：进程发出 <code>I/O</code> 请求；</li>
+</ul>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>线程（<code>thread</code>）是进程中的一条执行流程。在引入线程的操作系统中，进程是拥有资源的基本单位；而线程是 <code>CPU</code> 调度和分派的基本单位。</p>
+<p>一个进程中可以有多个线程，多个线程可以并发执行，它们之间共享相同的地址空间。但如果一个线程崩溃，可能会导致其所属进程的所有线程崩溃。</p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul>
+<li>调度性：传统 OS 中，进程是调度和分派的基本单位，但在引入线程后，线程是调度和分派的基本单位；</li>
+<li>并发性：在引入线程后，多个进程可以并发执行，一个进程中的多个线程也可以并发执行；</li>
+<li>拥有资源：进程是拥有资源的基本单位，而线程本身并不拥有资源；</li>
+<li>系统开销：进程切换付出的系统开销明显大于线程；</li>
+</ul>
+<h2 id="线程实现的三种方式"><a href="#线程实现的三种方式" class="headerlink" title="线程实现的三种方式"></a>线程实现的三种方式</h2><p>有三种线程的实现方式：</p>
+<ul>
+<li>用户线程：用户空间实现，由用户线程库管理；</li>
+<li>内核线程：内核中实现，由操作系统管理；</li>
+<li>轻量级进程：内核中实现，支持用户线程；</li>
+</ul>
+<p><strong>用户线程</strong></p>
+<p>用户线程是把整个线程包放在用户空间中，不依赖于操作系统的内核，所以它可以在不支持线程的操作系统上实现。可以用一组用户级的线程函数库来实现线程。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/2CD68ECA7B1C401FABAE9CD82860590C/70250" width="60%"></p>
+<p>每个进程都需要私有的线程表，用来跟踪记录该进程中线程的状态信息，不过仅记录每个线程的程序计数器、堆栈指针、寄存器和状态等，该线程表由运行时系统管理。而且用户线程的切换由线程库函数来完成，不需要用户态、核心态切换，所以线程调度速度特别快。另外，也允许每个进程都拥有自定义的线程调度算法。</p>
+<p>但如果一个线程发起系统调用而阻塞，尽管其他线程可以运行，但整个进程都会阻塞。当一个线程开始运行后，除非它主动较交出 <code>CPU</code>，否则它所在的进程中的其他线程将无法运行。</p>
+<p><strong>内核线程</strong></p>
+<p>内核线程在操作系统的内核中实现，由内核来完成对线程的创建、终止和管理。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/9bce5a7b445fc99c2cd7358f25bd4c1d/xmlnote/C9CBECFDE0E84441B4714E85049A20A7/70252" width="60%"></p>
+<p>由于线程的创建、终止和切换通过系统调用执行，由内核完成的，其系统开销比较大；</p>
+<p>但在一个进程中，如果某个内核线程发起系统调用而被阻塞，并不会影响其他使用内核线程的运行；</p>
+<p><strong>轻量级进程</strong></p>
+<p>轻量级进程是内核支持的用户线程。一个进程可以有一个或多个轻量级进程，每个轻量级进程由一个单独的内核线程来支持。而轻量级进程内部可以对应多个用户线程。</p>
+<h1 id="CPU-调度"><a href="#CPU-调度" class="headerlink" title="CPU 调度"></a>CPU 调度</h1><h2 id="调度概念"><a href="#调度概念" class="headerlink" title="调度概念"></a>调度概念</h2><p>处理机调度是当有多个进程（线程）竞争 <code>CPU</code> 时，调度程序需要从从就绪队列中挑选下一个占用 <code>CPU</code> 运行的进程。</p>
+<p>调度算法是为了解决通过什么样的准则来挑选就绪对列中的哪一个进程来执行。在每次调度时需要决定在下一个 <code>CPU</code> 计算时将哪个进程交给 <code>CPU</code>。</p>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><p><strong>先来先服务算法FCFS</strong></p>
+<p>根据进程进入就绪态的先后顺序排列。当进程进入阻塞态或结束时，就绪队列中的下一个进程占用 <code>CPU</code>。</p>
+<p>实现简单，但可能短进程排在长进程后面，导致平均等待时间波动较大。</p>
+<p><strong>短进程优先算法SJF</strong></p>
+<p>选择就绪队列中执行时间最短的进程占用 <code>CPU</code> 运行。</p>
+<ul>
+<li>可抢占系统改进：短剩余时间优先算法，即选择剩余运行时间最短的进程运行。</li>
+</ul>
+<p>短进程优先算法有最优的平均周转时间，但连续的短进程可能会使长进程无法获得 <code>CPU</code> 资源，导致饥饿；运行时间不可预估，并不可靠。</p>
+<p><strong>最高响应比优先算法HRN</strong></p>
+<p>选择就绪队列中响应比最高的进程。它是基于短进程优先算法的改进，它不允许抢占，另外等待时间越长，响应比越高，可以避免长时间地等待。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R = (w+s)/s     // 其中 w 为等待时间，s 为执行时间。</span><br></pre></td></tr></table></figure>
+<p><strong>时间片轮转算法RR</strong></p>
+<p>按时间片分配给进程运行。在轮转中，每个进程分到执行 <code>1/n</code> 的时间，时间片结束时，按先来先服务算法切换到下一个就绪进程，每隔 <code>n-1</code> 个时间片进程会再次执行。</p>
+<p>如果时间片过大，进程等待时间过长，极限情况下会退化为先来先服务算法；如果时间片过小，虽然反应迅速，但上下文切换开销较大，会影响系统吞吐量。</p>
+<p><strong>多级反馈队列算法</strong></p>
+<p>就绪队列被划分为多个独立的子队列，而且每个队列可以有自己的调度策略，在队列之间可以设置优先级，第一个队列优先级最高，其余依次递减。优先级越高的队列分配的时间片越短。</p>
+<p>在执行时，进程在不同队列间移动，如果进程在当前优先级的时间片下没有完成，则下降到低一优先级的队列，以此类推。只有当一个队列为空时才会去执行下一个队列中的进程。</p>
+<p>这种算法对于 <code>CPU</code> 密集型进程的优先级下降很快，而 <code>I/O</code> 密集型进程停留在高优先级。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------- 本文结束 --------</div>
+    
+</div>
+      
+    </div>
+
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/06/006_操作系统概述/" rel="next" title="操作系统知识回顾(1)--操作系统概述">
+                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(1)--操作系统概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/08/008_进程的同步与通信/" rel="prev" title="操作系统知识回顾(3)--进程的同步和通信方式">
+                操作系统知识回顾(3)--进程的同步和通信方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="TimberLiu">
+          <p class="site-author-name" itemprop="name">TimberLiu</p>
+           
+              <p class="site-description motion-element" itemprop="description">所有学习上的事，都只靠两件事:<br>策略和坚持<br>而坚持本身就是最重要的策略</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/TimberLiu/timberliu.github.io" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/5bdaed62e51d455a385e5597" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-layer-group"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="timberliu1210@gmail.com" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是进程"><span class="nav-number">1.1.</span> <span class="nav-text">什么是进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的实现"><span class="nav-number">1.2.</span> <span class="nav-text">进程的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的状态及转换"><span class="nav-number">1.3.</span> <span class="nav-text">进程的状态及转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是线程"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别"><span class="nav-number">2.2.</span> <span class="nav-text">进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程实现的三种方式"><span class="nav-number">2.3.</span> <span class="nav-text">线程实现的三种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU-调度"><span class="nav-number">3.</span> <span class="nav-text">CPU 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调度概念"><span class="nav-number">3.1.</span> <span class="nav-text">调度概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度算法"><span class="nav-number">3.2.</span> <span class="nav-text">调度算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2018 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TimberLiu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      总访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":100,"height":100,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>

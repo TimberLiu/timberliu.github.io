@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="操作系统,">
+  <meta name="keywords" content="Java集合,">
 
 
 
@@ -96,18 +96,20 @@
 
 
 
-<meta name="description" content="虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。  基本概念局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：  时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数">
-<meta name="keywords" content="操作系统">
+<meta name="description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
+<meta name="keywords" content="Java集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="操作系统知识回顾(6)-虚拟内存和文件分配">
-<meta property="og:url" content="https://blog.timberliu.com/2019/01/11/011_虚拟内存/index.html">
+<meta property="og:title" content="Java 集合之 总体架构">
+<meta property="og:url" content="https://blog.timberliu.com/2019/02/20/024_Java集合之 总体架构/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。  基本概念局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：  时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数">
+<meta property="og:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T16:00:00.000Z">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
+<meta property="og:updated_time" content="2019-02-19T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="操作系统知识回顾(6)-虚拟内存和文件分配">
-<meta name="twitter:description" content="虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。  基本概念局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：  时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数">
+<meta name="twitter:title" content="Java 集合之 总体架构">
+<meta name="twitter:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
+<meta name="twitter:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/01/11/011_虚拟内存/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/02/20/024_Java集合之 总体架构/">
 
 
 
 
 
-  <title>操作系统知识回顾(6)-虚拟内存和文件分配 | TimberLiu's Blog</title>
+  <title>Java 集合之 总体架构 | TimberLiu's Blog</title>
   
 
 
@@ -317,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/11/011_虚拟内存/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/20/024_Java集合之 总体架构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -334,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">操作系统知识回顾(6)-虚拟内存和文件分配</h1>
+          <h1 class="post-title" itemprop="name headline">Java 集合之 总体架构</h1>
         
 
         <div class="post-meta">
@@ -346,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T00:00:00+08:00">
+                2019-02-20
               </time>
             
 
@@ -362,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-20T00:00:00+08:00">
+                2019-02-20
               </time>
             
           </span>
@@ -381,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/Java集合/" itemprop="url" rel="index">
+                    <span itemprop="name">Java集合</span>
                   </a>
                 </span>
 
@@ -423,55 +425,67 @@
       
 
       
-        <blockquote>
-<p>虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。</p>
-</blockquote>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：</p>
+        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><p><code>Java</code> 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 <code>Java</code> 集合的优点部分如下：</p>
 <ul>
-<li>时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数据可能再次被访问；</li>
-<li>空间局限性：如果某段存储单元被访问，其附近的存储单元可能也会被访问。<a id="more"></a>  </li>
+<li>降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类；</li>
+<li>提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量；</li>
+<li>促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的。</li>
 </ul>
-<p>基于局部性原理，在加载程序时，只需将当前执行所需的部分页面或段装入内存。程序执行时，如果要访问的页面或段不在内存中，则发生缺页中断，于是 <code>OS</code> 利用请求调页功能将相应的页面或段调入内存，继续执行。如果内存已满，则利用置换功能，将内存中暂时不用的页面或段调出到外存，再将所需的页面或段调入内存，使程序继续执行。</p>
-<p>虚拟内存是指具有请求调入功能和置换功能，从逻辑上对内存容量进行扩充的一种内存系统。实现方式有三种：请求分页存储管理方式、请求段式存储管理方式和请求段页式存储管理方式。</p>
-<h1 id="请求分页存储管理"><a href="#请求分页存储管理" class="headerlink" title="请求分页存储管理"></a>请求分页存储管理</h1><p>请求分页存储管理是在分页存储管理的基础上，增加请求调页和页面置换功能。它允许用户程序只装入部分页面就启动程序运行。在运行中如果发现所需页面不在内存中，则发出缺页中断，<code>OS</code> 就会将外存中相应的页面调入内存使其继续运行。每次调入和换出的基本单位是长度固定的页面。</p>
-<p>请求分页存储管理中的地址转换与分页式相比，在页表项中添加了一些标志位：</p>
+<p>在集合的接口和实现中大量使用了泛型，它为集合提供了一个可以容纳的对象类型，如果添加其他类型的元素，在编译时就会出错，这避免了在运行时出现类型转换异常。泛型也使得代码更加整洁，因为不需要显式地编写类型转换操作，编译器会帮我们实现。<a id="more"></a></p>
+<p><code>Java</code> 整个集合框架图如下：</p>
+<p><img src="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg" width="90%"></p>
+<p>可以看到，这个框图主要有两个主干：<code>Collection</code> 和 <code>Map</code>。</p>
 <ul>
-<li>状态位：表示该页是否已调入内存。</li>
-<li>修改位：表示该页在调入内存后是否被修改过。在置换该页时，判断是否要把它写回外存。</li>
-<li>访问位：表示该页在一段时间内被访问的次数。供置换算法在选择换出页面时参考。</li>
-<li>外存地址：表示该页在外存上的地址。</li>
+<li><code>Collection</code>：它是一个接口，提供了对集合对象进行基本操作的通用接口方法，有很多具体的实现和继承，它被分为三大分支：<code>List</code>、<code>Set</code> 和 <code>Queue</code>。</li>
+<li><code>Map</code>：它是由一系列键值对组成的集合，提供了 <code>key</code> 到 <code>Value</code> 的映射。</li>
 </ul>
-<p>请求分页存储管理系统中，在进行地址转换时，首先在快表中查找要访问的页。如果找到，便修改页表项中的访问位，供置换算法选择换出页面时参考。如果是写指令，还需要将修改位置为 <code>1</code>，表示该页在调入内存后被修改过。然后利用页表项中的物理块号和页内地址，得到物理地址。</p>
-<p>如果在快表中未找到该页的页表项，则应到内存中去查找页表，再从找到的页表项中的状态位来判断该页是否调入内存。如果该页已调入，则应将该页的页表项写入快表；如果该页没有调入内存，则应该产生缺页中断，操作系统从外存中找到缺失的页面。</p>
-<p>如果内存已满，则利用置换算法选择一页换出，如果该页被修改过，则需要将该页写回到外存中。最后将缺页从外存换入到内存中，继续运行程序。</p>
-<h1 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h1><p><strong>最优算法（Optimal）</strong></p>
-<p>置换在未来最长时间内不再被访问的页面。这只是一种理想情况，只能用来评价其他置换算法的性能。</p>
-<p><strong>先进先出算法（FIFO）</strong></p>
-<p>选择进入内存时间最长的页面进行置换。在实现时维护一个所有已调入内存的页面的链表，按照进入内存的先后次序排序，链首最早，链尾最进。在出现缺页时，选择链首的页面进行置换，将新页面添加到链尾。</p>
-<p>这种算法实现简单。但调出的页面可能会经常访问，性能较差，一般和其他算法结合使用。</p>
-<p><strong>最近最久未使用算法（LRU）</strong></p>
-<p>选择最长时间没有使用的页面进行置换。它依据的是如果某个页面长时间没有被访问，则在将来一段时间可能还不会访问。</p>
-<p>在实现时维护一个按最近一次访问时间排序的链表，链表首是刚使用过的页面，链表尾是最久未使用的页面。在访问页面时，找到相应的页面，将其移动到链表首；在出现缺页时，删除链表尾节点，将新页面添加到链表首。</p>
-<p>这种算法是最优算法的一种近似，但实现起来仍然比较复杂。</p>
-<p><strong>时钟算法（Clock）</strong></p>
-<p>也称为最近未使用算法（<code>NRU</code>）。在实现时，在页表项中增加一个访问位，表示过去一段时间内是否被访问过，初始时都置为 <code>0</code>，另外将页面组织成环形链表，添加一条指针指向最先被调入内存的页面。</p>
-<p>当访问某页面时，将其访问项置为 <code>1</code>。在出现缺页异常时，从指针处开始查找，如果页面没有被访问过，即访问项为 <code>0</code>，则进行置换；如果被访问过，则将访问项置为 <code>0</code>，暂不换出，再将指针指向下一个页面继续查找，直到找到可以置换的页面。</p>
-<p><strong>最少使用算法（LFU）</strong></p>
-<p>置换最近一段时间访问次数最少的页面。在实现时，对每个页面设置一个访问计数，在访问页面时，对访问计数加 <code>1</code>；在出现缺页异常时，置换访问计数最少的页面。</p>
-<h1 id="文件分配"><a href="#文件分配" class="headerlink" title="文件分配"></a>文件分配</h1><p>文件分配实际上是如何表示分配给一个文件的数据块的位置和顺序。主要有以下几种分配方式：连续分配、链式分配和索引分配。</p>
-<p><strong>连续分配</strong></p>
-<p>使用连续的若干个数据块来存储文件。它在文件控制块中记录起始第一个数据块的位置和长度。</p>
-<p>采用连续分配方式，读取文件的顺序访问和随机访问效率较高，但是剩余的碎片难以利用，另外文件长度增长也比较复杂。</p>
-<p><strong>链式分配</strong></p>
-<p>将文件以数据块链表的形式存储。文件控制块中包含了第一个数据块和最后一个数据块的指针。</p>
-<p>链式分配方式在创建、增大、缩小文件时比较容易，而且没有碎片，但是不能实现真正的随机访问，另外一个数据块被破坏，后面的数据块就都丢了。</p>
-<p><strong>索引分配</strong></p>
-<p>为每个文件创建一个索引数据块，索引数据块中存储了指向文件数据块的指针列表，文件控制块中包含了指向索引数据块的指针。</p>
-<p>这种实现在创建文件、增大、缩小文件时比较容易，也没有碎片，也支持随机访问。但是在文件很小时，存储索引开销相对较大，在文件很大时，需要增加额外的索引快。</p>
-<p><strong>UFS（Unix File System）</strong></p>
-<p>UFS 的多级索引分配：在文件控制块中，如果数据块小于 <code>10</code>，采用直接索引；如果大于 <code>10</code> 块，第 <code>11</code> 块开始采用一级间接索引，它先指向一个索引块，索引块中再指向实际的数据块。如果数据块大到一定程度，会采用二级间接索引，依次类推。</p>
-<p>多级索引分配方式大大提高了文件大小的限制阈值，可以动态分配数据块，文件扩展很容易，对于小文件开销较小，对于大文件使用间接索引也比较合理。</p>
-
+<p>除此之外，还有 <code>Iterator</code> 迭代器，<code>Collections</code> 和 <code>Arrays</code> 工具类，<code>Comparator</code> 比较器等。</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><code>List</code> 是一个有序列表，用特定的插入顺序来维护元素顺序。可以对列表中元素的插入位置进行控制，同时可以根据元素的索引访问元素。实现 <code>List</code> 接口的主要有 <code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code> 等。</p>
+<p><strong>ArrayList</strong></p>
+<p><code>ArrayList</code> 是一个动态数组，在随机访问元素时性能较高，但插入和删除元素效率较低。<code>ArrayList</code> 都有一个初始容量，代表了数组的大小，在 <code>ArrayList</code> 快满时，会进行扩容操作，每次增长 <code>1.5</code> 倍大小。但 <code>ArrayList</code> 是非同步的，在多线程场景下不要使用。</p>
+<p><strong>LinkedList</strong></p>
+<p><code>LinkedList</code> 是一个双向链表，由于实现方式不同，它不支持随机访问，但很容易在列表中间进行插入和删除操作。与 <code>ArrayList</code> 一样，<code>LinkedList</code> 也是非同步的。</p>
+<p><strong>Vector</strong></p>
+<p><code>Vector</code> 与 <code>ArrayList</code> 类似，基于动态数组实现，但 <code>Vector</code> 是同步的。它的操作与 <code>ArrayList</code> 几乎一样。</p>
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p><code>Map</code> 是由一系列键值对组成的集合，提供了 <code>key</code> 到 <code>Value</code> 的映射。实现 <code>Map</code> 接口的有：<code>HashMap</code>、<code>TreeMap</code>、<code>HashTable</code>、<code>EnumMap</code> 等。</p>
+<p><strong>HashMap</strong></p>
+<p><code>HashMap</code> 以哈希表数据结构实现，查询对象时通过哈希函数将元素的哈希地址转换成数组索引，在出现碰撞冲突时，则使用链表的形式存储哈希地址相同的元素，在 <code>JDK8</code> 后，链表过长后会转换为红黑树。<code>HashMap</code> 存储和查询效率较高，但需要考虑哈希函数、碰撞冲突等问题。</p>
+<p><strong>TreeMap</strong></p>
+<p><code>TreeMap</code> 实现了 <code>SortedMap</code> 接口，内部以红黑树数据结构实现，其中键以某种排序规则排序，排序规则也可以通过 <code>Comparator</code> 比较器指定。</p>
+<p><strong>HashTable</strong></p>
+<p><code>HashTable</code> 也是以哈希表数据结构实现，遇到冲突时采用链表的形式。类似于 <code>HashMap</code>，但它的同步的。</p>
+<p><strong>EnumMap</strong></p>
+<p><code>EnumMap</code> 是将枚举类型作为键值的 <code>Map</code>。由于键的数量相对固定，所以在内部用一个数组存储对应值。通常来说，效率高于 <code>HashMap</code>。</p>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p><code>Set</code> 是一个不包括重复元素的集合，存入的元素没有顺序。内部通过 <code>Map</code> 实现，<code>Set</code> 里存储的值对应的是 <code>Map</code> 中的键，键对应的值是不变的，指向一个常量。实现 <code>Set</code> 接口的集合有：<code>HashSet</code>、<code>TreeSet</code>、<code>EnumSet</code> 等。</p>
+<p><strong>HashSet</strong></p>
+<p><code>HashSet</code> 底层基于 <code>HashMap</code> 实现，它内部元素的顺序是由哈希码来决定的，所以它不保证 <code>Set</code> 的迭代顺序。可以放入 <code>null</code>，但只能放入一个。</p>
+<p><strong>TreeSet</strong></p>
+<p>与 <code>HashSet</code> 类似，它是基于 <code>TreeMap</code> 实现，以某种排序规则排序。它是使用元素的自然顺序排序，或根据创建 <code>Set</code> 时提供的 <code>Comparator</code> 进行排序。但不允许存入 <code>null</code> 值。</p>
+<p><strong>EnumSet</strong></p>
+<p><code>EnumSet</code> 基于 <code>EnumMap</code> 实现，是枚举专用的 <code>Set</code>，其中所有元素都是枚举类型。</p>
+<h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><p><code>Queue</code> 通常是指先进先出的队列，也不允许随机访问队列中的元素。而 <code>Deque</code> 接口是 <code>Queue</code> 的子接口，它代表一个双端队列。</p>
+<p><strong>ArrayDeque</strong></p>
+<p><code>ArrayDeque</code> 是基于有首尾指针的数组（环形缓冲区）实现的双端队列，它只能从首尾取出或插入元素。底层由数组实现，可以指定容量，默认容量为 <code>16</code>，并根据添加元素个数，动态扩展。</p>
+<p><strong>PriorityQueue</strong></p>
+<p><code>PriorityQueue</code> 是一个优先级队列，它使用自然顺序或者制定的比较器来排序。队列的头是按指定排序方式的最小元素。</p>
+<h1 id="Comparator-和-Comparable"><a href="#Comparator-和-Comparable" class="headerlink" title="Comparator 和 Comparable"></a>Comparator 和 Comparable</h1><p><code>Comparator</code> 和 <code>Comparable</code> 是两个接口，都可以用来对对象进行比较。</p>
+<ul>
+<li><code>Comparable</code> 接口用于当前对象和其他对象进行比较。它有一个 <code>compareTo</code> 方法，该方法只有一个参数。返回值为 <code>int</code>，大于 <code>0</code> 表示当前对象大于参数对象；小于 <code>0</code> 表示当前对象小于参数对象；等于 <code>0</code> 表示两者相等。</li>
+<li><code>Comparator</code> 是一个比较器接口，用于对传入的两个对象进行比较。它有一个 <code>compare</code> 方法，该方法有两个参数。</li>
+</ul>
+<p>例如，对一组 <code>Student</code> 对象进行排序，分别使用 <code>Comparable</code> 和 <code>Comparator</code> 接口实现功能。</p>
+<p><strong>Comparable</strong></p>
+<p><code>Comparable</code> 接口实现在对象类的内部，之后对象就变成了一个可以比较大小的对象，也就可以用来排序了。</p>
+<p>首先 <code>Student</code> 类需要实现 <code>Comparable</code> 接口，重写其 <code>compareTo</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// setter、getter、toString</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student another)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="keyword">this</span>.name.compareTo(another.name);</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>) &#123;</span><br><span class="line">            flag = <span class="keyword">this</span>.age - another.age;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>List</code> 接口的 <code>sort(Comparator&lt;? super E&gt; c)</code> 默认方法，或者 <code>Collections</code> 工具类的 <code>sort(List&lt;T&gt; list)</code> 方法进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"a"</span>, <span class="number">4</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"d"</span>, <span class="number">2</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"c"</span>, <span class="number">5</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"c"</span>, <span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    students.sort(<span class="keyword">null</span>);</span><br><span class="line">    <span class="comment">// Collections.sort(students);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">        System.out.println(student);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Comparator</strong></p>
+<p><code>Comparator</code> 实现在对象类的外部，此时对象类的结构不需要有任何变化。</p>
+<p>然后另外定义一个比较器类，实现 <code>Comparator</code> 接口并重写其 <code>compare</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = o1.getName().compareTo(o2.getName());</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>) &#123;</span><br><span class="line">            flag = o1.getAge() - o2.getAge();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>List</code> 接口的 <code>sort(Comparator&lt;? super E&gt; c)</code> 方法，或者 <code>Collections</code> 工具类的 <code>sort(List&lt;T&gt; list, Comparator&lt;? super T&gt; c)</code> 方法进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Person&gt; persons = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"a"</span>, <span class="number">4</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"d"</span>, <span class="number">2</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"c"</span>, <span class="number">5</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"c"</span>, <span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    persons.sort(<span class="keyword">new</span> PersonComparator());</span><br><span class="line">    <span class="comment">// Collections.sort(persons, new PersonComparator());</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -500,7 +514,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+            <a href="/tags/Java集合/" rel="tag"><i class="fa fa-tag"></i> Java集合</a>
           
         </div>
       
@@ -513,8 +527,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/10/009_死锁/" rel="next" title="操作系统知识回顾(4)--死锁">
-                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(4)--死锁
+              <a href="/2019/02/18/023_Java 反射与动态代理/" rel="next" title="Java 反射与动态代理">
+                <i class="fa fa-chevron-left"></i> Java 反射与动态代理
               </a>
             
           </div>
@@ -523,8 +537,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/010_内存分配/" rel="prev" title="操作系统知识回顾(5)-内存管理">
-                操作系统知识回顾(5)-内存管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/20/025_Java集合之 Iterator 迭代器/" rel="prev" title="Java 集合之 Iterator 迭代器">
+                Java 集合之 Iterator 迭代器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -699,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求分页存储管理"><span class="nav-number">2.</span> <span class="nav-text">请求分页存储管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面置换算法"><span class="nav-number">3.</span> <span class="nav-text">页面置换算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件分配"><span class="nav-number">4.</span> <span class="nav-text">文件分配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集合框架"><span class="nav-number">1.</span> <span class="nav-text">集合框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">2.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map"><span class="nav-number">3.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set"><span class="nav-number">4.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Queue"><span class="nav-number">5.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparator-和-Comparable"><span class="nav-number">6.</span> <span class="nav-text">Comparator 和 Comparable</span></a></li></ol></div>
             
 
           </div>

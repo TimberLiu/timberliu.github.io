@@ -99,7 +99,7 @@
 <meta name="description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
 <meta name="keywords" content="Java集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 集合之 总体架构">
+<meta property="og:title" content="Java 集合(1)之 总体架构">
 <meta property="og:url" content="https://blog.timberliu.com/2019/02/20/024_Java集合之 总体架构/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
 <meta property="og:updated_time" content="2019-02-19T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 集合之 总体架构">
+<meta name="twitter:title" content="Java 集合(1)之 总体架构">
 <meta name="twitter:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
 <meta name="twitter:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
 
@@ -144,7 +144,7 @@
 
 
 
-  <title>Java 集合之 总体架构 | TimberLiu's Blog</title>
+  <title>Java 集合(1)之 总体架构 | TimberLiu's Blog</title>
   
 
 
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 集合之 总体架构</h1>
+          <h1 class="post-title" itemprop="name headline">Java 集合(1)之 总体架构</h1>
         
 
         <div class="post-meta">
@@ -429,9 +429,9 @@
 <ul>
 <li>降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类；</li>
 <li>提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量；</li>
-<li>促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的。</li>
+<li>促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的。<a id="more"></a></li>
 </ul>
-<p>在集合的接口和实现中大量使用了泛型，它为集合提供了一个可以容纳的对象类型，如果添加其他类型的元素，在编译时就会出错，这避免了在运行时出现类型转换异常。泛型也使得代码更加整洁，因为不需要显式地编写类型转换操作，编译器会帮我们实现。<a id="more"></a></p>
+<p>在集合的接口和实现中大量使用了泛型，它为集合提供了一个可以容纳的对象类型，如果添加其他类型的元素，在编译时就会出错，这避免了在运行时出现类型转换异常。泛型也使得代码更加整洁，因为不需要显式地编写类型转换操作，编译器会帮我们实现。</p>
 <p><code>Java</code> 整个集合框架图如下：</p>
 <p><img src="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg" width="90%"></p>
 <p>可以看到，这个框图主要有两个主干：<code>Collection</code> 和 <code>Map</code>。</p>
@@ -537,8 +537,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/20/025_Java集合之 Iterator 迭代器/" rel="prev" title="Java 集合之 Iterator 迭代器">
-                Java 集合之 Iterator 迭代器 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/20/025_Java集合之 Iterator 迭代器/" rel="prev" title="Java 集合(2)之 Iterator 迭代器">
+                Java 集合(2)之 Iterator 迭代器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -614,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -636,7 +636,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

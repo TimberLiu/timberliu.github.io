@@ -96,20 +96,20 @@
 
 
 
-<meta name="description" content="前面两篇文章对 ArrayList、LinkedList 的源码进行了分析，这篇文章对 List 做个简单的总结。 List 接口结构List 以线性方式存储元素，其中允许存放重复元素，元素有序。主要有以下几个实现类：  ArrayList：随机访问元素效率较高，但增删元素较慢； LinkedList：增删元素效率较高，但随机访问效率较低； Vector：与 ArrayList，但它是线程安全的，">
+<meta name="description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
 <meta name="keywords" content="Java集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 集合(5)之 List 总结">
-<meta property="og:url" content="https://blog.timberliu.com/2019/02/22/029_Java集合之 List 总结/index.html">
+<meta property="og:title" content="Java 集合(1)之 总体架构">
+<meta property="og:url" content="https://blog.timberliu.com/2019/02/19/024_Java集合之 总体架构/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="前面两篇文章对 ArrayList、LinkedList 的源码进行了分析，这篇文章对 List 做个简单的总结。 List 接口结构List 以线性方式存储元素，其中允许存放重复元素，元素有序。主要有以下几个实现类：  ArrayList：随机访问元素效率较高，但增删元素较慢； LinkedList：增删元素效率较高，但随机访问效率较低； Vector：与 ArrayList，但它是线程安全的，">
+<meta property="og:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://media.timberliu.com/image/2019/2/22/List%20%E7%BB%93%E6%9E%84.jpg">
-<meta property="og:updated_time" content="2019-02-21T16:00:00.000Z">
+<meta property="og:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
+<meta property="og:updated_time" content="2019-02-18T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 集合(5)之 List 总结">
-<meta name="twitter:description" content="前面两篇文章对 ArrayList、LinkedList 的源码进行了分析，这篇文章对 List 做个简单的总结。 List 接口结构List 以线性方式存储元素，其中允许存放重复元素，元素有序。主要有以下几个实现类：  ArrayList：随机访问元素效率较高，但增删元素较慢； LinkedList：增删元素效率较高，但随机访问效率较低； Vector：与 ArrayList，但它是线程安全的，">
-<meta name="twitter:image" content="http://media.timberliu.com/image/2019/2/22/List%20%E7%BB%93%E6%9E%84.jpg">
+<meta name="twitter:title" content="Java 集合(1)之 总体架构">
+<meta name="twitter:description" content="集合框架Java 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 Java 集合的优点部分如下：  降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类； 提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量； 促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的">
+<meta name="twitter:image" content="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/02/22/029_Java集合之 List 总结/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/02/19/024_Java集合之 总体架构/">
 
 
 
 
 
-  <title>Java 集合(5)之 List 总结 | TimberLiu's Blog</title>
+  <title>Java 集合(1)之 总体架构 | TimberLiu's Blog</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/22/029_Java集合之 List 总结/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/19/024_Java集合之 总体架构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 集合(5)之 List 总结</h1>
+          <h1 class="post-title" itemprop="name headline">Java 集合(1)之 总体架构</h1>
         
 
         <div class="post-meta">
@@ -348,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T00:00:00+08:00">
-                2019-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-19T00:00:00+08:00">
+                2019-02-19
               </time>
             
 
@@ -364,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T00:00:00+08:00">
-                2019-02-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-19T00:00:00+08:00">
+                2019-02-19
               </time>
             
           </span>
@@ -425,49 +425,67 @@
       
 
       
-        <p>前面两篇文章对 <code>ArrayList</code>、<code>LinkedList</code> 的源码进行了分析，这篇文章对 <code>List</code> 做个简单的总结。</p>
-<h1 id="List-接口结构"><a href="#List-接口结构" class="headerlink" title="List 接口结构"></a>List 接口结构</h1><p><code>List</code> 以线性方式存储元素，其中允许存放重复元素，元素有序。主要有以下几个实现类：</p>
+        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><p><code>Java</code> 提供了一个丰富的集合类，包含了常用的数据结构和算法等。使用 <code>Java</code> 集合的优点部分如下：</p>
 <ul>
-<li><code>ArrayList</code>：随机访问元素效率较高，但增删元素较慢；</li>
-<li><code>LinkedList</code>：增删元素效率较高，但随机访问效率较低；</li>
-<li><code>Vector</code>：与 <code>ArrayList</code>，但它是线程安全的，同步通过 <code>synchronized</code> 实现，效率较低，一般不建议使用；</li>
-<li><code>Stack</code>：是一个先进先出的栈，继承自 <code>Vector</code>；<a id="more"></a></li>
+<li>降低开发的成本：通过提供的核心集合类，使程序员更专注地实现程序的核心功能，而不用自己去实现自己的集合类；</li>
+<li>提高代码的质量：集合框架提供了许多经过严格测试的、高性能、高质量的数据结构和算法，大大提高了程序的质量；</li>
+<li>促进软件的复用性：只要符合标准集合接口的新数据结构和算法本质上都是可以复用的。<a id="more"></a></li>
 </ul>
-<p>它的主要结构如下：</p>
-<p><img src="http://media.timberliu.com/image/2019/2/22/List%20%E7%BB%93%E6%9E%84.jpg" width="60%"></p>
-<h1 id="数组与-ArrayList-的区别"><a href="#数组与-ArrayList-的区别" class="headerlink" title="数组与 ArrayList 的区别"></a>数组与 ArrayList 的区别</h1><p>数组与 <code>ArrayList</code> 之间的区别如下：</p>
+<p>在集合的接口和实现中大量使用了泛型，它为集合提供了一个可以容纳的对象类型，如果添加其他类型的元素，在编译时就会出错，这避免了在运行时出现类型转换异常。泛型也使得代码更加整洁，因为不需要显式地编写类型转换操作，编译器会帮我们实现。</p>
+<p><code>Java</code> 整个集合框架图如下：</p>
+<p><img src="http://media.timberliu.com/image/2019/2/19/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.jpg" width="90%"></p>
+<p>可以看到，这个框图主要有两个主干：<code>Collection</code> 和 <code>Map</code>。</p>
 <ul>
-<li>数组可以存储基本类型和对象；而 <code>ArrayList</code> 只能存储对象，需要进行拆装箱。所以如果特别关注性能，可以选用数组。</li>
-<li>数组需要指定大小，且不能改变；而 <code>ArrayList</code> 可以指定或不指定初始化容量，且支持自动扩容。所以，如果数据大小已知，并且对数据的操作比较简单，可以使用数组。</li>
-<li><code>ArrayList</code> 最大的优势就是封装了很多操作数组的方法。如果操作比较复杂，可以选用 <code>ArrayList</code>。</li>
-<li>表示多维数组时，用数组更加直观。例如 <code>Object[][]</code>。</li>
+<li><code>Collection</code>：它是一个接口，提供了对集合对象进行基本操作的通用接口方法，有很多具体的实现和继承，它被分为三大分支：<code>List</code>、<code>Set</code> 和 <code>Queue</code>。</li>
+<li><code>Map</code>：它是由一系列键值对组成的集合，提供了 <code>key</code> 到 <code>Value</code> 的映射。</li>
 </ul>
-<p>其实一般来说，在普通业务开发中，直接使用 <code>ArrayList</code> 就可以了，相比于损耗一点点性能，换来使用上的方便简单，也是可以接受。</p>
-<p>但如果做的是较底层的开发，如中间件，性能优化等，数组一般会比较好。</p>
-<h1 id="ArrayList-与-LinkedList-的区别"><a href="#ArrayList-与-LinkedList-的区别" class="headerlink" title="ArrayList 与 LinkedList 的区别"></a>ArrayList 与 LinkedList 的区别</h1><p><strong>ArrayList</strong></p>
-<p>优点：<code>ArrayList</code> 底层基于动态数组实现，由于地址连续，按照下标直接计算操作地址，随机访问效率较高。</p>
-<p>缺点：但同样是因为地址连续，在插入和删除数据时，数组需要移动数据，所以插入和删除操作的效率较低。</p>
+<p>除此之外，还有 <code>Iterator</code> 迭代器，<code>Collections</code> 和 <code>Arrays</code> 工具类，<code>Comparator</code> 比较器等。</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><code>List</code> 是一个有序列表，用特定的插入顺序来维护元素顺序。可以对列表中元素的插入位置进行控制，同时可以根据元素的索引访问元素。实现 <code>List</code> 接口的主要有 <code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code> 等。</p>
+<p><strong>ArrayList</strong></p>
+<p><code>ArrayList</code> 是一个动态数组，在随机访问元素时性能较高，但插入和删除元素效率较低。<code>ArrayList</code> 都有一个初始容量，代表了数组的大小，在 <code>ArrayList</code> 快满时，会进行扩容操作，每次增长 <code>1.5</code> 倍大小。但 <code>ArrayList</code> 是非同步的，在多线程场景下不要使用。</p>
 <p><strong>LinkedList</strong></p>
-<p>优点：<code>LinkedList</code> 底层基于双向链表实现，由于地址是任意的，所以在创建节点时比较简单，增加和删除操作的效率比较高。另外，它也适用于队列、栈形式的场景。</p>
-<p>缺点：由于 <code>LinkedList</code>  访问元素时需要一个一个地移动指针，所以随机访问的效率较低。</p>
-<p><strong>适用场景</strong></p>
-<p>可以按照如下要求进行选择：</p>
+<p><code>LinkedList</code> 是一个双向链表，由于实现方式不同，它不支持随机访问，但很容易在列表中间进行插入和删除操作。与 <code>ArrayList</code> 一样，<code>LinkedList</code> 也是非同步的。</p>
+<p><strong>Vector</strong></p>
+<p><code>Vector</code> 与 <code>ArrayList</code> 类似，基于动态数组实现，但 <code>Vector</code> 是同步的。它的操作与 <code>ArrayList</code> 几乎一样。</p>
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p><code>Map</code> 是由一系列键值对组成的集合，提供了 <code>key</code> 到 <code>Value</code> 的映射。实现 <code>Map</code> 接口的有：<code>HashMap</code>、<code>TreeMap</code>、<code>HashTable</code>、<code>EnumMap</code> 等。</p>
+<p><strong>HashMap</strong></p>
+<p><code>HashMap</code> 以哈希表数据结构实现，查询对象时通过哈希函数将元素的哈希地址转换成数组索引，在出现碰撞冲突时，则使用链表的形式存储哈希地址相同的元素，在 <code>JDK8</code> 后，链表过长后会转换为红黑树。<code>HashMap</code> 存储和查询效率较高，但需要考虑哈希函数、碰撞冲突等问题。</p>
+<p><strong>TreeMap</strong></p>
+<p><code>TreeMap</code> 实现了 <code>SortedMap</code> 接口，内部以红黑树数据结构实现，其中键以某种排序规则排序，排序规则也可以通过 <code>Comparator</code> 比较器指定。</p>
+<p><strong>HashTable</strong></p>
+<p><code>HashTable</code> 也是以哈希表数据结构实现，遇到冲突时采用链表的形式。类似于 <code>HashMap</code>，但它的同步的。</p>
+<p><strong>EnumMap</strong></p>
+<p><code>EnumMap</code> 是将枚举类型作为键值的 <code>Map</code>。由于键的数量相对固定，所以在内部用一个数组存储对应值。通常来说，效率高于 <code>HashMap</code>。</p>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p><code>Set</code> 是一个不包括重复元素的集合，存入的元素没有顺序。内部通过 <code>Map</code> 实现，<code>Set</code> 里存储的值对应的是 <code>Map</code> 中的键，键对应的值是不变的，指向一个常量。实现 <code>Set</code> 接口的集合有：<code>HashSet</code>、<code>TreeSet</code>、<code>EnumSet</code> 等。</p>
+<p><strong>HashSet</strong></p>
+<p><code>HashSet</code> 底层基于 <code>HashMap</code> 实现，它内部元素的顺序是由哈希码来决定的，所以它不保证 <code>Set</code> 的迭代顺序。可以放入 <code>null</code>，但只能放入一个。</p>
+<p><strong>TreeSet</strong></p>
+<p>与 <code>HashSet</code> 类似，它是基于 <code>TreeMap</code> 实现，以某种排序规则排序。它是使用元素的自然顺序排序，或根据创建 <code>Set</code> 时提供的 <code>Comparator</code> 进行排序。但不允许存入 <code>null</code> 值。</p>
+<p><strong>EnumSet</strong></p>
+<p><code>EnumSet</code> 基于 <code>EnumMap</code> 实现，是枚举专用的 <code>Set</code>，其中所有元素都是枚举类型。</p>
+<h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><p><code>Queue</code> 通常是指先进先出的队列，也不允许随机访问队列中的元素。而 <code>Deque</code> 接口是 <code>Queue</code> 的子接口，它代表一个双端队列。</p>
+<p><strong>ArrayDeque</strong></p>
+<p><code>ArrayDeque</code> 是基于有首尾指针的数组（环形缓冲区）实现的双端队列，它只能从首尾取出或插入元素。底层由数组实现，可以指定容量，默认容量为 <code>16</code>，并根据添加元素个数，动态扩展。</p>
+<p><strong>PriorityQueue</strong></p>
+<p><code>PriorityQueue</code> 是一个优先级队列，它使用自然顺序或者制定的比较器来排序。队列的头是按指定排序方式的最小元素。</p>
+<h1 id="Comparator-和-Comparable"><a href="#Comparator-和-Comparable" class="headerlink" title="Comparator 和 Comparable"></a>Comparator 和 Comparable</h1><p><code>Comparator</code> 和 <code>Comparable</code> 是两个接口，都可以用来对对象进行比较。</p>
 <ul>
-<li>如果对数据随机访问的操作较多，则选用 <code>ArrayList</code>。</li>
-<li>如果对数据的增加或删除操作较多，则选用 <code>LinkedList</code>。</li>
+<li><code>Comparable</code> 接口用于当前对象和其他对象进行比较。它有一个 <code>compareTo</code> 方法，该方法只有一个参数。返回值为 <code>int</code>，大于 <code>0</code> 表示当前对象大于参数对象；小于 <code>0</code> 表示当前对象小于参数对象；等于 <code>0</code> 表示两者相等。</li>
+<li><code>Comparator</code> 是一个比较器接口，用于对传入的两个对象进行比较。它有一个 <code>compare</code> 方法，该方法有两个参数。</li>
 </ul>
-<h1 id="ArrayList-与-Vector-的区别"><a href="#ArrayList-与-Vector-的区别" class="headerlink" title="ArrayList 与 Vector 的区别"></a>ArrayList 与 Vector 的区别</h1><p><code>ArrayList</code> 和 <code>Vector</code> 很相似，主要有以下三个区别：</p>
-<ul>
-<li><code>Vector</code> 是线程安全的，而 <code>ArrayList</code> 不是。<code>Vector</code> 中的方法被 <code>synchronized</code> 修饰，效率很低，一般不赞成使用。</li>
-<li>两者都是基于动态数组实现，但是扩容时，两者的增加方式不同。<code>ArrayList</code> 每次扩至 <code>1.5</code> 倍，而 <code>Vector</code> 扩至 <code>2</code> 倍。</li>
-<li><code>Vector</code> 可以设置扩容时的自增容量 <code>capacityIncrement</code>，而 <code>ArrayList</code> 不可以。</li>
-<li><code>ArrayList</code> 支持 <code>Iterator</code> 和 <code>ListIterator</code> 迭代器；而 <code>Vector</code> 除此之外，还支持 <code>Enumeration</code>。</li>
-</ul>
-<p>它们的适用场景如下：</p>
-<ul>
-<li><code>Vector</code> 是线程安全的，而 <code>ArrayList</code> 是非线程安全的。如果在非多线程的情境下，一般采用 <code>ArrayList</code> 效率比较高。由于 <code>Vector</code> 效率较低，如果在多线程环境下，一般使用 <code>CopyOnWriteArrayList</code>。</li>
-</ul>
-
+<p>例如，对一组 <code>Student</code> 对象进行排序，分别使用 <code>Comparable</code> 和 <code>Comparator</code> 接口实现功能。</p>
+<p><strong>Comparable</strong></p>
+<p><code>Comparable</code> 接口实现在对象类的内部，之后对象就变成了一个可以比较大小的对象，也就可以用来排序了。</p>
+<p>首先 <code>Student</code> 类需要实现 <code>Comparable</code> 接口，重写其 <code>compareTo</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// setter、getter、toString</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student another)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="keyword">this</span>.name.compareTo(another.name);</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>) &#123;</span><br><span class="line">            flag = <span class="keyword">this</span>.age - another.age;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>List</code> 接口的 <code>sort(Comparator&lt;? super E&gt; c)</code> 默认方法，或者 <code>Collections</code> 工具类的 <code>sort(List&lt;T&gt; list)</code> 方法进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"a"</span>, <span class="number">4</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"d"</span>, <span class="number">2</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"c"</span>, <span class="number">5</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"c"</span>, <span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    students.sort(<span class="keyword">null</span>);</span><br><span class="line">    <span class="comment">// Collections.sort(students);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">        System.out.println(student);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Comparator</strong></p>
+<p><code>Comparator</code> 实现在对象类的外部，此时对象类的结构不需要有任何变化。</p>
+<p>然后另外定义一个比较器类，实现 <code>Comparator</code> 接口并重写其 <code>compare</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = o1.getName().compareTo(o2.getName());</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>) &#123;</span><br><span class="line">            flag = o1.getAge() - o2.getAge();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>List</code> 接口的 <code>sort(Comparator&lt;? super E&gt; c)</code> 方法，或者 <code>Collections</code> 工具类的 <code>sort(List&lt;T&gt; list, Comparator&lt;? super T&gt; c)</code> 方法进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Person&gt; persons = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"a"</span>, <span class="number">4</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"d"</span>, <span class="number">2</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"c"</span>, <span class="number">5</span>));</span><br><span class="line">    persons.add(<span class="keyword">new</span> Person(<span class="string">"c"</span>, <span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    persons.sort(<span class="keyword">new</span> PersonComparator());</span><br><span class="line">    <span class="comment">// Collections.sort(persons, new PersonComparator());</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -509,8 +527,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/21/027_Java集合之 ArrayList 源码解析/" rel="next" title="Java 集合(3)之 ArrayList 源码解析">
-                <i class="fa fa-chevron-left"></i> Java 集合(3)之 ArrayList 源码解析
+              <a href="/2019/02/18/023_Java 反射与动态代理/" rel="next" title="Java 反射与动态代理">
+                <i class="fa fa-chevron-left"></i> Java 反射与动态代理
               </a>
             
           </div>
@@ -519,8 +537,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/23/030_Java集合之 HashMap 源码解析/" rel="prev" title="Java 集合(6)之 HashMap 源码解析">
-                Java 集合(6)之 HashMap 源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/20/025_Java集合之 Iterator 迭代器/" rel="prev" title="Java 集合(2)之 Iterator 迭代器">
+                Java 集合(2)之 Iterator 迭代器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -596,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -607,7 +625,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -618,7 +636,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -695,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#List-接口结构"><span class="nav-number">1.</span> <span class="nav-text">List 接口结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组与-ArrayList-的区别"><span class="nav-number">2.</span> <span class="nav-text">数组与 ArrayList 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList-与-LinkedList-的区别"><span class="nav-number">3.</span> <span class="nav-text">ArrayList 与 LinkedList 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList-与-Vector-的区别"><span class="nav-number">4.</span> <span class="nav-text">ArrayList 与 Vector 的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集合框架"><span class="nav-number">1.</span> <span class="nav-text">集合框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">2.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map"><span class="nav-number">3.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set"><span class="nav-number">4.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Queue"><span class="nav-number">5.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparator-和-Comparable"><span class="nav-number">6.</span> <span class="nav-text">Comparator 和 Comparable</span></a></li></ol></div>
             
 
           </div>

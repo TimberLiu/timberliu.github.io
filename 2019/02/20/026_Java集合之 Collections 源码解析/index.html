@@ -100,12 +100,12 @@
 <meta name="keywords" content="源码解读,Java集合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 集合之 Collections 源码解析">
-<meta property="og:url" content="https://blog.timberliu.com/2019/02/21/026_Java集合之 Collections 源码解析/index.html">
+<meta property="og:url" content="https://blog.timberliu.com/2019/02/20/026_Java集合之 Collections 源码解析/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
 <meta property="og:description" content="在 Java 集合框架中，有两个经常使用的工具类：Collections 和 Arrays。Collections 用来操作集合，而 Arrays 用来操作数组。这篇文章就来分析一个 Collections 类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://media.timberliu.com/image/2019/2/20/Collections%23reverse%20%E5%8F%8D%E8%BD%AC.jpg">
-<meta property="og:updated_time" content="2019-02-20T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-02-19T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合之 Collections 源码解析">
 <meta name="twitter:description" content="在 Java 集合框架中，有两个经常使用的工具类：Collections 和 Arrays。Collections 用来操作集合，而 Arrays 用来操作数组。这篇文章就来分析一个 Collections 类。">
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/02/21/026_Java集合之 Collections 源码解析/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/02/20/026_Java集合之 Collections 源码解析/">
 
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/21/026_Java集合之 Collections 源码解析/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/20/026_Java集合之 Collections 源码解析/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -348,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T00:00:00+08:00">
-                2019-02-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T00:00:00+08:00">
+                2019-02-20
               </time>
             
 
@@ -364,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-21T00:00:00+08:00">
-                2019-02-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-20T00:00:00+08:00">
+                2019-02-20
               </time>
             
           </span>
@@ -534,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/20/024_Java集合之 总体架构/" rel="next" title="Java 集合(1)之 总体架构">
-                <i class="fa fa-chevron-left"></i> Java 集合(1)之 总体架构
+              <a href="/2019/02/20/025_Java集合之 Iterator 迭代器/" rel="next" title="Java 集合(2)之 Iterator 迭代器">
+                <i class="fa fa-chevron-left"></i> Java 集合(2)之 Iterator 迭代器
               </a>
             
           </div>
@@ -544,8 +544,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/21/028_Java集合之 LinkedList 源码解析/" rel="prev" title="Java 集合(4)之 LinkedList 源码解析">
-                Java 集合(4)之 LinkedList 源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/21/027_Java集合之 ArrayList 源码解析/" rel="prev" title="Java 集合(3)之 ArrayList 源码解析">
+                Java 集合(3)之 ArrayList 源码解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -621,7 +621,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -632,7 +632,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -643,7 +643,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

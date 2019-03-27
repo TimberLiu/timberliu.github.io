@@ -317,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/017_mmallv2.0分布式锁定时关单/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -336,7 +336,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/14/017_mmallv2.0分布式锁定时关单/" itemprop="url">mmall_v2.0 分布式锁实现定时关单</a></h1>
+                <a class="post-title-link" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/" itemprop="url">mmall_v2.0 Redis + Cookie 实现单点登录</a></h1>
         
 
         <div class="post-meta">
@@ -421,11 +421,11 @@
 
       
         
-          <p>在电商项目中，用户购买商品在生成订单后，一定时间内如果没有付款，应该将订单关闭。这里，主要用 <code>Spring Schedule</code>和分布式锁来实现，而分布式锁也分别用 <code>Redis</code> 命令原生实现和 <code>Redisson</code> 框架两种方式。</p>
-<h1 id="Spring-Schedule-介绍"><a href="#Spring-Schedule-介绍" class="headerlink" title="Spring Schedule 介绍"></a>Spring Schedule 介绍</h1><p><code>Spring Schedule</code> 是一个任务调度框架，用于定时任务调度等。主要通过 <code>@Scheduled</code> 注解来创建定时任务，可通过 <code>cron</code> 表达式来指定任务特定的执行时间。</p>
+          <p>电商项目中，在单服务器时，用户登录时将用户信息设置到 <code>session</code> 中，获取用户信息从 <code>session</code> 中获取，退出时从 <code>session</code> 中删除即可。</p>
+<p>但在搭建 <code>Tomcat</code> 集群后，就需要考虑 <code>Session</code> 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 <code>Redis + Cookie</code> 自己实现，另一种是借助 <code>Spring Session</code> 框架解决。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/02/14/017_mmallv2.0分布式锁定时关单/#more" rel="contents">
+            <a class="btn" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

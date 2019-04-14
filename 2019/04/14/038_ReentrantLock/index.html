@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="操作系统,">
+  <meta name="keywords" content="并发,">
 
 
 
@@ -96,26 +96,18 @@
 
 
 
-<meta name="description" content="存储器管理的主要对象是内存。这篇文章总结了内存分配的两种方式，其中重点需要掌握非连续分配方式：即分页式、分段式、段页式分配的基本概念和地址转换。  连续内存分配在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。 动态分区分配是一种连续分配方式，它根据进程的实际需要，在程序被加载时，动态地为之建立一个大小可变的分区，这个分区的地址是连续的。">
-<meta name="keywords" content="操作系统">
+<meta name="description" content="深入理解 ReentrantLockReentrantLock 是一种可重入锁，它指的是一个线程能够对资源重复加锁。ReentrantLock 与 synchronized 类似，能够保证解决线程安全问题，但是却提供了比 synchronized 更强大、灵活的机制，例如可中断式的获取锁、可定时的获取锁等。">
+<meta name="keywords" content="并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="操作系统知识回顾(5)-内存管理">
-<meta property="og:url" content="https://blog.timberliu.com/2019/01/11/010_内存分配/index.html">
+<meta property="og:title" content="Java 并发之 深入理解 ReentrantLock">
+<meta property="og:url" content="https://blog.timberliu.com/2019/04/14/038_ReentrantLock/index.html">
 <meta property="og:site_name" content="TimberLiu&#39;s Blog">
-<meta property="og:description" content="存储器管理的主要对象是内存。这篇文章总结了内存分配的两种方式，其中重点需要掌握非连续分配方式：即分页式、分段式、段页式分配的基本概念和地址转换。  连续内存分配在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。 动态分区分配是一种连续分配方式，它根据进程的实际需要，在程序被加载时，动态地为之建立一个大小可变的分区，这个分区的地址是连续的。">
+<meta property="og:description" content="深入理解 ReentrantLockReentrantLock 是一种可重入锁，它指的是一个线程能够对资源重复加锁。ReentrantLock 与 synchronized 类似，能够保证解决线程安全问题，但是却提供了比 synchronized 更强大、灵活的机制，例如可中断式的获取锁、可定时的获取锁等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c362872002dc?w=1100&h=355&f=png&s=17765">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628979c765?w=887&h=282&f=png&s=16628">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628983ec51?w=561&h=149&f=png&s=5286">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628b5610bf?w=810&h=426&f=png&s=20679">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c36289e63a6f?w=934&h=601&f=png&s=33581">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628abeddf3?w=561&h=151&f=png&s=4715">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c2eba0bb6bb7?w=886&h=525&f=png&s=30075">
-<meta property="og:updated_time" content="2019-01-10T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-04-13T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="操作系统知识回顾(5)-内存管理">
-<meta name="twitter:description" content="存储器管理的主要对象是内存。这篇文章总结了内存分配的两种方式，其中重点需要掌握非连续分配方式：即分页式、分段式、段页式分配的基本概念和地址转换。  连续内存分配在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。 动态分区分配是一种连续分配方式，它根据进程的实际需要，在程序被加载时，动态地为之建立一个大小可变的分区，这个分区的地址是连续的。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/1/11/1683c362872002dc?w=1100&h=355&f=png&s=17765">
+<meta name="twitter:title" content="Java 并发之 深入理解 ReentrantLock">
+<meta name="twitter:description" content="深入理解 ReentrantLockReentrantLock 是一种可重入锁，它指的是一个线程能够对资源重复加锁。ReentrantLock 与 synchronized 类似，能够保证解决线程安全问题，但是却提供了比 synchronized 更强大、灵活的机制，例如可中断式的获取锁、可定时的获取锁等。">
 
 
 
@@ -144,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.timberliu.com/2019/01/11/010_内存分配/">
+  <link rel="canonical" href="https://blog.timberliu.com/2019/04/14/038_ReentrantLock/">
 
 
 
 
 
-  <title>操作系统知识回顾(5)-内存管理 | TimberLiu's Blog</title>
+  <title>Java 并发之 深入理解 ReentrantLock | TimberLiu's Blog</title>
   
 
 
@@ -325,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/11/010_内存分配/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/04/14/038_ReentrantLock/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -342,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">操作系统知识回顾(5)-内存管理</h1>
+          <h1 class="post-title" itemprop="name headline">Java 并发之 深入理解 ReentrantLock</h1>
         
 
         <div class="post-meta">
@@ -354,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T00:00:00+08:00">
+                2019-04-14
               </time>
             
 
@@ -370,8 +362,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-14T00:00:00+08:00">
+                2019-04-14
               </time>
             
           </span>
@@ -389,8 +381,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
                   </a>
                 </span>
 
@@ -431,71 +423,71 @@
       
 
       
-        <blockquote>
-<p>存储器管理的主要对象是内存。这篇文章总结了内存分配的两种方式，其中重点需要掌握非连续分配方式：即分页式、分段式、段页式分配的基本概念和地址转换。</p>
-</blockquote>
-<h1 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h1><p>在系统中运行程序，需要为其分配一定大小的内存空间。内存分配方式主要有连续分配和非连续分配两种。</p>
-<p>动态分区分配是一种连续分配方式，它根据进程的实际需要，在程序被加载时，动态地为之建立一个大小可变的分区，这个分区的地址是连续的。<a id="more"></a>  </p>
-<h2 id="内存管理方式"><a href="#内存管理方式" class="headerlink" title="内存管理方式"></a>内存管理方式</h2><p>为实现动态分区分配，系统必须对空闲的内存进行管理，主要有两种方法：位图法和空闲区链表。</p>
-<p><strong>位图法</strong></p>
-<p>使用位图方法时，内存可能被划分为小到几个字或大到几千个字节的分配单元。每个分配单元对应位图中的一位，<code>0</code> 表示空闲，<code>1</code> 表示占用。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c362872002dc?w=1100&h=355&f=png&s=17765" width="80%"></p>
-<p>位图的缺点是如果想要调入一个占 <code>k</code> 个分配单元的进程，必须搜索位图，找出有 <code>k</code> 个连续 <code>0</code> 的串。查找位图中指定长度的连续 <code>0</code> 串的操作很耗时。</p>
-<p><strong>空闲区链表法</strong></p>
-<p>链表法是维护一个已分配内存段和空闲内存段的链表。链表的结点包括一个进程，或两个进程间的一块空闲区。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628979c765?w=887&h=282&f=png&s=16628" width="80%"></p>
-<h2 id="内存分配算法"><a href="#内存分配算法" class="headerlink" title="内存分配算法"></a>内存分配算法</h2><p>在将程序加载入内存时，需要按照一定的算法，从位图或空闲链表中选择分区分配给进程。</p>
-<p><strong>首次适配(first fit)</strong></p>
-<p>首次适配算法要求空闲区链表按照地址递增的顺序排序。在分配内存时，沿着链表进行搜索，直到找到一个足够大的分区，将其分为两部分，一部分供进程使用，一部分形成新的空闲区。</p>
-<p>它的实现比较简单，但是低地址部分不断被划分，会留下许多小空闲分区。</p>
-<p><strong>下次适配(next fit)</strong></p>
-<p>下次适配算法和首次适配算法类似，只是不再像首次适配算法那样每次都从头开始，而是从上次找到的空闲分区的下一个空闲分区开始搜索。</p>
-<p><strong>最佳适配(best fit)</strong></p>
-<p>最佳适配算法要求将空闲分区按照其容量大小进行排序。在分配内存时，查找一个能满足要求、又是最小的的空闲分区，分配给进程。</p>
-<p>这种算法的缺点是分区在每次分配后的剩余部分总是最小的，会留下许多难以利用的碎片。</p>
-<p><strong>最差适配(worst fit)</strong></p>
-<p>最差适配算法在分配内存时，总是选择一个最大的空闲分区，划分为两部分，一部分给进程使用，另一部分形成新的空闲分区。</p>
-<p>最差适配算法使得剩下的空闲分区不至于产生太小的碎片；但是这样容易破坏大的空闲分区，后续难以找到大的分区。</p>
-<p><strong>快速适配(quick fit)</strong></p>
-<p>快速适配算法是将空闲分区按照其容量进行分类，为每一类相同容量的空闲分区单独维护一个链表。同时，设立一张管理索引表，表中每一项对应一种空闲分区类型。</p>
-<p>快速适配算法的缺点是在进程被终止或换出释放分区时，有效地合并分区非常耗时。</p>
-<h1 id="非连续内存分配"><a href="#非连续内存分配" class="headerlink" title="非连续内存分配"></a>非连续内存分配</h1><p>在非连续分配时，根据所分配地址空间的基本单位不同，可将其分为分页存储管理、分段存储管理、段页式存储管理三种方式。</p>
-<h2 id="分页存储管理"><a href="#分页存储管理" class="headerlink" title="分页存储管理"></a>分页存储管理</h2><p>在分页存储管理方式中，把用户程序的地址空间划分为若干个固定大小的页。典型的页面大小为 <code>1KB</code>。相应地，也将内存空闲分为若干个物理块，页和块大小相同，这样可以将用户程序的任一页放入任一物理快中实现非连续分配。</p>
-<p>分页地址中的地址结构为：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628983ec51?w=561&h=149&f=png&s=5286" width="40%"></p>
-<p>地址长度为 <code>32</code> 位，其中 <code>0~11</code> 位为页内地址，即每页的大小为 <code>4KB</code>；<code>12~31</code> 位为页号，最多允许有 <code>1M</code> 页。</p>
-<p>系统为每一个进程建立了一张页表，它负责逻辑页号到物理块号之间的地址转换。每一个页面对应一个页表项，记录了相应页在内存中对应的物理块号。</p>
-<p>在 <code>CPU</code> 中设置一个页表基址寄存器，存储着页表的起始地址和页表的长度。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628b5610bf?w=810&h=426&f=png&s=20679" width="60%"></p>
-<p>在进行地址转换时，首先将页号与页表长度进行比较，如果页号大于或等于页表长度，则表示本次所访问地址已超过进程的地址空间，产生越界中断。如果没有发生越界中断，则将页表始址与页号和页表项长度的乘积相加，得到该页表项在页表中的位置，于是可从中得到该页的物理块号，最后根据物理块号和页内地址便可得到物理地址。</p>
-<p>分页式存储管理方式主要有两个缺点：</p>
+        <h1 id="深入理解-ReentrantLock"><a href="#深入理解-ReentrantLock" class="headerlink" title="深入理解 ReentrantLock"></a>深入理解 ReentrantLock</h1><p><code>ReentrantLock</code> 是一种可重入锁，它指的是一个线程能够对资源重复加锁。<code>ReentrantLock</code> 与 <code>synchronized</code> 类似，能够保证解决线程安全问题，但是却提供了比 <code>synchronized</code> 更强大、灵活的机制，例如可中断式的获取锁、可定时的获取锁等。<a id="more"></a></p>
+<p>另外，<code>ReentrantLock</code> 也提供了公平锁与非公平锁的选择，它们之间的区别主要就是看对锁的获取与获取锁的请求的顺序是否是一致的，选择公平锁时，等待时间最长的线程会最优先获取到锁，但是公平锁获取的效率通常比非公平锁要低。可以在构造方法中通过传参的方式来具体指定选择公平或非公平。</p>
+<h1 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h1><p>在 <code>ReentrantLock</code> 中，有一个抽象内部类 <code>Sync</code>，它继承自 <code>AQS</code>，<code>ReentrantLock</code> 的大部分功能都委托给 <code>Sync</code> 进行实现，其内部定义了 <code>lock()</code> 抽象方法，默认实现了 <code>nonfairTryAcquire()</code> 方法，它是非公平锁的默认实现。</p>
+<p><code>Sync</code> 有两个子类：公平锁 <code>FairSync</code> 和 <code>NonFairSync</code>，实现了 <code>Sync</code> 中的 <code>lock()</code> 方法和 <code>AQS</code> 中的 <code>tryAcquire()</code> 方法。</p>
+<h2 id="NonFairSync"><a href="#NonFairSync" class="headerlink" title="NonFairSync"></a>NonFairSync</h2><p><code>NonFairSync</code> 中 <code>lock()</code> 方法的实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line">        setExclusiveOwnerThread(Thread.currentThread());</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        acquire(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，非公平锁可以立即尝试获取锁，如果失败的话，会调用 <code>AQS</code> 中的 <code>acquire</code> 方法，其中 <code>acquire</code> 方法又会调用由自定义组件实现的 <code>tryAcquire</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> nonfairTryAcquire(acquires);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>nonfairTryAcquire()</code> 方法在 <code>Sync</code> 中已经默认实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">nonfairTryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">    <span class="keyword">int</span> c = getState();</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 使用 CAS 设置同步状态</span></span><br><span class="line">        <span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>) <span class="comment">// 整数溢出</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，首先会判断的当前线程的状态是否为 <code>0</code>，也就是该锁是否处于空闲状态，如果是的话则尝试获取锁，设置成功将当前线程设置为持有锁的线程。</p>
+<p>否则的话，就判断当前线程是否为持有锁的线程，如果是的话，则增加同步状态值，获取到锁，这里也就验证了锁的可重入，再获取了锁之后，可以继续获取锁，只需增加同步状态值即可。</p>
+<h2 id="FairSync"><a href="#FairSync" class="headerlink" title="FairSync"></a>FairSync</h2><p><code>FairSync</code> 中 <code>lock()</code> 方法的实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    acquire(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>公平锁只能调用 <code>AQS</code> 的 <code>acquire()</code> 方法，再去调用由自定义组件实现的 <code>tryAcquire()</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">    <span class="keyword">int</span> c = getState();</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 是否有前驱节点</span></span><br><span class="line">        <span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;</span><br><span class="line">            compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里唯一与非公平锁不同的是在获取同步状态时，会调用 <code>hasQueuedPredecessors</code> 方法，这个方法用来判断同步队列中是否有前驱节点。也就是当前线程前面再没有其他线程时，它才可以尝试获取锁。</p>
+<h2 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h2><p><code>ReentrantLock</code> 的 <code>unlock</code> 方法内部调用 <code>AQS</code> 的 <code>release</code> 方法释放锁，而其中又调用了自定义组件实现的 <code>tryRelease</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = getState() - releases;</span><br><span class="line">    <span class="comment">// 当前线程不是持有锁的线程，不能释放</span></span><br><span class="line">    <span class="keyword">if</span> (Thread.currentThread() != getExclusiveOwnerThread())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException();</span><br><span class="line">    <span class="keyword">boolean</span> free = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        free = <span class="keyword">true</span>;</span><br><span class="line">        setExclusiveOwnerThread(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    setState(c);</span><br><span class="line">    <span class="keyword">return</span> free;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，判断当前线程是否是持有锁的线程，如果不是会抛出异常。如果是的话，再减去同步状态值，判断同步状态是否为 <code>0</code>，即锁被完全释放，其他线程可以获取同步状态了。</p>
+<p>如果没有完全释放，则仅使用 <code>setState</code> 方法设置同步状态值。</p>
+<h2 id="指定公平性"><a href="#指定公平性" class="headerlink" title="指定公平性"></a>指定公平性</h2><p>在 <code>ReentrantLock</code> 的构造函数中可以指定公平性：</p>
 <ul>
-<li>性能问题：访问一个内存单元需要两次内存访问，第一次访问获取页表项，第二次访问才访问数据。（快表）</li>
-<li>如果每页太小，页表可能会非常大，较难找到连续的大内存空间。（多级页表）</li>
+<li>默认创建一个非公平的锁</li>
 </ul>
-<h2 id="页表改进"><a href="#页表改进" class="headerlink" title="页表改进"></a>页表改进</h2><p><strong>快表</strong></p>
-<p>为提高地址转换速度，可在地址转换机构中增加一个可并行查询的缓冲寄存器，称为快表。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c36289e63a6f?w=934&h=601&f=png&s=33581" width="70%"></p>
-<p>在进行地址转换时，首先将页号与快表中的所有页号进行比较，如果其中有与此相匹配的页号，便可直接从快表中读出该页所对应的物理块号。如果在快表中没有对应的页表项，则还需要去访问内存中的页表，在找到物理块号后，得到要访问的物理地址。另外，还要将此页表项存入到快表中。如果快表已满，则需要找到一个合适的页表项，将其换出。</p>
-<p><strong>两级页表或多级页表</strong></p>
-<p>两级页表或多级页表的方法，将页表进行分页，使每个页面的大小与内存物理块的大小相同，并为它们进行编号，然后离散地将各个页面分别存放在不同的物理块中。同样，建立一张外层页表，每个页表项中记录了页表层面的物理块号。</p>
-<p>在进行地址变换时，需要增加一个外层页表寄存器，用于存放外层页表的起始地址。利用外层页表始址和逻辑地址中的外层页号找到指定页表分页的始址，再利用外层页内地址找到指定的页表项，从中得到该页在内存的物理块号，最终得到物理地址。访问一次内存单元一共需要 <code>3</code> 次内存访问。</p>
-<h2 id="分段式存储管理"><a href="#分段式存储管理" class="headerlink" title="分段式存储管理"></a>分段式存储管理</h2><p>在分段式存储管理方式中，进程的地址空间被划分为若干个段，例如主代码段、子模块代码段、堆栈段、初始化数据段、符号表等。每个段都从 <code>0</code> 开始编址，采用连续的地址空间，各段的长度也并不相等。</p>
-<p>分段地址中的地址结构如下：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c3628abeddf3?w=561&h=151&f=png&s=4715" width="50%"></p>
-<p>该地址结构中，允许一个进程最多有 <code>64K</code> 个段，每个段的最大长度为 <code>64KB</code>。</p>
-<p>系统为每个进程建立了一张段表，用于实现从逻辑段到物理内存区的映射。每个段在表中占有一个表项，其中记录了该段在内存中的基址和段的长度。</p>
-<p>系统中设置了段表寄存器，用于存放段表始址和段表长度。在进行地址转换时，首先将段号与段表长度进行比较。如果段号大于段表长度，则访问越界。</p>
-<p>如果没有越界，则根据段表的始址和该段的段号，得到该段对应段表项的位置，从中读出该段在内存的起始地址。再检查段内地址是否超过该段的段长。如果超过，同样产生越界中断；否则将该段的基址和段内地址相加，最后得到要访问的内存地址。</p>
-<h2 id="分页式和分段式比较"><a href="#分页式和分段式比较" class="headerlink" title="分页式和分段式比较"></a>分页式和分段式比较</h2><ul>
-<li>采用分页存储是为了提高内存的利用率；采用分段是为了更好地满足用户的需要。</li>
-<li>分页存储中，页面的大小由系统决定，而且大小固定；分段存储中，段的长度由用户程序决定。</li>
-<li>分页存储中，页表中主要存储物理块号；分段存储中，段表中主要存储段基址和段长。</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync = <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建一个指定公平性的锁。</li>
 </ul>
-<h2 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h2><p>段页式存储是分段和分页的结合，先将用户程序分为若干个段，再把每个段分成若干个页。段页式的地址结构为段号、段内页号和页内地址三部分。</p>
-<p>为实现地址转换，系统中需要同时设置段表和页表。不过这里的段表中存储的是页表始址和段长。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/1/11/1683c2eba0bb6bb7?w=886&h=525&f=png&s=30075" width="60%"></p>
-<p>在进行地址转换时，首先将段号与段长进行比较，如果段号小于段长表示未越界，于是利用段表始址和段号求出该段所对应的段表项在段表中的位置，从中得到该段的页表始址，并利用逻辑地址中的段内页号来获得对应页的页表项位置，从中读出该页所在的物理块号，再利用块号和页内地址来得到物理地址。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="synchronized-和-ReentrantLock-区别"><a href="#synchronized-和-ReentrantLock-区别" class="headerlink" title="synchronized 和 ReentrantLock 区别"></a>synchronized 和 ReentrantLock 区别</h1><p>这里总结一下 synchronized 和 ReentrantLock 的异同，它们之间的相同点如下：</p>
+<ul>
+<li>都可以用于实现线程间的同步访问；</li>
+<li>两者都是可重入锁，即一个线程能够对资源重复加锁；</li>
+</ul>
+<p>其不同点如下：</p>
+<ul>
+<li>同步实现机制不同：<ul>
+<li><code>synchronized</code> 通过 <code>Java</code> 对象关联的 <code>Monitor</code> 监视器实现（不考虑偏向锁、轻量级锁）；</li>
+<li><code>ReentrantLock</code> 通过 <code>CAS</code>、<code>AQS</code> 和 <code>LockSupport</code> 等共同实现；</li>
+</ul>
+</li>
+<li>可见性实现机制不同：<ul>
+<li><code>synchronized</code> 依赖 <code>JVM</code> 内存模型保证包含共享变量的多线程内存可见性。</li>
+<li><code>ReentrantLock</code> 通过 <code>ASQ</code> 中 <code>volatile</code> 类型的 <code>state</code> 同步状态值保证包含共享变量的多线程内存可见性。</li>
+</ul>
+</li>
+<li>使用方式不同：<ul>
+<li><code>synchronized</code> 可以用于修饰实例方法（锁住实例对象）、静态方法（锁住类对象）、同步代码块（指定的锁对象）。</li>
+<li><code>ReentrantLock</code> 需要显式地调用 <code>lock</code> 方法，并在 <code>finally</code> 块中释放。</li>
+</ul>
+</li>
+<li>功能丰富程度不同：<ul>
+<li><code>synchronized</code> 只提供最简单的加锁。</li>
+<li><code>ReentrantLock</code> 提供定时获取锁、可中断获取锁、<code>Condition</code>（提供 <code>await</code>、<code>signal</code> 等方法）等特性。</li>
+</ul>
+</li>
+<li>锁类型不同：<ul>
+<li><code>synchronized</code> 只支持非公平锁。</li>
+<li><code>ReentrantLock</code> 提供公平锁和非公平锁实现。但非公平锁相比于公平锁效率较高。</li>
+</ul>
+</li>
+</ul>
+<p>在 <code>synchronized</code> 优化以前，它比较重量级，其性能比 <code>ReentrantLock</code> 要差很多，但是自从 <code>synchronized</code> 引入了偏向锁、轻量级锁（自旋锁）、锁消除、锁粗化等技术后，两者的性能就相差不多了。</p>
+<p>一般来说，仅当需要使用 <code>ReentrantLock</code> 提供的其他特性时，例如：可中断的、可定时的、可轮询的、公平地获取锁等，才考虑使用 <code>ReentrantLock</code>。否则应该使用 <code>synchronized</code>，简单方便。</p>
 
       
     </div>
@@ -525,7 +517,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
           
         </div>
       
@@ -538,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/10/009_死锁/" rel="next" title="操作系统知识回顾(4)--死锁">
-                <i class="fa fa-chevron-left"></i> 操作系统知识回顾(4)--死锁
+              <a href="/2019/04/12/037_Lock 与 AQS 同步器/" rel="next" title="Java 并发之 Lock 与 AQS 同步器">
+                <i class="fa fa-chevron-left"></i> Java 并发之 Lock 与 AQS 同步器
               </a>
             
           </div>
@@ -547,10 +539,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/11/011_虚拟内存/" rel="prev" title="操作系统知识回顾(6)-虚拟内存和文件分配">
-                操作系统知识回顾(6)-虚拟内存和文件分配 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -724,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#连续内存分配"><span class="nav-number">1.</span> <span class="nav-text">连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理方式"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配算法"><span class="nav-number">1.2.</span> <span class="nav-text">内存分配算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非连续内存分配"><span class="nav-number">2.</span> <span class="nav-text">非连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分页存储管理"><span class="nav-number">2.1.</span> <span class="nav-text">分页存储管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页表改进"><span class="nav-number">2.2.</span> <span class="nav-text">页表改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段式存储管理"><span class="nav-number">2.3.</span> <span class="nav-text">分段式存储管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页式和分段式比较"><span class="nav-number">2.4.</span> <span class="nav-text">分页式和分段式比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#段页式存储管理"><span class="nav-number">2.5.</span> <span class="nav-text">段页式存储管理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解-ReentrantLock"><span class="nav-number">1.</span> <span class="nav-text">深入理解 ReentrantLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公平锁"><span class="nav-number">2.</span> <span class="nav-text">公平锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NonFairSync"><span class="nav-number">2.1.</span> <span class="nav-text">NonFairSync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FairSync"><span class="nav-number">2.2.</span> <span class="nav-text">FairSync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#释放锁"><span class="nav-number">2.3.</span> <span class="nav-text">释放锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定公平性"><span class="nav-number">2.4.</span> <span class="nav-text">指定公平性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#synchronized-和-ReentrantLock-区别"><span class="nav-number">3.</span> <span class="nav-text">synchronized 和 ReentrantLock 区别</span></a></li></ol></div>
             
 
           </div>

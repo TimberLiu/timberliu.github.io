@@ -317,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/018_mmallv2.0项目环境搭建/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/16/020_String源码阅读/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -336,7 +336,339 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/14/018_mmallv2.0项目环境搭建/" itemprop="url">mmall_v2.0 环境搭建</a></h1>
+                <a class="post-title-link" href="/2019/02/16/020_String源码阅读/" itemprop="url">String 源码阅读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T00:00:00+08:00">
+                2019-02-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-16T00:00:00+08:00">
+                2019-02-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文基于 JDK1.8，在其他版本中会有不同。</p>
+</blockquote>
+<h1 id="定义及属性"><a href="#定义及属性" class="headerlink" title="定义及属性"></a>定义及属性</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+<p><code>String</code> 类被 <code>final</code> 修饰，表示不可变。实现了 <code>Serializable</code>, <code>Comparable&lt;String&gt;</code>, <code>CharSequence</code> 接口。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/16/020_String源码阅读/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+    </div>
+
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/15/019_String类详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TimberLiu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/15/019_String类详解/" itemprop="url">String 类详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T00:00:00+08:00">
+                2019-02-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-15T00:00:00+08:00">
+                2019-02-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h1><p><code>String</code> 对象是不可变（<code>Immutable</code>）的，也就是一旦 <code>String</code> 类实例被创建后，就不能改变其值。这里的不可变指的是引用既不能指向其他对象，而且引用指向的对象的值也不能改变。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/15/019_String类详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+    </div>
+
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TimberLiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TimberLiu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/" itemprop="url">mmall_v2.0 Redis + Cookie 实现单点登录</a></h1>
         
 
         <div class="post-meta">
@@ -421,13 +753,11 @@
 
       
         
-          <h1 id="Redis-配置与安装"><a href="#Redis-配置与安装" class="headerlink" title="Redis 配置与安装"></a>Redis 配置与安装</h1><p>从官网下载 <code>redis</code> 到 <code>/developer/setup</code> 目录下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//download.redis.io/releases/redis-4.0.12.tar.gz</span></span><br></pre></td></tr></table></figure>
-<p>然后，将其解压到 <code>/developer</code> 目录下，进入到 <code>redis-4.0.12</code> 目录下，进行编译：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf redis-<span class="number">4.0</span>.12.tar.gz -C ../</span><br><span class="line">cd redis-<span class="number">4.0</span>.12/</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+          <p>电商项目中，在单服务器时，用户登录时将用户信息设置到 <code>session</code> 中，获取用户信息从 <code>session</code> 中获取，退出时从 <code>session</code> 中删除即可。</p>
+<p>但在搭建 <code>Tomcat</code> 集群后，就需要考虑 <code>Session</code> 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 <code>Redis + Cookie</code> 自己实现，另一种是借助 <code>Spring Session</code> 框架解决。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/02/14/018_mmallv2.0项目环境搭建/#more" rel="contents">
+            <a class="btn" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -649,7 +979,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/02/14/018_mmallv2.0项目环境搭建/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TimberLiu">
@@ -668,7 +998,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/" itemprop="url">mmall_v2.0 Redis + Cookie 实现单点登录</a></h1>
+                <a class="post-title-link" href="/2019/02/14/018_mmallv2.0项目环境搭建/" itemprop="url">mmall_v2.0 环境搭建</a></h1>
         
 
         <div class="post-meta">
@@ -753,11 +1083,13 @@
 
       
         
-          <p>电商项目中，在单服务器时，用户登录时将用户信息设置到 <code>session</code> 中，获取用户信息从 <code>session</code> 中获取，退出时从 <code>session</code> 中删除即可。</p>
-<p>但在搭建 <code>Tomcat</code> 集群后，就需要考虑 <code>Session</code> 共享问题，可通过单点登录解决方案实现，这里主要有两种方法，一种是通过 <code>Redis + Cookie</code> 自己实现，另一种是借助 <code>Spring Session</code> 框架解决。</p>
+          <h1 id="Redis-配置与安装"><a href="#Redis-配置与安装" class="headerlink" title="Redis 配置与安装"></a>Redis 配置与安装</h1><p>从官网下载 <code>redis</code> 到 <code>/developer/setup</code> 目录下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//download.redis.io/releases/redis-4.0.12.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>然后，将其解压到 <code>/developer</code> 目录下，进入到 <code>redis-4.0.12</code> 目录下，进行编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf redis-<span class="number">4.0</span>.12.tar.gz -C ../</span><br><span class="line">cd redis-<span class="number">4.0</span>.12/</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/02/14/016_mmallv2.0redis+cookie实现单点登录/#more" rel="contents">
+            <a class="btn" href="/2019/02/14/018_mmallv2.0项目环境搭建/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1476,176 +1808,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/11/011_虚拟内存/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/11/011_虚拟内存/" itemprop="url">操作系统知识回顾(6)-虚拟内存和文件分配</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-11T00:00:00+08:00">
-                2019-01-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>虚拟内存在逻辑上实现了对内存容量的扩充，既满足了用户的需要，又改善了系统性能。这篇文章总结了虚拟内存的基本概念、实现方式以及几种页面置换算法。最后是几种文件分配方式。</p>
-</blockquote>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>局部性原理：程序执行时，在一较短时间内，程序的执行仅仅局限于某一部分，其访问的存储空间也局限于某个区域。主要表现在两个方面：</p>
-<ul>
-<li>时间局限性：如果某条指令被执行，不久以后该指令可能再次执行；如果某些数据被访问，不久以后该数据可能再次被访问；</li>
-<li>空间局限性：如果某段存储单元被访问，其附近的存储单元可能也会被访问。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/11/011_虚拟内存/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/11/010_内存分配/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1801,177 +1963,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timberliu.com/2019/01/10/009_死锁/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TimberLiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TimberLiu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/10/009_死锁/" itemprop="url">操作系统知识回顾(4)--死锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">
-                2019-01-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-10T00:00:00+08:00">
-                2019-01-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h1><p>在两个或多个并发进程中，如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么该进程集合就产生了死锁。</p>
-<p>死锁产生的根本原因是多个进程竞争资源时，进程的推进顺序出现不当。</p>
-<p>出现死锁的四个必要条件：</p>
-<ul>
-<li>互斥。在任何时刻一个资源只能被一个进程使用。</li>
-<li>拥有和请求。已经得到某个资源的进程可以再请求新的资源；</li>
-<li>不可抢占。已经分配给进程的资源不能被抢占，而只能被显式释放；</li>
-<li>循环等待。系统中有两个或多个的进程组成一条环路，该环路中的每个进程都等待着另一个进程占有的资源。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/10/009_死锁/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    <div>
-      
-    </div>
-
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2020,7 +2011,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
